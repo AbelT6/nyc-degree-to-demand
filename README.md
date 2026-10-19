@@ -21,7 +21,7 @@
 
 ## The question
 
-CUNY's career push, CUNY Beyond, aims for every graduate to leave with a job offer or a place in further study. Students and the staff who advise them keep asking the same thing: *after CUNY, where are the jobs in NYC, and what does it take to get one?* No single source answers that. The answer is spread across federal and state agencies that each use their own codes, years and geography. This project puts those sources together, one job at a time.
+With AI changing the work that degrees lead to, students keep asking whether a college degree is still a path to a good living in New York City. CUNY's career push, CUNY Beyond, aims for every graduate to leave with a job offer or a place in further study, and the staff who advise students need the same answer: *after college, where are the jobs in NYC, and what does it take to get one?* No single source answers that. The answer is spread across federal and state agencies that each use their own codes, years and geography. This project puts those sources together, one job at a time.
 
 **First, which jobs?**
 
