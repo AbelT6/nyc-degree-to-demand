@@ -1,0 +1,183 @@
+socp,pums_label,soc_code,rule,in_nyc_sample
+1110XX,MGR-Chief Executives And Legislators,11-1011,mask 1110XX minus codes PUMS publishes on their own,True
+1110XX,MGR-Chief Executives And Legislators,11-1031,mask 1110XX minus codes PUMS publishes on their own,True
+1191XX,MGR-Other Managers,11-9131,mask 1191XX minus codes PUMS publishes on their own,True
+1191XX,MGR-Other Managers,11-9171,mask 1191XX minus codes PUMS publishes on their own,True
+1191XX,MGR-Other Managers,11-9179,mask 1191XX minus codes PUMS publishes on their own,True
+1191XX,MGR-Other Managers,11-9199,mask 1191XX minus codes PUMS publishes on their own,True
+1320XX,FIN-Other Financial Specialists,13-2054,mask 1320XX minus codes PUMS publishes on their own,True
+1320XX,FIN-Other Financial Specialists,13-2099,mask 1320XX minus codes PUMS publishes on their own,True
+15124X,CMM-Database Administrators And Architects,15-1242,mask 15124X minus codes PUMS publishes on their own,True
+15124X,CMM-Database Administrators And Architects,15-1243,mask 15124X minus codes PUMS publishes on their own,True
+1520XX,CMM-Other Mathematical Science Occupations,15-2021,mask 1520XX minus codes PUMS publishes on their own,True
+1520XX,CMM-Other Mathematical Science Occupations,15-2041,mask 1520XX minus codes PUMS publishes on their own,True
+1520XX,CMM-Other Mathematical Science Occupations,15-2051,mask 1520XX minus codes PUMS publishes on their own,True
+1520XX,CMM-Other Mathematical Science Occupations,15-2099,mask 1520XX minus codes PUMS publishes on their own,True
+1720XX,ENG-Biomedical And Agricultural Engineers,17-2021,mask 1720XX minus codes PUMS publishes on their own,True
+1720XX,ENG-Biomedical And Agricultural Engineers,17-2031,mask 1720XX minus codes PUMS publishes on their own,True
+1721XX,"ENG-Petroleum, Mining And Geological Engineers, Including Mining Safety Engineers",17-2151,listed by hand from the PUMS label,True
+1721XX,"ENG-Petroleum, Mining And Geological Engineers, Including Mining Safety Engineers",17-2171,listed by hand from the PUMS label,True
+1721YY,ENG-Other Engineers,17-2161,mask 1721YY minus codes PUMS publishes on their own,True
+1721YY,ENG-Other Engineers,17-2199,mask 1721YY minus codes PUMS publishes on their own,True
+17301X,ENG-Other Drafters,17-3012,mask 17301X minus codes PUMS publishes on their own,True
+17301X,ENG-Other Drafters,17-3013,mask 17301X minus codes PUMS publishes on their own,True
+17301X,ENG-Other Drafters,17-3019,mask 17301X minus codes PUMS publishes on their own,True
+17302X,"ENG-Other Engineering Technologists And Technicians, Except Drafters",17-3021,mask 17302X minus codes PUMS publishes on their own,True
+17302X,"ENG-Other Engineering Technologists And Technicians, Except Drafters",17-3022,mask 17302X minus codes PUMS publishes on their own,True
+17302X,"ENG-Other Engineering Technologists And Technicians, Except Drafters",17-3024,mask 17302X minus codes PUMS publishes on their own,True
+17302X,"ENG-Other Engineering Technologists And Technicians, Except Drafters",17-3025,mask 17302X minus codes PUMS publishes on their own,True
+17302X,"ENG-Other Engineering Technologists And Technicians, Except Drafters",17-3026,mask 17302X minus codes PUMS publishes on their own,True
+17302X,"ENG-Other Engineering Technologists And Technicians, Except Drafters",17-3027,mask 17302X minus codes PUMS publishes on their own,True
+17302X,"ENG-Other Engineering Technologists And Technicians, Except Drafters",17-3028,mask 17302X minus codes PUMS publishes on their own,True
+17302X,"ENG-Other Engineering Technologists And Technicians, Except Drafters",17-3029,mask 17302X minus codes PUMS publishes on their own,True
+1910XX,SCI-Other Life Scientists,19-1041,mask 1910XX minus codes PUMS publishes on their own,True
+1910XX,SCI-Other Life Scientists,19-1042,mask 1910XX minus codes PUMS publishes on their own,True
+1910XX,SCI-Other Life Scientists,19-1099,mask 1910XX minus codes PUMS publishes on their own,True
+19204X,"SCI-Geoscientists And Hydrologists, Except Geographers",19-2042,mask 19204X minus codes PUMS publishes on their own,True
+19204X,"SCI-Geoscientists And Hydrologists, Except Geographers",19-2043,mask 19204X minus codes PUMS publishes on their own,True
+19303X,SCI-Other Psychologists,19-3032,mask 19303X minus codes PUMS publishes on their own,True
+19303X,SCI-Other Psychologists,19-3039,mask 19303X minus codes PUMS publishes on their own,True
+1930XX,SCI-Other Social Scientists,19-3022,mask 1930XX minus codes PUMS publishes on their own and minus 19303X,True
+1930XX,SCI-Other Social Scientists,19-3041,mask 1930XX minus codes PUMS publishes on their own and minus 19303X,True
+1930XX,SCI-Other Social Scientists,19-3091,mask 1930XX minus codes PUMS publishes on their own and minus 19303X,True
+1930XX,SCI-Other Social Scientists,19-3092,mask 1930XX minus codes PUMS publishes on their own and minus 19303X,True
+1930XX,SCI-Other Social Scientists,19-3093,mask 1930XX minus codes PUMS publishes on their own and minus 19303X,True
+1930XX,SCI-Other Social Scientists,19-3094,mask 1930XX minus codes PUMS publishes on their own and minus 19303X,True
+1930XX,SCI-Other Social Scientists,19-3099,mask 1930XX minus codes PUMS publishes on their own and minus 19303X,True
+1940XX,"SCI-Environmental Science And Geoscience Technicians, And Nuclear Technicians",19-4042,listed by hand from the PUMS label,True
+1940XX,"SCI-Environmental Science And Geoscience Technicians, And Nuclear Technicians",19-4043,listed by hand from the PUMS label,True
+1940XX,"SCI-Environmental Science And Geoscience Technicians, And Nuclear Technicians",19-4044,listed by hand from the PUMS label,True
+1940XX,"SCI-Environmental Science And Geoscience Technicians, And Nuclear Technicians",19-4051,listed by hand from the PUMS label,True
+1940YY,"SCI-Other Life, Physical, And Social Science Technicians",19-4061,mask 1940YY minus codes PUMS publishes on their own,True
+1940YY,"SCI-Other Life, Physical, And Social Science Technicians",19-4071,mask 1940YY minus codes PUMS publishes on their own,True
+1940YY,"SCI-Other Life, Physical, And Social Science Technicians",19-4092,mask 1940YY minus codes PUMS publishes on their own,True
+1940YY,"SCI-Other Life, Physical, And Social Science Technicians",19-4099,mask 1940YY minus codes PUMS publishes on their own,True
+21109X,CMS-Other Community And Social Service Specialists,21-1091,mask 21109X minus codes PUMS publishes on their own,True
+21109X,CMS-Other Community And Social Service Specialists,21-1094,mask 21109X minus codes PUMS publishes on their own,True
+21109X,CMS-Other Community And Social Service Specialists,21-1099,mask 21109X minus codes PUMS publishes on their own,True
+2310XX,"LGL-Lawyers, And Judges, Magistrates, And Other Judicial Workers",23-1011,mask 2310XX minus codes PUMS publishes on their own,True
+2310XX,"LGL-Lawyers, And Judges, Magistrates, And Other Judicial Workers",23-1021,mask 2310XX minus codes PUMS publishes on their own,True
+2310XX,"LGL-Lawyers, And Judges, Magistrates, And Other Judicial Workers",23-1022,mask 2310XX minus codes PUMS publishes on their own,True
+2310XX,"LGL-Lawyers, And Judges, Magistrates, And Other Judicial Workers",23-1023,mask 2310XX minus codes PUMS publishes on their own,True
+2530XX,EDU-Other Teachers And Instructors,25-3011,mask 2530XX minus codes PUMS publishes on their own,True
+2530XX,EDU-Other Teachers And Instructors,25-3021,mask 2530XX minus codes PUMS publishes on their own,True
+2530XX,EDU-Other Teachers And Instructors,25-3031,mask 2530XX minus codes PUMS publishes on their own,True
+2530XX,EDU-Other Teachers And Instructors,25-3099,mask 2530XX minus codes PUMS publishes on their own,True
+2590XX,EDU-Other Educational Instruction and Library Workers,25-9021,mask 2590XX minus codes PUMS publishes on their own,True
+2590XX,EDU-Other Educational Instruction and Library Workers,25-9031,mask 2590XX minus codes PUMS publishes on their own,True
+2590XX,EDU-Other Educational Instruction and Library Workers,25-9099,mask 2590XX minus codes PUMS publishes on their own,True
+27102X,ENT-Other Designers,27-1027,mask 27102X minus codes PUMS publishes on their own,True
+27102X,ENT-Other Designers,27-1029,mask 27102X minus codes PUMS publishes on their own,True
+2740XX,ENT-Other Media And Communication Equipment Workers,27-4011,mask 2740XX minus codes PUMS publishes on their own,True
+2740XX,ENT-Other Media And Communication Equipment Workers,27-4012,mask 2740XX minus codes PUMS publishes on their own,True
+2740XX,ENT-Other Media And Communication Equipment Workers,27-4014,mask 2740XX minus codes PUMS publishes on their own,True
+2740XX,ENT-Other Media And Communication Equipment Workers,27-4015,mask 2740XX minus codes PUMS publishes on their own,True
+2740XX,ENT-Other Media And Communication Equipment Workers,27-4099,mask 2740XX minus codes PUMS publishes on their own,True
+29112X,MED-Other Therapists,29-1128,mask 29112X minus codes PUMS publishes on their own,True
+29112X,MED-Other Therapists,29-1129,mask 29112X minus codes PUMS publishes on their own,True
+2911XX,"MED-Nurse Practitioners, And Nurse Midwives",29-1161,mask 2911XX minus codes PUMS publishes on their own and minus 29112X,True
+2911XX,"MED-Nurse Practitioners, And Nurse Midwives",29-1171,mask 2911XX minus codes PUMS publishes on their own and minus 29112X,True
+29203X,MED-Nuclear Medicine Technologists And Medical Dosimetrists,29-2033,mask 29203X minus codes PUMS publishes on their own,True
+29203X,MED-Nuclear Medicine Technologists And Medical Dosimetrists,29-2036,mask 29203X minus codes PUMS publishes on their own,True
+29205X,MED-Dietetic Technicians And Ophthalmic Medical Technicians,29-2051,mask 29205X minus codes PUMS publishes on their own,True
+29205X,MED-Dietetic Technicians And Ophthalmic Medical Technicians,29-2057,mask 29205X minus codes PUMS publishes on their own,True
+31113X,HLS-Orderlies And Psychiatric Aides,31-1132,mask 31113X minus codes PUMS publishes on their own,True
+31113X,HLS-Orderlies And Psychiatric Aides,31-1133,mask 31113X minus codes PUMS publishes on their own,True
+31909X,HLS-Other Healthcare Support Workers,31-9093,mask 31909X minus codes PUMS publishes on their own,True
+31909X,HLS-Other Healthcare Support Workers,31-9099,mask 31909X minus codes PUMS publishes on their own,True
+3330XX,PRT-Fish And Game Wardens And Parking Enforcement Officers,33-3031,mask 3330XX minus codes PUMS publishes on their own,True
+3330XX,PRT-Fish And Game Wardens And Parking Enforcement Officers,33-3041,mask 3330XX minus codes PUMS publishes on their own,True
+33909X,PRT-Other Protective Service Workers,33-9092,mask 33909X minus codes PUMS publishes on their own,True
+33909X,PRT-Other Protective Service Workers,33-9099,mask 33909X minus codes PUMS publishes on their own,True
+37201X,CLN-Janitors And Building Cleaners,37-2011,mask 37201X minus codes PUMS publishes on their own,True
+37201X,CLN-Janitors And Building Cleaners,37-2019,mask 37201X minus codes PUMS publishes on their own,True
+37301X,CLN-Other Grounds Maintenance Workers,37-3012,mask 37301X minus codes PUMS publishes on their own,True
+37301X,CLN-Other Grounds Maintenance Workers,37-3019,mask 37301X minus codes PUMS publishes on their own,True
+3930XX,PRS-Other Entertainment Attendants And Related Workers,39-3021,mask 3930XX minus codes PUMS publishes on their own,True
+3930XX,PRS-Other Entertainment Attendants And Related Workers,39-3091,mask 3930XX minus codes PUMS publishes on their own,True
+3930XX,PRS-Other Entertainment Attendants And Related Workers,39-3092,mask 3930XX minus codes PUMS publishes on their own,True
+3930XX,PRS-Other Entertainment Attendants And Related Workers,39-3093,mask 3930XX minus codes PUMS publishes on their own,True
+3930XX,PRS-Other Entertainment Attendants And Related Workers,39-3099,mask 3930XX minus codes PUMS publishes on their own,True
+3940XX,"PRS-Embalmers, Crematory Operators And Funeral Attendants",39-4011,mask 3940XX minus codes PUMS publishes on their own,True
+3940XX,"PRS-Embalmers, Crematory Operators And Funeral Attendants",39-4012,mask 3940XX minus codes PUMS publishes on their own,True
+3940XX,"PRS-Embalmers, Crematory Operators And Funeral Attendants",39-4021,mask 3940XX minus codes PUMS publishes on their own,True
+39509X,PRS-Other Personal Appearance Workers,39-5091,mask 39509X minus codes PUMS publishes on their own,True
+39509X,PRS-Other Personal Appearance Workers,39-5093,mask 39509X minus codes PUMS publishes on their own,True
+4330XX,OFF-Other Financial Clerks,43-3041,mask 4330XX minus codes PUMS publishes on their own,True
+4330XX,OFF-Other Financial Clerks,43-3099,mask 4330XX minus codes PUMS publishes on their own,True
+434XXX,OFF-Correspondence Clerks And Order Clerks,43-4021,listed by hand from the PUMS label,True
+434XXX,OFF-Correspondence Clerks And Order Clerks,43-4151,listed by hand from the PUMS label,True
+434YYY,OFF-Other Information And Records Clerks,43-4011,mask 434YYY minus codes PUMS publishes on their own,True
+434YYY,OFF-Other Information And Records Clerks,43-4199,mask 434YYY minus codes PUMS publishes on their own,True
+439XXX,OFF-Other Office And Administrative Support Workers,43-9031,mask 439XXX minus codes PUMS publishes on their own,True
+439XXX,OFF-Other Office And Administrative Support Workers,43-9199,mask 439XXX minus codes PUMS publishes on their own,True
+4520XX,FFF-Other Agricultural Workers,45-2021,mask 4520XX minus codes PUMS publishes on their own,True
+4520XX,FFF-Other Agricultural Workers,45-2091,mask 4520XX minus codes PUMS publishes on their own,True
+4520XX,FFF-Other Agricultural Workers,45-2092,mask 4520XX minus codes PUMS publishes on their own,True
+4520XX,FFF-Other Agricultural Workers,45-2093,mask 4520XX minus codes PUMS publishes on their own,True
+4520XX,FFF-Other Agricultural Workers,45-2099,mask 4520XX minus codes PUMS publishes on their own,True
+472XXX,"CON-Brickmasons, Blockmasons, Stonemasons, And Reinforcing Iron And Rebar Workers",47-2021,mask 472XXX minus codes PUMS publishes on their own,True
+472XXX,"CON-Brickmasons, Blockmasons, Stonemasons, And Reinforcing Iron And Rebar Workers",47-2022,mask 472XXX minus codes PUMS publishes on their own,True
+472XXX,"CON-Brickmasons, Blockmasons, Stonemasons, And Reinforcing Iron And Rebar Workers",47-2171,mask 472XXX minus codes PUMS publishes on their own,True
+4740XX,CON-Other Construction And Related Workers,47-4071,mask 4740XX minus codes PUMS publishes on their own,True
+4740XX,CON-Other Construction And Related Workers,47-4091,mask 4740XX minus codes PUMS publishes on their own,True
+4740XX,CON-Other Construction And Related Workers,47-4099,mask 4740XX minus codes PUMS publishes on their own,True
+4750XX,EXT-Other Extraction Workers,47-5051,mask 4750XX minus codes PUMS publishes on their own,True
+4750XX,EXT-Other Extraction Workers,47-5081,mask 4750XX minus codes PUMS publishes on their own,True
+4750XX,EXT-Other Extraction Workers,47-5099,mask 4750XX minus codes PUMS publishes on their own,True
+4750YY,"EXT-Derrick, Rotary Drill, And Service Unit Operators, And Roustabouts, Oil And Gas",47-5011,listed by hand from the PUMS label,True
+4750YY,"EXT-Derrick, Rotary Drill, And Service Unit Operators, And Roustabouts, Oil And Gas",47-5012,listed by hand from the PUMS label,True
+4750YY,"EXT-Derrick, Rotary Drill, And Service Unit Operators, And Roustabouts, Oil And Gas",47-5013,listed by hand from the PUMS label,True
+4750YY,"EXT-Derrick, Rotary Drill, And Service Unit Operators, And Roustabouts, Oil And Gas",47-5071,listed by hand from the PUMS label,True
+49209X,"RPR-Other Electrical And Electronic Equipment Mechanics, Installers, and Repairers",49-2093,mask 49209X minus codes PUMS publishes on their own,True
+49209X,"RPR-Other Electrical And Electronic Equipment Mechanics, Installers, and Repairers",49-2094,mask 49209X minus codes PUMS publishes on their own,True
+49209X,"RPR-Other Electrical And Electronic Equipment Mechanics, Installers, and Repairers",49-2095,mask 49209X minus codes PUMS publishes on their own,True
+49209X,"RPR-Other Electrical And Electronic Equipment Mechanics, Installers, and Repairers",49-2096,mask 49209X minus codes PUMS publishes on their own,True
+49904X,RPR-Industrial And Refractory Machinery Mechanics,49-9041,mask 49904X minus codes PUMS publishes on their own,True
+49904X,RPR-Industrial And Refractory Machinery Mechanics,49-9045,mask 49904X minus codes PUMS publishes on their own,True
+4990XX,"RPR-Other Installation, Maintenance, And Repair Workers",49-9081,mask 4990XX minus codes PUMS publishes on their own and minus 49904X,True
+4990XX,"RPR-Other Installation, Maintenance, And Repair Workers",49-9092,mask 4990XX minus codes PUMS publishes on their own and minus 49904X,True
+4990XX,"RPR-Other Installation, Maintenance, And Repair Workers",49-9095,mask 4990XX minus codes PUMS publishes on their own and minus 49904X,True
+4990XX,"RPR-Other Installation, Maintenance, And Repair Workers",49-9097,mask 4990XX minus codes PUMS publishes on their own and minus 49904X,True
+4990XX,"RPR-Other Installation, Maintenance, And Repair Workers",49-9099,mask 4990XX minus codes PUMS publishes on their own and minus 49904X,True
+5120XX,brief-Other Assemblers and Fabricators,51-2011,mask 5120XX minus codes PUMS publishes on their own,True
+5120XX,brief-Other Assemblers and Fabricators,51-2051,mask 5120XX minus codes PUMS publishes on their own,True
+5120XX,brief-Other Assemblers and Fabricators,51-2061,mask 5120XX minus codes PUMS publishes on their own,True
+5120XX,brief-Other Assemblers and Fabricators,51-2092,mask 5120XX minus codes PUMS publishes on their own,True
+5120XX,brief-Other Assemblers and Fabricators,51-2099,mask 5120XX minus codes PUMS publishes on their own,True
+51403X,"brief-Other Machine Tool Setters, Operators, And Tenders, Metal And Plastic",51-4032,mask 51403X minus codes PUMS publishes on their own,True
+51403X,"brief-Other Machine Tool Setters, Operators, And Tenders, Metal And Plastic",51-4034,mask 51403X minus codes PUMS publishes on their own,True
+51403X,"brief-Other Machine Tool Setters, Operators, And Tenders, Metal And Plastic",51-4035,mask 51403X minus codes PUMS publishes on their own,True
+5140XX,"brief-Model Makers, Patternmakers, And Molding Machine Setters, Metal And Plastic",51-4061,mask 5140XX minus codes PUMS publishes on their own and minus 51403X,True
+5140XX,"brief-Model Makers, Patternmakers, And Molding Machine Setters, Metal And Plastic",51-4062,mask 5140XX minus codes PUMS publishes on their own and minus 51403X,True
+5140XX,"brief-Model Makers, Patternmakers, And Molding Machine Setters, Metal And Plastic",51-4071,mask 5140XX minus codes PUMS publishes on their own and minus 51403X,True
+5140XX,"brief-Model Makers, Patternmakers, And Molding Machine Setters, Metal And Plastic",51-4072,mask 5140XX minus codes PUMS publishes on their own and minus 51403X,True
+5140XX,"brief-Model Makers, Patternmakers, And Molding Machine Setters, Metal And Plastic",51-4081,mask 5140XX minus codes PUMS publishes on their own and minus 51403X,True
+514XXX,brief-Other Metal Workers And Plastic Workers,51-4191,mask 514XXX minus codes PUMS publishes on their own and minus 51403X 5140XX,True
+514XXX,brief-Other Metal Workers And Plastic Workers,51-4192,mask 514XXX minus codes PUMS publishes on their own and minus 51403X 5140XX,True
+514XXX,brief-Other Metal Workers And Plastic Workers,51-4193,mask 514XXX minus codes PUMS publishes on their own and minus 51403X 5140XX,True
+514XXX,brief-Other Metal Workers And Plastic Workers,51-4194,mask 514XXX minus codes PUMS publishes on their own and minus 51403X 5140XX,True
+514XXX,brief-Other Metal Workers And Plastic Workers,51-4199,mask 514XXX minus codes PUMS publishes on their own and minus 51403X 5140XX,True
+51609X,"brief-Other Textile, Apparel, And Furnishings Workers",51-6091,mask 51609X minus codes PUMS publishes on their own,True
+51609X,"brief-Other Textile, Apparel, And Furnishings Workers",51-6092,mask 51609X minus codes PUMS publishes on their own,True
+51609X,"brief-Other Textile, Apparel, And Furnishings Workers",51-6099,mask 51609X minus codes PUMS publishes on their own,True
+5170XX,brief-Other Woodworkers,51-7031,mask 5170XX minus codes PUMS publishes on their own,True
+5170XX,brief-Other Woodworkers,51-7032,mask 5170XX minus codes PUMS publishes on their own,True
+5170XX,brief-Other Woodworkers,51-7099,mask 5170XX minus codes PUMS publishes on their own,True
+5191XX,"brief-Miscellaneous Production Workers, Including Equipment Operators and Tenders",51-9141,mask 5191XX minus codes PUMS publishes on their own,True
+5191XX,"brief-Miscellaneous Production Workers, Including Equipment Operators and Tenders",51-9192,mask 5191XX minus codes PUMS publishes on their own,True
+5191XX,"brief-Miscellaneous Production Workers, Including Equipment Operators and Tenders",51-9193,mask 5191XX minus codes PUMS publishes on their own,True
+5191XX,"brief-Miscellaneous Production Workers, Including Equipment Operators and Tenders",51-9199,mask 5191XX minus codes PUMS publishes on their own,True
+5340XX,TRN-Other Rail Transportation Workers,53-4022,mask 5340XX minus codes PUMS publishes on their own,True
+5340XX,TRN-Other Rail Transportation Workers,53-4041,mask 5340XX minus codes PUMS publishes on their own,True
+5340XX,TRN-Other Rail Transportation Workers,53-4099,mask 5340XX minus codes PUMS publishes on their own,True
+5350XX,"TRN-Sailors And Marine Oilers, And Ship Engineers",53-5011,mask 5350XX minus codes PUMS publishes on their own,True
+5350XX,"TRN-Sailors And Marine Oilers, And Ship Engineers",53-5031,mask 5350XX minus codes PUMS publishes on their own,True
+5360XX,TRN-Other Transportation Workers,53-6011,mask 5360XX minus codes PUMS publishes on their own,True
+5360XX,TRN-Other Transportation Workers,53-6041,mask 5360XX minus codes PUMS publishes on their own,True
+5360XX,TRN-Other Transportation Workers,53-6099,mask 5360XX minus codes PUMS publishes on their own,True
+5370XX,"TRN-Conveyor, Dredge, And Hoist And Winch Operators",53-7011,mask 5370XX minus codes PUMS publishes on their own,True
+5370XX,"TRN-Conveyor, Dredge, And Hoist And Winch Operators",53-7031,mask 5370XX minus codes PUMS publishes on their own,True
+5370XX,"TRN-Conveyor, Dredge, And Hoist And Winch Operators",53-7041,mask 5370XX minus codes PUMS publishes on their own,True
+5371XX,TRN-Other Material Moving Workers,53-7121,mask 5371XX minus codes PUMS publishes on their own,True
+5371XX,TRN-Other Material Moving Workers,53-7199,mask 5371XX minus codes PUMS publishes on their own,True

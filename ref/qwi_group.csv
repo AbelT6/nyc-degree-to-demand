@@ -1,0 +1,15 @@
+breakdown,group_code,group_label,age_low,age_high,sort_order,note
+age,A00,All ages (14-99),14,99,0,Total over the eight age groups
+age,A01,14-18,14,18,1,
+age,A02,19-21,19,21,2,
+age,A03,22-24,22,24,3,Typical age of new bachelor's graduates
+age,A04,25-34,25,34,4,
+age,A05,35-44,35,44,5,
+age,A06,45-54,45,54,6,
+age,A07,55-64,55,64,7,
+age,A08,65-99,65,99,8,
+education,E1,Less than high school,25,99,11,Education is imputed by LEHD and published only for workers aged 25 or older
+education,E2,"High school or equivalent, no college",25,99,12,Education is imputed by LEHD and published only for workers aged 25 or older
+education,E3,Some college or Associate degree,25,99,13,Some college and associate's holders are one group; never label it associate's alone
+education,E4,Bachelor's degree or advanced degree,25,99,14,Bachelor's and graduate degrees are one group; never label it bachelor's alone
+education,E5,Educational attainment not available (workers aged 24 or younger),14,24,15,All workers under 25 land here regardless of education

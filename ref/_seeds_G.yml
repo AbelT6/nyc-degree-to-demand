@@ -1,0 +1,35 @@
+# Step 4 group G seed (docs/step4-facts-plan.md §3f): labels and units for fct_labor_market_monthly.
+version: 2
+
+seeds:
+  - name: labor_measure
+    description: >
+      One row per source_key x measure_code carried by fct_labor_market_monthly: JOLTS (bls_jt, dataelement_code ||
+      '_' || ratelevel_code, 15 codes incl. the two U.S.-only response rates), LAUS (bls_la, measure codes 03-09) and
+      NYS DOL UI (nysdol_ui_beneficiaries, two measures). unit is what one value counts; scale is the multiplier that
+      turns the published value into units (1000 for JOLTS levels, which BLS publishes in thousands per jt-txt;
+      1 everywhere else); is_rate marks percents and ratios. sort_order orders measures within a source.
+    config:
+      column_types: {source_key: text, measure_code: text, measure_label: text, unit: text, scale: integer,
+                     is_rate: boolean, sort_order: integer, note: text}
+    columns:
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('dim_source'), field: source_key}}
+      - name: measure_code
+        data_tests: [not_null]
+      - name: measure_label
+        data_tests: [not_null]
+      - name: unit
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [persons, jobs, percent, ratio, usd]}}
+      - name: scale
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [1, 1000], quote: false}}
+      - name: is_rate
+        data_tests: [not_null]
+      - name: sort_order
+        data_tests: [not_null]

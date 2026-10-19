@@ -1,0 +1,13 @@
+code_system,source_code,industry_key,weight,note
+oews_research,99,GOV-OEWS,1,"OEWS research estimates sector 99: federal, state and local government excluding state and local schools, hospitals and the postal service"
+bls_matrix,491,48-49,1,"Postal service (NAICS 491) sits inside Transportation and Warehousing; the matrix lists it as its own sector row"
+bls_matrix,90,CES-90,1,"Matrix 900000 Government, excluding state and local education and hospitals (those sit in the matrix's 61 and 62)"
+bls_matrix,91,CES-90,1,"Matrix 910000 Federal government"
+revelio,52-53,CES-55,1,"Revelio Financial Activities = NAICS 52 + 53, the CES supersector"
+revelio,54-56,CES-60,1,"Revelio Professional and Business Services = NAICS 54 + 55 + 56, the CES supersector"
+revelio,61-62,CES-65,1,"Revelio Education and Health Services = NAICS 61 + 62, all ownerships; CES 65 is private only, so label it by the Revelio name"
+revelio,71-72,CES-70,1,"Revelio Leisure and Hospitality = NAICS 71 + 72, the CES supersector"
+revelio,00,,0,"Revelio Unknown/Other: no industry; kept in totals, never on an industry row"
+bea_line,1,00,1,"BEA line 1 All industry total"
+bea_line,2,,0,"BEA line 2 Private industries: an ownership total, not an industry"
+bea_line,83,CES-90,1,"BEA line 83 Government and government enterprises (naics_label 92 in the file, but it is all public ownership, not NAICS 92)"

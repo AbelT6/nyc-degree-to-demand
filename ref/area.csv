@@ -1,0 +1,11 @@
+area_key,area_name,area_type,sort_order,state_fips,county_fips,cbsa_code,laus_area_code,qcew_ny_area_code,nysdol_area_code,oews_area_code,indeed_area_code,cpi_area_code,jolts_state_code,ui_region,ui_county,note
+nyc,New York City,city,1,36,,,CT3651000000000,NYC,7,,,,,New York City,,"The five boroughs. NYS DOL projections and wages region 7 = New York City. Never mixed with ny_metro"
+bronx,Bronx,borough,2,36,36005,,CN3600500000000,36005,,,,,,,Bronx,Bronx County
+brooklyn,Brooklyn,borough,3,36,36047,,CN3604700000000,36047,,,,,,,Kings,Kings County
+manhattan,Manhattan,borough,4,36,36061,,CN3606100000000,36061,,,,,,,New York,New York County
+queens,Queens,borough,5,36,36081,,CN3608100000000,36081,,,,,,,Queens,Queens County
+staten_island,Staten Island,borough,6,36,36085,,CN3608500000000,36085,,,,,,,Richmond,Richmond County
+ny_metro,New York-Newark-Jersey City metro area,metro,7,,,35620,MT3635620000000,,,35620,35620,S12A,,,,"CBSA 35620. Titled NY-NJ-PA through the May 2023 OEWS and NY-NJ from May 2024 (2023 OMB delineation); the code did not change. Roughly twice NYC employment. Never mixed with nyc"
+ny_state,New York State,state,8,36,,,ST3600000000000,,,,NY,,36,,,
+ny_rest_of_state,New York State outside New York City,balance,9,36,,,BS3600000000000,,,,,,,,,"LAUS balance-of-state series: state minus New York City"
+us,United States,nation,10,,,,,,,,,0000,00,,,"CPI area 0000 = U.S. city average; JOLTS state code 00 = total U.S."

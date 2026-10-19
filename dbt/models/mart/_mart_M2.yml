@@ -1,0 +1,628 @@
+# M2: job views (docs/mart-plan.md §4b rows job_profile, hottest_jobs, job_employment_trend, job_entry_signal,
+# job_skill_top, job_industry_mix; explore-plan §3a, §3b, §3d, §3g; D1, D3, D5, D7, D8, D19, D20; nb 40, 42, 43).
+# Conventions as in _mart.yml. Composite grains are tested by tests/mart_<view>_grain.sql; the §5 tie-outs by
+# tests/mart_<view>_tieout.sql; rule checks by tests/mart_job_profile_rules.sql.
+version: 2
+
+models:
+  - name: mart_job_profile
+    description: >
+      One row per degree-reachable job: the 221 detailed jobs plus the 4 degree-reachable broad / BLS-aggregate codes
+      that are 2022-32 projection leaves in their own right (225 rows; 186 carry a leaf row). Projected openings with
+      the growth / replacement split and the §3g band (cutoffs 0 / the all-leaves NYC share computed in SQL = 9.7% /
+      25%); NYC employment 2019 and 2025 (D8 estimate) with the published metro series beside it; NYS DOL NYC entry,
+      median and experienced wage; metro real p25 / p50 change 2019 to 2025; the NYS DOL Employment Prospects rating;
+      the D5 bands; AI exposure; the industry churn sentence inputs (share-weighted 2024 QWI separation and new-hire
+      rates, coverage, low-coverage flag; one sentence on a page, never a column or ranking); linked majors and
+      graduates per opening (2024 first-major awards x weight_openings, linked majors only, D20); List 1 / List 2 ranks.
+    columns:
+      - name: soc_code
+        data_tests:
+          - unique
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: soc_title
+        data_tests: [not_null]
+      - name: soc_level
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [detailed, broad, bls_aggregate]}}
+      - name: major_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: has_projection
+        data_tests: [not_null]
+      - name: pct_change_2022_2032
+        description: Projected employment change 2022 to 2032, NYS DOL's published percent divided by 100 (a fraction, like every other change column; design brief §10.5 item 1). A ratio.
+        meta: {additive: false}
+      - name: growth_share
+        description: Growth openings / annual openings on the 2022-32 leaf row; negative where NYS DOL nets a decline. A share.
+        meta: {additive: false}
+      - name: growth_share_band
+        description: >
+          The §3g band of growth_share: shrinking (below 0), mostly replacement (0 to the all-leaves share), mixed (to 25%),
+          growth-led (25% or more). Page words are "openings from growth" and "openings from people leaving
+          (retirements, career changes)"; the list column shows growth_share with this band as its label.
+        data_tests:
+          - accepted_values: {arguments: {values: [shrinking, 'mostly replacement', mixed, growth-led]}}
+      - name: growth_share_band_rank
+        description: Sort order of growth_share_band, 1 shrinking to 4 growth-led; the sort-by column for the band text and the dot color (design brief §10.5 item 2).
+        data_tests:
+          - accepted_values: {arguments: {values: [1, 2, 3, 4], quote: false}}
+      - name: soc_short_title
+        description: Display title (see mart_dim_job.soc_short_title).
+        data_tests: [not_null]
+      - name: all_leaves_growth_share
+        description: The band cutoff, growth openings / annual openings summed over every 2022-32 leaf (9.7%), repeated on every row. A share.
+        meta: {additive: false}
+      - name: is_imputed
+        description: The leaf row is a D1 / D15 fill (quality_flag imputed) and shows as an estimate.
+      - name: nyc_pct_change_2019_2025
+        description: NYC estimate 2025 / 2019 - 1 (D8). A ratio.
+        meta: {additive: false}
+      - name: metro_pct_change_2019_2025
+        description: OEWS NY metro employment 2025 / 2019 - 1, published series shown beside the estimate. A ratio.
+        meta: {additive: false}
+      - name: split_2019
+        description: The metro 2019 value was carried from a SOC 2010 / hybrid code, so part of the growth is reclassification (growth_note says which code).
+        data_tests: [not_null]
+      - name: entry_wage
+        description: NYS DOL NYC entry wage (mean of the lower third of workers, not a graduate salary). A wage level, never summed.
+        meta: {additive: false}
+      - name: median_wage
+        description: NYS DOL NYC median wage. Never summed.
+        meta: {additive: false}
+      - name: experienced_wage
+        description: NYS DOL NYC experienced wage (mean of the upper two thirds). Never summed.
+        meta: {additive: false}
+      - name: entry_to_median_ratio
+        description: entry_wage / median_wage. A ratio.
+        meta: {additive: false}
+      - name: metro_p25_2019_2025usd
+        description: OEWS NY metro annual p25 in May 2019, in 2025 dollars. A percentile, never summed.
+        meta: {additive: false}
+      - name: metro_p25_2025
+        description: OEWS NY metro annual p25 in May 2025. A percentile, never summed.
+        meta: {additive: false}
+      - name: metro_p50_2019_2025usd
+        description: OEWS NY metro annual median in May 2019, in 2025 dollars. Never summed.
+        meta: {additive: false}
+      - name: metro_p50_2025
+        description: OEWS NY metro annual median in May 2025. Never summed.
+        meta: {additive: false}
+      - name: metro_real_p25_change_2019_2025
+        description: Real p25 change 2019 to 2025 (2025 dollars, NY metro CPI). A ratio.
+        meta: {additive: false}
+      - name: metro_real_p50_change_2019_2025
+        description: Real median change 2019 to 2025 (2025 dollars). A ratio.
+        meta: {additive: false}
+      - name: employment_prospects
+        description: NYS DOL Employment Prospects rating from the 2022-32 release (openings quartile x growth band); null for the 11 publisher-defect rows and the D1 fill codes.
+        data_tests:
+          - accepted_values: {arguments: {values: ['Very Favorable', Favorable, Unfavorable, 'Very Unfavorable']}}
+      - name: bls_experience_band
+        data_tests:
+          - accepted_values: {arguments: {values: [none, under_5_years, 5_years_plus]}}
+      - name: acs_young_share_band
+        data_tests:
+          - accepted_values: {arguments: {values: [high, mid, low]}}
+      - name: onet_newcomer_band
+        data_tests:
+          - accepted_values: {arguments: {values: [high, mid, low]}}
+      - name: industry_separation_rate_2024
+        description: >
+          Share-of-job-weighted 2024 QWI separation rate of the sectors the job sits in (GOV-OEWS and 92 drop, shares
+          renormalized). Describes the industries, not the job's own turnover; one sentence on a page. A rate.
+        meta: {additive: false}
+      - name: industry_new_hire_rate_2024
+        description: The same weighting applied to the 2024 QWI new-hire rate. A rate.
+        meta: {additive: false}
+      - name: industry_separation_rate_2019
+        description: The 2019 separation rate, weighted the same way, shown beside 2024. A rate.
+        meta: {additive: false}
+      - name: industry_new_hire_rate_2019
+        description: The 2019 new-hire rate, weighted the same way. A rate.
+        meta: {additive: false}
+      - name: industry_separation_rate_page
+        description: >
+          The rate the job-page churn sentence reads: the same weighting with each sector's 2024 rate, except sectors
+          with a 2024 series break (industry_hiring_trend.is_series_break: 48-49, the 2024 Q1 employer reclassification)
+          take their 2019 rate (D24 C). A rate.
+        meta: {additive: false}
+      - name: industry_new_hire_rate_page
+        description: The new-hire rate under the same rule as industry_separation_rate_page. A rate.
+        meta: {additive: false}
+      - name: industry_churn_break_share
+        description: >
+          Share of the job's readable industry employment (bridge_industry_job.share_of_job) in sectors with a 2024
+          series break; above zero, the transport_break_2024 footnote applies to the sentence. A share.
+        meta: {additive: false}
+      - name: industry_churn_coverage
+        description: Sum of share_of_job over the sectors with a QWI 2024 separation rate. A share; jobs under 0.70 are flagged.
+        meta: {additive: false}
+      - name: industry_churn_low_coverage
+        description: industry_churn_coverage below 0.70; null where the job has no churn rate at all.
+      - name: n_majors_linked
+        meta: {additive: false}
+        description: Linked major x award-level keys (dim_major rows) in bridge_major_job for this job; dispersed majors (D20) are counted in n_majors_dispersed.
+        data_tests: [not_null]
+      - name: graduates_2024_linked
+        description: 2024 first-major awards (levels 3 and 5, all NYC colleges) x weight_openings summed over linked majors; a flow through a bridge, never summed across jobs without care.
+        meta: {additive: false}
+      - name: graduates_per_opening
+        description: graduates_2024_linked / annual_openings_avg (null where the job has no 2022-32 openings). A ratio, not a placement rate.
+        meta: {additive: false}
+      - name: graduates_per_opening_equal
+        description: The same ratio with weight_equal (the other end of the D2 range). A ratio.
+        meta: {additive: false}
+      - name: list1_rank
+        meta: {additive: false}
+        description: Rank by projected annual openings among degree-reachable leaves, All Other excluded (§3b List 1); in_list_1 = rank 25 or better.
+      - name: list2_rank
+        meta: {additive: false}
+        description: Rank by absolute NYC change 2019 to 2025 among non-All-Other jobs with at least 1,000 estimated jobs in both years (§3b List 2, decided).
+      - name: list2_rank_pct
+        meta: {additive: false}
+        description: The percent-change ranking of the same universe, kept as the page toggle.
+      - name: in_list_1
+        data_tests: [not_null]
+      - name: in_list_2
+        data_tests: [not_null]
+      - name: wording_key
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [openings_from_growth_vs_people_leaving]}}
+      - name: churn_wording_key
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [industries_turn_over_pct_a_year]}}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_nyc_estimate
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_metro
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_wage
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_prospects
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_churn
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_awards
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+      - name: entry_education_rank
+        meta: {additive: false}
+      - name: entry_experience_rank
+        meta: {additive: false}
+      - name: job_zone
+        meta: {additive: false}
+      - name: ai_observed_exposure
+        meta: {additive: false}
+      - name: industry_hire_coverage
+        meta: {additive: false}
+      - name: share_of_job_readable
+        meta: {additive: false}
+      - name: n_sectors_readable
+        meta: {additive: false}
+      - name: n_majors_dispersed
+        meta: {additive: false}
+      - name: other_list_rank
+        meta: {additive: false}
+      - name: per_opening_key
+        description: >
+          Card 3's sentence case (page 3 build plan §3.3; DAX writes the words): needs_projection, no_major,
+          majors_dispersed, zero_graduates, under_1_per_100 (r < 0.01), one_for_every_n ("About 1 new graduate for every
+          n openings", n = round(1/r) >= 2), about_one (r above 2/3 and under 1.5), n_per_opening ("About n new graduates
+          for every opening", r >= 1.5). Rules in tests/mart_job_page_wording.sql.
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [needs_projection, no_major, majors_dispersed, zero_graduates, under_1_per_100, one_for_every_n, about_one, n_per_opening]}}
+      - name: per_opening_n
+        description: The number in card 3's sentence (round(1/r), 1, or r to 1 decimal); null for the other cases.
+        meta: {additive: false}
+      - name: majors_split_key
+        description: >
+          The sentence under the majors (page 3 build plan §3.5, refined at build): split ("…so n of them (CUNY m) count
+          toward this one"), all_count ("All n of them (CUNY m) count toward this job"), under_one (fewer than 1 after
+          rounding), none_counted (linked majors have graduates but the openings weight gives this job none),
+          all_dispersed (the graduates are all in dispersed majors), no_graduates_2024 ("None of its n linked majors had
+          NYC graduates in 2024"), no_major.
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [split, all_count, under_one, none_counted, all_dispersed, no_graduates_2024, no_major]}}
+      - name: majors_split_n
+        description: >
+          n in the majors sentence, display-rounded (whole numbers under 1,000, three significant figures from 1,000:
+          1,145.7 -> 1,150): graduates counted toward the job (split, all_count) or its number of majors (no_graduates_2024).
+        meta: {additive: false}
+      - name: majors_split_n_cuny
+        description: m in the majors sentence, the CUNY part of n, rounded the same way (split, all_count).
+        meta: {additive: false}
+      - name: majors_levels_label
+        description: >
+          Subtitle of the majors block (page 3 build plan §3.2): the levels with 2024 NYC graduates among the job's majors,
+          "Bachelor's graduates, 2024", "Associate graduates, 2024" or "Bachelor's & associate graduates, 2024" (26 named
+          jobs; their associate rows start "Assoc. · ", job_major_link.major_label); null when no major had graduates.
+      - name: n_routes_listed
+        description: Similar jobs listed for this job (0 to 3; job_escape_route).
+        meta: {additive: false}
+      - name: routes_status
+        description: >
+          What the similar-jobs block shows (page 3 build plan §3.4, refined at build): listed; none_qualify (High,
+          compared, no destination clears r 0.75 and 90% pay: 15-1244); no_skill_ratings (High, no O*NET ratings to
+          compare: 13-2051, 29-9021); no_nyc_wage (High, no NYC median to compare: 43-9111); not_high (Medium or Low:
+          one line says the block is for High jobs); no_ai_band (Not seen yet or Not rated: block hidden).
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [listed, none_qualify, no_skill_ratings, no_nyc_wage, not_high, no_ai_band]}}
+      - name: nyc_missing_years
+        description: >
+          D38: years after 2019 with no NYC estimate on a job whose NYC series has a 2019 base, as display text with runs
+          joined ("2022–2023", "2021, 2024"); null when the series is complete. The page draws the NYC line only for
+          clears_floor_1000 (D36), so the note reads this only then.
+      - name: metro_missing_years
+        description: D38, the NY metro employment line (OEWS publishes no figure for those years); same form.
+      - name: p50_missing_years
+        description: D38, the NY metro median pay line (annual_p50_2025usd); same form.
+      - name: p25_missing_years
+        description: D38, the NY metro lower-quarter pay line (annual_p25_2025usd); same form.
+
+  - name: mart_hottest_jobs
+    description: >
+      One row per list x rank, read off job_profile (S10, §3b): most_openings (projected 2022-32 openings, top 25,
+      All Other excluded, D1-imputed rows flagged), fastest_growing (absolute NYC change 2019 to 2025, floor 1,000
+      estimated jobs in both years, top 25, percent beside), fastest_growing_pct (the percent ranking as the toggle),
+      other_jobs_most_openings (the All Other codes by openings). ranked_value is the list's sort value and
+      companion_value the number shown beside it; the NYS DOL entry wage and Employment Prospects rating sit on every
+      row as the external check. Grain test is tests/mart_hottest_jobs_grain.sql.
+    columns:
+      - name: list_key
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [most_openings, fastest_growing, fastest_growing_pct, other_jobs_most_openings]}}
+      - name: rank
+        meta: {additive: false}
+        data_tests: [not_null]
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: ranked_value
+        description: The value the list is sorted on (openings a year, jobs added, or percent change); its kind is in ranked_value_kind. Never summed across lists.
+        data_tests: [not_null]
+        meta: {additive: false}
+      - name: companion_value
+        description: The number shown beside the ranked value (growth share for the openings lists, percent change beside jobs added and the reverse). Never summed.
+        meta: {additive: false}
+      - name: growth_share
+        description: Growth openings / annual openings. A share.
+        meta: {additive: false}
+      - name: growth_share_band
+        data_tests:
+          - accepted_values: {arguments: {values: [shrinking, 'mostly replacement', mixed, growth-led]}}
+      - name: pct_change_2022_2032
+        description: Projected 2022-32 employment change (a fraction; job_profile divides NYS DOL's percent by 100). A ratio.
+        meta: {additive: false}
+      - name: nyc_pct_change_2019_2025
+        description: NYC estimate 2025 / 2019 - 1. A ratio.
+        meta: {additive: false}
+      - name: metro_pct_change_2019_2025
+        description: Published OEWS NY metro change over the same years. A ratio.
+        meta: {additive: false}
+      - name: entry_wage
+        description: NYS DOL NYC entry wage. Never summed.
+        meta: {additive: false}
+      - name: median_wage
+        description: NYS DOL NYC median wage. Never summed.
+        meta: {additive: false}
+      - name: is_imputed
+        data_tests: [not_null]
+      - name: split_2019
+        data_tests: [not_null]
+      - name: wording_key
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_nyc_estimate
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_wage
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_prospects
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+      - name: list_sort
+        meta: {additive: false}
+      - name: annual_openings_avg
+        meta: {additive: false}
+      - name: growth_openings_avg
+        meta: {additive: false}
+      - name: separation_openings_avg
+        meta: {additive: false}
+      - name: base_employment
+        meta: {additive: false}
+      - name: nyc_employment_2019
+        meta: {additive: false}
+      - name: nyc_employment_2025
+        meta: {additive: false}
+      - name: nyc_change_2019_2025
+        meta: {additive: false}
+
+  - name: mart_job_employment_trend
+    description: >
+      One row per year x job x area, 2019-2025. Area nyc = the D8 estimate (QCEW NYC x same-year NY staffing
+      pattern, D18 government filing), labeled estimate, every code the research estimates publish (12 broad /
+      aggregate codes included; filter soc_level = detailed for job pages, keep every level for totals). Area
+      ny_metro = the published OEWS NY metro series (detailed and major-group rows) with nominal and real (2025
+      dollars) annual p25 and p50, the split flag and the series notes. 2020 is shown, never a base. The estimate
+      and the published count sit in separate columns (nyc_employment_est, metro_employment; D24 A). Grain test is
+      tests/mart_job_employment_trend_grain.sql.
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: year_start
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_date'), field: date_key}}
+      - name: area_key
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [nyc, ny_metro]}}
+          - relationships: {arguments: {to: ref('mart_dim_area'), field: area_key}}
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: nyc_employment_est
+        description: >
+          NYC jobs, the D8 estimate; filled on area nyc rows only (null on metro rows). Always present on those rows
+          (tie-out test). Sums across codes and levels to the QCEW NYC total; never add metro_employment to it (D24 A).
+        meta: {additive: true, additive_note: "sum over area_key = nyc rows of one year; never across years"}
+      - name: metro_employment
+        description: >
+          NY-metro jobs, published OEWS; filled on area ny_metro rows only. Null on the 174 metro rows (2019-2025)
+          where BLS suppressed the employment estimate but published the wages. Sum with is_group_total = false
+          (the major-group rows are totals of the detailed rows) (D24 A).
+        meta: {additive: true, additive_note: "sum over is_group_total = false rows of one year; never across years"}
+      - name: is_group_total
+        description: True on the ny_metro major-group rows, which total the detailed rows below them.
+        data_tests: [not_null]
+      - name: employment_kind
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [estimate, published]}}
+      - name: employment_2019
+        description: The same series' 2019 value repeated on every year for the change columns; never summed across years.
+        meta: {additive: false}
+      - name: pct_change_vs_2019
+        description: employment / employment_2019 - 1. A ratio.
+        meta: {additive: false}
+      - name: in_both_end_years
+        description: >
+          D37: the code has a count in this area in 2019 and in 2025 (same value on every year of the code x area), so a
+          change from 2019 compares the same jobs. The overview's lines and headline sum only these codes (nyc, degree-level:
+          212 codes, 1,216,185 -> 1,420,495, +16.8%).
+        data_tests: [not_null]
+      - name: pattern_coverage_min
+        description: Lowest staffing-pattern coverage among the sectors contributing to the NYC estimate. A share.
+        meta: {additive: false}
+      - name: share_from_government_pattern
+        description: Share of the NYC estimate that comes through the government pattern (D18). A share.
+        meta: {additive: false}
+      - name: annual_p25
+        description: OEWS NY metro annual 25th percentile wage, nominal. A percentile, never summed.
+        meta: {additive: false}
+      - name: annual_p50
+        description: OEWS NY metro annual median wage, nominal. Never summed.
+        meta: {additive: false}
+      - name: annual_p25_2025usd
+        description: annual_p25 in 2025 dollars (NY metro CPI). Never summed.
+        meta: {additive: false}
+      - name: annual_p50_2025usd
+        description: annual_p50 in 2025 dollars. Never summed.
+        meta: {additive: false}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+
+  - name: mart_job_entry_signal
+    description: >
+      One row per degree-reachable job (the job_profile universe) x junior signal: bls_experience (typical related
+      work experience, national), acs_young_share (share of NYC workers in the job aged 22-29, 90% MOE, suppressed under
+      30 responses), onet_newcomer (share of incumbents who needed a month or less of related experience). D5: three
+      estimates shown side by side, never blended. The grid is complete, so signal_status says whether a row is
+      readable, suppressed or not available. Grain test is tests/mart_job_entry_signal_grain.sql.
+    columns:
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: measure
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [bls_experience, acs_young_share, onet_newcomer]}}
+      - name: signal_status
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [readable, suppressed, 'not available']}}
+      - name: value
+        description: The signal's value (BLS category 1-3, or a share for ACS and O*NET). Never summed.
+        meta: {additive: false}
+      - name: band
+        data_tests:
+          - accepted_values: {arguments: {values: [none, under_5_years, 5_years_plus, high, mid, low]}}
+      - name: moe_90
+        description: 90% margin of error of the ACS share (replicate weights). Never summed.
+        meta: {additive: false}
+      - name: suppressed
+        data_tests: [not_null]
+      - name: wording_key
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [bls_experience_required, acs_share_of_workers_22_29, onet_newcomer_share]}}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+
+  - name: mart_job_skill_top
+    description: >
+      One row per job x domain x rank: the top 8 O*NET elements per domain (knowledge, essential skills, transferable
+      skills) by importance (IM, 1-5; suppressed ratings excluded) with the level rating beside, and the top 10
+      software products (hot technology first, then in-demand, then O*NET specialty listings, then name). Every job
+      with an O*NET profile at a job-page level. Grain and cap tests are tests/mart_job_skill_top_grain.sql.
+    columns:
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: domain
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [knowledge, skill_essential, skill_transferable, software]}}
+      - name: rank
+        data_tests: [not_null]
+      - name: element_name
+        data_tests: [not_null]
+      - name: importance
+        description: O*NET importance rating (1 to 5); null for software. Never summed.
+        meta: {additive: false}
+      - name: importance_se
+        description: Standard error of the importance rating. Never summed.
+        meta: {additive: false}
+      - name: level_value
+        description: O*NET level rating (0 to 7) of the same element where published and relevant. Never summed.
+        meta: {additive: false}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+
+  - name: mart_job_skill_demand
+    description: >
+      One row per job x rank (1 to 6): "Skills employers ask for" on the job page (design brief §11.10 R1; D32). The
+      share of the job's unique U.S. job postings that mention each software product (Lightcast, calendar 2025, via
+      O*NET OnLine), from the job's .00 O*NET profile only; ranked by share, then O*NET's row order. 162 named jobs,
+      731 rows. Publishing waits on O*NET confirming the percentages' reuse terms. Grain, cap and tie-out:
+      tests/mart_job_skill_demand_checks.sql; the product sets equal O*NET 31.0's In Demand flags
+      (tests/stg_onet_in_demand_matches_flags.sql).
+    columns:
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: rank
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [1, 2, 3, 4, 5, 6]}}
+        meta: {additive: false}
+      - name: product
+        description: O*NET's product name, as published.
+        data_tests: [not_null]
+      - name: product_display
+        description: >
+          The name shown, without a trailing " software" ("Microsoft Office software" -> "Microsoft Office"), each
+          spelled-out acronym in brackets ("Structured query language (SQL)", 42 rows on 10 acronyms; the rule is in the
+          model header). The four names wider than the job page's skill cell get a short form ("VHDL simulation"; CTE
+          `shortened`); `product` keeps O*NET's full name.
+        data_tests: [not_null]
+      - name: share_of_job_ads
+        description: Share of the job's U.S. postings that mention the product, a fraction (O*NET publishes whole percents). Never summed.
+        meta: {additive: false}
+      - name: pct_of_job_ads
+        description: The same share as O*NET publishes it, a whole percent. Never summed.
+        meta: {additive: false}
+      - name: csv_order
+        description: O*NET's row order on the job's page, the tie-break.
+        meta: {additive: false}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+
+  - name: mart_job_industry_mix
+    description: >
+      One row per job x sector with a readable share: the D3 bridge shares (OEWS research estimates for New York,
+      May 2025), the job's estimated NYC jobs in the sector for 2025 (the D8 estimate's own sector contribution, D18
+      government filing; the GOV-OEWS row carries the government contribution), and the sector's 2024 QWI separation
+      and new-hire rates with 2019 beside (GOV-OEWS and 92 have none; 48-49 carries the break note). Rates describe
+      the sector, not the job. Grain test is tests/mart_job_industry_mix_grain.sql.
+    columns:
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: industry_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_industry'), field: industry_key}}
+      - name: rank_in_job
+        data_tests: [not_null]
+      - name: share_of_job
+        description: Share of the job's NY employment in this sector (D3). A share; sums to about 1 per job over readable rows.
+        data_tests: [not_null]
+        meta: {additive: false}
+      - name: share_of_industry
+        description: Share of the sector's NY employment in this job (D3). A share.
+        meta: {additive: false}
+      - name: nyc_pattern_share_2025
+        description: The job's share of the sector in the 2025 NY pattern used by the D8 estimate. A share.
+        meta: {additive: false}
+      - name: nyc_jobs_in_sector_2025_est
+        description: NYC sector jobs 2025 x nyc_pattern_share_2025; sums over a job's sectors to its NYC estimate. Through a bridge, sum only within one job.
+        meta: {additive: false}
+      - name: separation_rate_2024
+        description: The sector's 2024 QWI annual separation rate (industry_hiring_trend). A rate.
+        meta: {additive: false}
+      - name: new_hire_rate_2024
+        description: The sector's 2024 QWI annual new-hire rate. A rate.
+        meta: {additive: false}
+      - name: separation_rate_2019
+        description: The sector's 2019 separation rate, shown beside 2024. A rate.
+        meta: {additive: false}
+      - name: new_hire_rate_2019
+        description: The sector's 2019 new-hire rate. A rate.
+        meta: {additive: false}
+      - name: has_qwi_rate
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_churn
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_nyc_jobs
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+      - name: industry_short_title
+        description: Bar label for the job page's employer bars, from mart.dim_industry (GOV-OEWS = "Government").
+        data_tests: [not_null]
+

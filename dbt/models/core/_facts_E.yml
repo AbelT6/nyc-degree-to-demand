@@ -1,0 +1,214 @@
+# Step 4 group E (NYC job-count estimate, decision D8): docs/step4-facts-plan.md §1 (second bullet), §2a (OEWS
+# research row), §2d "D8 inputs", §3a, §4 item 3, §5 risks 2-3, §6.2, §7; decisions D8, D3; nb 09 Part C.
+# Singular tie-outs live in tests/audit_nyc_employment_by_pattern_sector_*.sql, tests/audit_industry_job_pattern_annual_*.sql
+# and tests/fct_job_employment_nyc_est_*.sql.
+version: 2
+
+models:
+  - name: audit_nyc_employment_by_pattern_sector
+    description: >
+      NYC QCEW jobs filed into the 20 pattern sectors the OEWS research file publishes for New York (19 NAICS
+      sectors + 99 = government excluding state and local schools and hospitals and the Postal Service), 2019-2025,
+      so New York's staffing patterns apply to NYC with government filed the same way on both sides (plan §6.2,
+      decision A; nb 09 Part C). Grain year x pattern_sector, 20 rows a year. Private jobs come from
+      fct_industry_employment_annual (NYC, Private, sector rows; source_key nysdol_qcew_annual); private 99
+      "unclassified" (10-24 k a year) and private 92 (2025 only, 16 jobs; no research pattern) are spread over the
+      19 patterned sectors in proportion to their private jobs. Government is filed by ownership x sector the way
+      the research file defines sector 99 (government excluding state and local schools and hospitals and the U.S.
+      Postal Service): state and local 61 -> 61, state and local 62 -> 62, federal 48-49 (Postal Service) -> 48-49,
+      everything else (92, state and local 48-49 transit, 22, 23, 53, 56, 71 ...) -> 99. Values come from the BLS
+      county files (stg_bls__qcew_county, source_key bls_qcew_county; own_code 1/2/3, agglvl 74, disclosed cells,
+      the five boroughs added), except that a NYC-level government x sector cell NYS DOL publishes
+      (stg_nysdol__qcew_annual, area NYC, naics_level 2) replaces the BLS cell when the BLS disclosed sum is null or
+      lower (government_from_nysdol: state 61 in 2019 / 2024 / 2025 and state 62 every year, where every BLS borough
+      cell is suppressed; state 92 in 2025; state 52 2019-21 and local 48 on their way to 99). Local 61 / 62 keep
+      BLS because BLS discloses boroughs there (NYS DOL publishes local 61 at NYC level only in 2019 and 2025, 59-61 k
+      above the BLS disclosed sum; using it would break the 61 series). The undisclosed remainder (agglvl 71
+      ownership totals minus every filed cell; 29-35 suppressed borough cells a year) lands on 99. Components are 0
+      where a sector has none of that kind of job. The yearly sum ties to NYC "Total, All Ownerships" within +/- 5
+      (+/- 100 in 2020, where BLS local government is +68 vs NYS DOL); tested. Kept as a table so the D8 inputs can
+      be audited.
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: pattern_sector
+        description: The research file's NAICS sector spelling (ranges like 31-33); 99 = the OEWS government pattern.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['11', '21', '22', '23', '31-33', '42', '44-45', '48-49', '51', '52', '53', '54', '55',
+                         '56', '61', '62', '71', '72', '81', '99']
+      - name: industry_key
+        description: pattern_sector on dim_industry; 99 -> GOV-OEWS through the industry_code_alias seed (oews_research).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_industry')
+                field: industry_key
+      - name: private_employment
+        description: NYS DOL NYC private jobs in the sector (0 for 99).
+        data_tests: [not_null]
+      - name: private_unclassified_allocated
+        description: The sector's proportional share of private 99 (and 2025 private 92) jobs (0 for 99).
+        data_tests: [not_null]
+      - name: government_disclosed
+        description: BLS county disclosed government jobs filed on this pattern sector (61, 62, 48-49, 99 only), from cells NYS DOL did not replace.
+        data_tests: [not_null]
+      - name: government_from_nysdol
+        description: NYC-level NYS DOL government x sector values used in place of BLS cells (state 61 / 62 mainly; 61, 62, 99 only).
+        data_tests: [not_null]
+      - name: government_undisclosed_allocated
+        description: Government jobs in suppressed borough x sector cells not covered by NYS DOL, by difference from the ownership totals; 99 only.
+        data_tests: [not_null]
+      - name: employment
+        description: The five components added; the NYC jobs the sector's staffing pattern is applied to.
+        data_tests: [not_null]
+      - name: n_government_undisclosed_cells
+        description: On the 99 row, how many borough x ownership x sector government cells were suppressed that year; null elsewhere.
+
+  - name: audit_industry_job_pattern_annual
+    description: >
+      New York State staffing pattern by pattern sector, job and year from the BLS OEWS research estimates (state x
+      industry, sector level, May 2019 - May 2025), landed on dim_job through bridge_job_code (2019-20 hybrid codes:
+      soc_2018 identity first, else oews_hybrid parts with weights; 2021+ identity; 0 unresolved codes). Grain
+      year x pattern_sector x soc_code at the levels the file calls "detailed" (SOC 2018 detailed, 7 broad codes,
+      5 BLS aggregates). Only published tot_emp cells enter (300-441 suppressed cells a year excluded and counted in
+      n_suppressed), so share_of_sector sums to 1 per sector-year; pattern_coverage is the published detailed jobs
+      over the sector's o_group = total jobs before renormalising (0.99+ for every sector NYC has more than 1,000
+      jobs in; 0.69-0.84 for agriculture 11 and mining 21). Research estimates, not official OEWS tables (plan §5
+      risk 2; D3). Kept as a table for auditing.
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: pattern_sector
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['11', '21', '22', '23', '31-33', '42', '44-45', '48-49', '51', '52', '53', '54', '55',
+                         '56', '61', '62', '71', '72', '81', '99']
+      - name: industry_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_industry')
+                field: industry_key
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: emp
+        description: New York State jobs in the sector x job cell (tot_emp x bridge weight, summed per target), unrounded.
+        data_tests: [not_null]
+      - name: share_of_sector
+        description: emp / sum of emp over the sector-year's published jobs; sums to 1 per sector-year.
+        data_tests: [not_null]
+      - name: pattern_coverage
+        description: Published detailed jobs / the sector-year total, before renormalising.
+        data_tests: [not_null]
+      - name: n_suppressed
+        description: Detailed cells in the sector-year with tot_emp withheld (excluded from the shares).
+        data_tests: [not_null]
+      - name: quality_flag
+        description: published = one research row at weight 1; split = weighted from one or more hybrid codes.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [published, split]
+      - name: source_codes
+        description: Trace; the research occ_code, or system:code*weight pairs for split rows.
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+
+  - name: fct_job_employment_nyc_est
+    description: >
+      Estimated NYC jobs by occupation and year, 2019-2025 (decision D8): NYC QCEW jobs by pattern sector
+      (audit_nyc_employment_by_pattern_sector; NYS DOL private, BLS county government by sector) x New York State's
+      staffing pattern for the same sector and year (audit_industry_job_pattern_annual; BLS OEWS research estimates),
+      summed over sectors. Grain year x area_key ('nyc') x soc_code at the levels the research file publishes as
+      detailed (SOC 2018 detailed codes, 7 broad codes such as 13-1020, and the 5 BLS aggregates dim_job keeps).
+      Shares sum to 1 per sector-year, so the yearly sum ties to NYC's QCEW all-ownership total. It is an estimate
+      from a state pattern (medium confidence, D8): method labels it, share_from_government_pattern and
+      pattern_coverage_min say how much of each row rests on the 99 government pattern and on thinly published
+      sectors, and the published checks sit beside it: metro_employment (OEWS NY metro, same year) and
+      nyc_wage_table_employment (NYS DOL NYC wages, 2025 only). Wage and salary jobs only (no self-employed), so the
+      2022 total runs below the 2022-32 projection base. source_key names the pattern source (bls_oews_research);
+      source_key_industry the main industry source (nysdol_qcew_annual); government by sector is bls_qcew_county.
+      Tests (plan §4 item 3): yearly totals tie to the pattern-sector input within +/- 1; 2025 dissimilarity index vs
+      fct_job_wage_nyc below 20 (nb 09: 13.9); 2022 total below the projection base and within 15% of it (measured -10.4%; QCEW has no self-employed); traces for 15-1252 and
+      29-1141. Values are unrounded numerics; the mart rounds and labels "estimate".
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: area_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [nyc]
+          - relationships:
+              arguments:
+                to: ref('dim_area')
+                field: area_key
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: employment_est
+        description: Estimated NYC wage and salary jobs, unrounded.
+        data_tests: [not_null]
+      - name: method
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [qcew_x_oews_research]
+      - name: share_from_government_pattern
+        description: The part of employment_est that came through pattern sector 99 (government), divided by employment_est; 0-1.
+        data_tests: [not_null]
+      - name: n_sectors_contributing
+        description: How many pattern sectors publish this job that year (1-20).
+        data_tests: [not_null]
+      - name: pattern_coverage_min
+        description: The lowest pattern_coverage among the contributing sectors.
+        data_tests: [not_null]
+      - name: metro_employment
+        description: Check column; fct_job_employment_wage_annual employment for the NY metro, same year and job; null where OEWS withheld it.
+      - name: nyc_wage_table_employment
+        description: Check column; fct_job_wage_nyc employment (NYS DOL NYC, survey May 2025), on 2025 rows only.
+      - name: source_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [bls_oews_research]
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+      - name: source_key_industry
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [nysdol_qcew_annual]
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key

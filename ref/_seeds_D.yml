@@ -1,0 +1,26 @@
+# Step 4 group D (industries) seed: docs/step4-facts-plan.md §3d, §6 (Tier 1 default "seeds qwi_group ... for labels").
+version: 2
+
+seeds:
+  - name: qwi_group
+    description: >
+      Labels for the Census LEHD QWI worker groups that fct_industry_hiring_quarterly carries in (breakdown,
+      group_code): age groups A00-A08 (agegrp) and education groups E1-E5 (education). Labels follow the LEHD
+      public-use schema V4.14.0 label_agegrp / label_education tables (typed from the schema; the label CSVs are not
+      in data/raw/hiring/census_qwi/, only the data files). age_low / age_high are the ages a group covers:
+      education groups are published for workers 25 and older only (E5 collects everyone 24 or younger). E0 (all
+      education) is not in staging, which uses A00 as the one total; see docs/source-cards/census_qwi.md issue 3.
+    config:
+      column_types: {breakdown: text, group_code: text, group_label: text, age_low: integer, age_high: integer,
+                     sort_order: integer, note: text}
+    columns:
+      - name: breakdown
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [age, education]}}
+      - name: group_code
+        data_tests: [unique, not_null]
+      - name: group_label
+        data_tests: [not_null]
+      - name: sort_order
+        data_tests: [unique, not_null]

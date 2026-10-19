@@ -1,0 +1,28 @@
+# dbt project for the CUNY Degree-to-Demand v1 rebuild (decision D9).
+# Staging tables are loaded by notebooks (notebooks/2x-load-*.ipynb);
+# dbt builds core (dimensions, bridges, facts) and mart (views Power BI reads).
+# Layout and grains: docs/schema-design.md
+name: cuny_gap
+version: "1.0.0"
+profile: cuny_gap
+config-version: 2
+
+model-paths: ["models"]
+seed-paths: ["../ref"]  # hand-built CSVs live in ref/ (notebooks read them too)
+macro-paths: ["macros"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  cuny_gap:
+    core:
+      +schema: core
+      +materialized: table
+    mart:
+      +schema: mart
+      +materialized: view
+
+seeds:
+  cuny_gap:
+    +schema: ref

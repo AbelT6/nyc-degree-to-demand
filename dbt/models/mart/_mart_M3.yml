@@ -1,0 +1,484 @@
+# mart group M3: major views and graduate-outcome views (docs/mart-plan.md §4b job_major_link, §4c, §4d; explore-plan
+# §3c, §3e, §3h, §3i; D2, D14, D16, D17, D19, D20). Conventions as in _mart.yml. Singular tests in tests/mart_<view>_*.sql
+# carry the composite grains and every plan §5 tie-out.
+version: 2
+
+models:
+  - name: mart_job_major_link
+    description: >
+      One row per job x major (every bridge_major_job row, 3,873 after D57): D2 weights (openings headline, equal as the other
+      end of the range), the major's 2024 first-major awards (all NYC, CUNY) and this pair's graduates under each
+      weight, counts_as_supply (D20: only linked majors are supply), and the job's totals repeated on each row
+      (graduates from linked majors, 2022-32 leaf openings, graduates per opening). Grain test is
+      tests/mart_job_major_link_grain.sql; the job totals equal mart.job_profile (tests/mart_job_major_link_tieout.sql).
+    columns:
+      - name: major_award_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_major'), field: major_award_key}}
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: cip_code
+        data_tests: [not_null]
+      - name: award_level
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [3, 5]}}
+      - name: link_status
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [linked, dispersed]}}
+      - name: counts_as_supply
+        data_tests: [not_null]
+      - name: weight_openings
+        description: D2 openings weight of this job within the major (null weights filled with 0, flagged by weight_openings_missing). A share; sums to 1 per major.
+        data_tests: [not_null]
+        meta: {additive: false}
+      - name: weight_equal
+        description: Equal split across the major's passing jobs. A share.
+        data_tests: [not_null]
+        meta: {additive: false}
+      - name: awards_2024_nyc
+        description: The major's 2024 first-major awards, all NYC colleges (repeated on every job row of the major; sum within one job only).
+        meta: {additive: false}
+      - name: awards_2024_cuny
+        meta: {additive: false}
+      - name: graduates_2024_openings_wt
+        description: awards_2024_nyc x weight_openings. Sums to the major's awards over its jobs and to the job's D20-off graduates over its majors.
+      - name: graduates_2024_equal_wt
+        description: awards_2024_nyc x weight_equal.
+      - name: graduates_2024_cuny_openings_wt
+        description: awards_2024_cuny x weight_openings.
+      - name: job_graduates_2024_linked
+        description: The job's 2024 graduates from linked majors under openings weights (repeated per row). Equals mart.job_profile.graduates_2024_linked.
+        meta: {additive: false}
+      - name: job_graduates_2024_linked_equal
+        meta: {additive: false}
+      - name: job_graduates_2024_linked_cuny
+        meta: {additive: false}
+      - name: job_graduates_2024_d20_off
+        description: The job's graduates with dispersed majors counted (D16 A as built), the D20-off sensitivity.
+        meta: {additive: false}
+      - name: job_openings_nyc
+        description: The job's 2022-32 leaf annual openings (null where it has no leaf row). Repeated per row.
+        meta: {additive: false}
+      - name: openings_nyc_bridge
+        description: The openings the bridge used for the weight (estimated where the job has no projection row); never divides.
+        meta: {additive: false}
+      - name: job_projected_change_2022_2032_pct
+        description: The job's 2022-32 projected percent change, as NYS DOL publishes it (12.05 = +12.05%).
+        meta: {additive: false}
+      - name: job_graduates_per_opening
+        description: job_graduates_2024_linked / job_openings_nyc. A ratio of two flows, not a placement rate.
+        meta: {additive: false}
+      - name: job_graduates_per_opening_equal
+        meta: {additive: false}
+      - name: job_graduates_per_opening_d20_off
+        meta: {additive: false}
+      - name: attainment_pct
+        meta: {additive: false}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_awards
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_openings
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_filter
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+      - name: n_jobs_in_major
+        meta: {additive: false}
+      - name: job_n_majors
+        meta: {additive: false}
+      - name: job_n_majors_linked
+        meta: {additive: false}
+      - name: job_n_majors_dispersed
+        meta: {additive: false}
+      - name: major_title
+        data_tests: [not_null]
+      - name: award_label
+        data_tests: [not_null]
+      - name: major_label
+        description: >
+          The major's name on the job page: major_title, led by "Assoc. · " on associate rows when the job's 2024 graduates
+          come from both levels (job_has_both_levels; page 3 build plan §3.2).
+        data_tests: [not_null]
+      - name: major_label_details
+        description: major_label led by "✦ " for a dispersed major (D20), shown on the Details view (marks lead so a cut title keeps them).
+        data_tests: [not_null]
+      - name: major_rank_in_job
+        description: >
+          Order of the majors with 2024 NYC graduates within the job (most graduates first, then CUNY, title, level);
+          null for majors without. The Summary shows ranks 1 to 4 and "+ N more on Details".
+        meta: {additive: false}
+      - name: job_has_both_levels
+        description: The job has 2024 NYC graduates from both bachelor's and associate majors (repeated on every row of the job).
+
+  - name: mart_major_awards_trend
+    description: >
+      One row per year x major x award level x college, 2015-2024, first-major awards (major_number = 1), levels 3 and 5.
+      2024 is the IPEDS provisional release (is_provisional). is_cuny / college_group drive the S9 split. Grain test is
+      tests/mart_major_awards_trend_grain.sql; 2019 -> 2024 changes in tests/mart_major_awards_trend_tieout.sql.
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: year_start
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_date'), field: date_key}}
+      - name: major_award_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_major'), field: major_award_key}}
+      - name: unitid
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_college'), field: unitid}}
+      - name: award_level
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [3, 5]}}
+      - name: is_cuny
+        data_tests: [not_null]
+      - name: awards
+        description: First-major awards (additive).
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+
+  - name: mart_grad_outcome_field
+    description: >
+      One row per ACS field of degree x age band x degree level (cut field_total; every PUMS field, is_mapped_field marks
+      the 78 in ref_fod_cip). Workers, shares and full-time year-round earnings (2024 dollars) with 90% MOEs; the §3h
+      graduate premium on the 28-34 and 35-64 bands with the Census two-estimate verdict (same on both rows of the pair);
+      the all-fields workers-weighted reference median; the §3e lift (D20). Suppressed rows kept with nulls. Words on
+      pages are "graduate holders earn X% more", never "a master's adds X%". Grain test is tests/mart_grad_outcome_field_grain.sql.
+    columns:
+      - name: fod1p
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_field'), field: fod1p}}
+      - name: fod_title
+        data_tests: [not_null]
+      - name: age_band
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: ['22-27', '28-34', '22-34', '35-64']}}
+      - name: degree_level
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [bachelor, graduate]}}
+      - name: is_mapped_field
+        data_tests: [not_null]
+      - name: suppressed
+        data_tests: [not_null]
+      - name: workers
+        description: Weighted workers in the field at that band and level (null when suppressed). Sums over fields within one band and level only.
+        meta: {additive: false}
+      - name: moe_workers
+        meta: {additive: false}
+      - name: share_of_level_workers
+        description: The field's share of all workers at that band and level. A share.
+        meta: {additive: false}
+      - name: moe_share_of_level_workers
+        meta: {additive: false}
+      - name: level_workers
+        meta: {additive: false}
+      - name: median_earnings_2024usd
+        description: Median full-time year-round earnings, 2024 dollars (null when earnings_suppressed). A median.
+        meta: {additive: false}
+      - name: moe_median_earnings
+        meta: {additive: false}
+      - name: mean_earnings_2024usd
+        meta: {additive: false}
+      - name: moe_mean_earnings
+        meta: {additive: false}
+      - name: bachelor_median_earnings
+        meta: {additive: false}
+      - name: graduate_median_earnings
+        meta: {additive: false}
+      - name: premium_median
+        description: graduate median / bachelor's median - 1 (§3h), 28-34 and 35-64 only, null when a median is suppressed. A ratio.
+        meta: {additive: false}
+      - name: premium_mean
+        meta: {additive: false}
+      - name: premium_z
+        description: (graduate - bachelor's) / sqrt(SE_g^2 + SE_b^2) with SE = MOE / 1.645. Readable when |Z| > 1.645.
+        meta: {additive: false}
+      - name: premium_verdict
+        data_tests:
+          - accepted_values: {arguments: {values: [readable, 'no readable difference', 'unreadable (a median suppressed)']}}
+      - name: wording_key
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [graduate_holders_earn_pct_more]}}
+      - name: all_fields_weighted_median
+        description: Workers-weighted mean of field medians over every field with a readable median, same band and level (the §3h reference).
+        meta: {additive: false}
+      - name: all_fields_premium_median
+        meta: {additive: false}
+      - name: graduate_share_of_degree_holders
+        description: graduate workers / (bachelor's + graduate workers) for the field and band. A share.
+        meta: {additive: false}
+      - name: linked_share
+        description: Share of the field's 22-34 bachelor's-only workers in the bridge's jobs (§3e). A share.
+        meta: {additive: false}
+      - name: moe_linked_share
+        meta: {additive: false}
+      - name: base_rate
+        meta: {additive: false}
+      - name: lift
+        description: linked share / all-bachelor's base rate (D20; pathway >= 3, weak 1.5-3, convention < 1.5). A ratio.
+        meta: {additive: false}
+      - name: field_verdict
+        data_tests:
+          - accepted_values: {arguments: {values: [pathway, weak, convention, unreadable]}}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+
+  - name: mart_grad_outcome_destination
+    description: >
+      One row per ACS field x SOC major group x age band x degree level (cut field_x_soc_major, D17): the group's share
+      of the field's workers with its MOE, the share renormalized over the field's readable groups, rank in field,
+      earnings, the same group's share of all workers at that level (degree_x_soc, readable jobs only) and the group's
+      observed AI exposure (mart.ai_group_exposure) that major_supply_demand uses for dispersed majors (§3i).
+      Suppressed cells kept with nulls and "too few responses". soc_code is the group row of mart.dim_job. Grain test is
+      tests/mart_grad_outcome_destination_grain.sql.
+    columns:
+      - name: fod1p
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_field'), field: fod1p}}
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: age_band
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: ['22-27', '28-34', '22-34', '35-64']}}
+      - name: degree_level
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [bachelor, graduate]}}
+      - name: suppressed
+        data_tests: [not_null]
+      - name: workers
+        meta: {additive: false}
+      - name: moe_workers
+        meta: {additive: false}
+      - name: share_of_field
+        description: The group's share of the field's workers at that band and level. A share; readable rows sum to field_readable_share.
+        meta: {additive: false}
+      - name: moe_share_of_field
+        meta: {additive: false}
+      - name: share_renormalized
+        description: share_of_field / field_readable_share, the weight the dispersed-major exposure uses. A share.
+        meta: {additive: false}
+      - name: field_readable_share
+        description: Sum of the field's unsuppressed shares (its ACS coverage).
+        meta: {additive: false}
+      - name: field_workers
+        meta: {additive: false}
+      - name: median_earnings_2024usd
+        meta: {additive: false}
+      - name: moe_median_earnings
+        meta: {additive: false}
+      - name: mean_earnings_2024usd
+        meta: {additive: false}
+      - name: moe_mean_earnings
+        meta: {additive: false}
+      - name: all_level_share
+        description: The group's share of all workers at that band and level from the degree_x_soc cut over readable detailed jobs; understates (suppressed jobs drop).
+        meta: {additive: false}
+      - name: group_exposure
+        description: The SOC major group's employment-weighted observed AI exposure (D7). A rate.
+        meta: {additive: false}
+      - name: group_high_share
+        meta: {additive: false}
+      - name: group_exposure_coverage
+        meta: {additive: false}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_exposure
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+
+  - name: mart_major_supply_demand
+    description: >
+      One row per major x award level (every mart.dim_major row, 4,650; the 1,860 linked + dispersed majors carry the
+      S11 numbers). 2019 and 2024 first-major awards (all NYC, CUNY); graduates per opening (§3c (b), openings weights
+      renormalized over the major's jobs with a ratio, linked majors only under D20; equal weights and D20 off as
+      sensitivities); growth axis = openings-weighted projected 2022-32 change with the actual 2019 -> 2025 NYC change
+      beside it (D19); the S11 box with its wording key and the §3c sensitivity boxes; AI exposure by the major's jobs
+      (linked) or by where its graduates work (dispersed), D7 band, High share, coverage, the three most exposed jobs;
+      ACS field earnings and the D20 lift. Tie-outs in tests/mart_major_supply_demand_tieout.sql, rule checks in
+      tests/mart_major_supply_demand_rules.sql.
+    columns:
+      - name: major_award_key
+        data_tests:
+          - unique
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_major'), field: major_award_key}}
+      - name: cip_code
+        data_tests: [not_null]
+      - name: award_level
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [3, 5]}}
+      - name: link_status
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [linked, dispersed, transfer_pathway, not_in_crosswalk]}}
+      - name: counts_as_supply
+        data_tests: [not_null]
+      - name: awards_2024_nyc
+        description: 2024 first-major awards, all NYC colleges (additive over majors).
+        data_tests: [not_null]
+      - name: awards_2024_cuny
+        data_tests: [not_null]
+      - name: awards_2019_nyc
+        data_tests: [not_null]
+      - name: awards_2019_cuny
+        data_tests: [not_null]
+      - name: awards_change_2019_2024_nyc
+        description: awards 2024 / awards 2019 - 1 (null when 2019 is 0). A ratio.
+        meta: {additive: false}
+      - name: awards_change_2019_2024_cuny
+        meta: {additive: false}
+      - name: graduates_per_opening
+        description: What a graduate of this major faces, averaged over the jobs it leads to (openings weights, D20). A ratio of two flows, not a placement rate; null for dispersed, transfer and no-link majors.
+        meta: {additive: false}
+      - name: graduates_per_opening_equal
+        meta: {additive: false}
+      - name: graduates_per_opening_d20_off
+        meta: {additive: false}
+      - name: ratio_weight_coverage
+        description: Openings weight held by the major's jobs that have a ratio, before renormalizing (1 - the notebook's w_no_ratio).
+        meta: {additive: false}
+      - name: projected_change_2022_2032_pct
+        description: Openings-weighted 2022-32 projected change of the major's jobs, in percent (the D19 growth axis).
+        meta: {additive: false}
+      - name: projected_change_2022_2032_pct_equal
+        meta: {additive: false}
+      - name: actual_change_2019_2025_pct
+        description: Openings-weighted actual NYC change 2019 -> 2025 of the major's jobs (D8 estimate), in percent; shown beside the axis, never the axis.
+        meta: {additive: false}
+      - name: actual_weight_coverage
+        meta: {additive: false}
+      - name: projected_change_d20_off_pct
+        meta: {additive: false}
+      - name: nyc_all_jobs_change_2022_2032_pct
+        description: The NYC all-jobs 2022-32 projected change (fct_job_projection 00-0000, +12.05%), the §3c sensitivity cutoff.
+        meta: {additive: false}
+      - name: many_graduates
+        description: graduates_per_opening > 1.0 (§3c).
+      - name: is_shrinking
+        description: projected_change_2022_2032_pct <= 0 (§3c).
+      - name: box
+        description: The S11 box (§3c, D19). crowded = shrinking and many; words "more competition", never "bad major".
+        data_tests:
+          - accepted_values: {arguments: {values: [crowded, growing_many, shrinking_few, growing_few]}}
+      - name: box_ratio_0_5
+        data_tests:
+          - accepted_values: {arguments: {values: [crowded, growing_many, shrinking_few, growing_few]}}
+      - name: box_ratio_1_5
+        data_tests:
+          - accepted_values: {arguments: {values: [crowded, growing_many, shrinking_few, growing_few]}}
+      - name: box_ratio_2_0
+        data_tests:
+          - accepted_values: {arguments: {values: [crowded, growing_many, shrinking_few, growing_few]}}
+      - name: box_nyc_avg_growth
+        data_tests:
+          - accepted_values: {arguments: {values: [crowded, growing_many, shrinking_few, growing_few]}}
+      - name: box_actual_growth
+        data_tests:
+          - accepted_values: {arguments: {values: [crowded, growing_many, shrinking_few, growing_few]}}
+      - name: box_equal_weights
+        data_tests:
+          - accepted_values: {arguments: {values: [crowded, growing_many, shrinking_few, growing_few]}}
+      - name: box_d20_off
+        data_tests:
+          - accepted_values: {arguments: {values: [crowded, growing_many, shrinking_few, growing_few]}}
+      - name: wording_key
+        data_tests:
+          - accepted_values: {arguments: {values: [crowded_more_competition, growing_many_more_graduates_than_openings_even_as_job_grows, shrinking_few, growing_few, dispersed_see_destinations]}}
+      - name: ai_exposure
+        description: Observed AI exposure of the major (§3i, D7), by the jobs it leads to (linked) or by where its graduates work (dispersed; ai_exposure_basis says which). A rate.
+        meta: {additive: false}
+      - name: ai_exposure_basis
+        data_tests:
+          - accepted_values: {arguments: {values: ['by the jobs it leads to', 'by where its graduates work']}}
+      - name: ai_exposure_coverage
+        description: Openings weight (linked) or ACS readable share (dispersed) behind the exposure; flagged under 70%.
+        meta: {additive: false}
+      - name: ai_band
+        data_tests:
+          - accepted_values: {arguments: {values: [Not seen yet, Low, Medium, High]}}
+      - name: ai_high_share
+        description: Share of the major's scored openings weight on High-band jobs. A share.
+        meta: {additive: false}
+      - name: ai_exposure_equal
+        meta: {additive: false}
+      - name: ai_exposure_bridge_all
+        meta: {additive: false}
+      - name: ai_exposure_acs_all
+        meta: {additive: false}
+      - name: top_job_weight
+        meta: {additive: false}
+      - name: openings_nyc_total
+        meta: {additive: false}
+      - name: field_lift
+        meta: {additive: false}
+      - name: acs_median_22_34_bachelor
+        description: ACS median full-time year-round earnings of bachelor's-only holders of the major's field, 22-34, 2024 dollars. A median.
+        meta: {additive: false}
+      - name: acs_moe_median_22_34_bachelor
+        meta: {additive: false}
+      - name: acs_median_35_64_bachelor
+        meta: {additive: false}
+      - name: acs_moe_median_35_64_bachelor
+        meta: {additive: false}
+      - name: acs_premium_median_35_64
+        meta: {additive: false}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_openings
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_bridge
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_nyc_estimate
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_exposure
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_acs
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]

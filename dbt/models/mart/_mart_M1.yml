@@ -1,0 +1,282 @@
+# M1: industry views and the labor-market context line (docs/mart-plan.md §4e, §4f row labor_market_monthly;
+# explore-plan §3g; nb 40 §7b, nb 41; D3, D8, D18). Conventions as in _mart.yml. Composite grains are tested by
+# the singular tests tests/mart_<view>_grain.sql; the §5 tie-outs by tests/mart_<view>_tieout.sql.
+version: 2
+
+models:
+  - name: mart_industry_hiring_trend
+    description: >
+      One row per year x industry (20 NAICS sectors plus the QWI all-industries row '00'), NYC = the five
+      boroughs summed, private UI-covered jobs, all ages, 2019-2025 (Census QWI). Annual separation rate = sum of
+      the four quarters' separations / (sum of beginning-of-quarter jobs over the same quarters / 4) on
+      borough-quarters where both are released; new-hire rate the same with hires_new (§3g). A rate is null unless
+      all four quarters are released, so 2025 (Q4 separations unpublished) has a new-hire rate but no separation
+      rate. bachelor_share_hires_25plus = bachelor's-or-higher new hires / all new hires aged 25+ (education
+      breakdown, cells with all four groups released). Grain test is tests/mart_industry_hiring_trend_grain.sql.
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: year_start
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_date'), field: date_key}}
+      - name: area_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_area'), field: area_key}}
+      - name: industry_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_industry'), field: industry_key}}
+      - name: is_total_row
+        description: The QWI all-industries row ('00'). Read it for the NYC figure; never add it to the sector rows (D24 A).
+        data_tests: [not_null]
+      - name: is_leaf_row
+        description: The 20 sector rows; they sum to the '00' row within QWI noise (tests/mart_industry_leaf_sums.sql).
+        data_tests: [not_null]
+      - name: hires_new
+        description: New hires in the year (sum of released borough-quarters).
+        meta: {additive: true, base_filter: "is_leaf_row (by sector) or is_total_row (NYC), never both; sum within one year"}
+      - name: separations
+        description: Separations in the year (sum of released borough-quarters).
+        meta: {additive: true, base_filter: "is_leaf_row or is_total_row, never both; sum within one year"}
+      - name: is_complete_year
+        data_tests: [not_null]
+      - name: quarters_released_separations
+        data_tests:
+          - accepted_values: {arguments: {values: [0, 1, 2, 3, 4]}}
+      - name: emp_begin_avg
+        description: Average beginning-of-quarter jobs over the released quarters; an average, never summed.
+        meta: {additive: false}
+      - name: separation_rate
+        description: Annual separation rate (share of jobs that ended in the year, computed on the four quarters). A rate.
+        meta: {additive: false}
+      - name: new_hire_rate
+        description: Annual new-hire rate (new jobs started, excluding recalls, over mean beginning jobs). A rate.
+        meta: {additive: false}
+      - name: bachelor_share_hires_25plus
+        description: Share of new hires aged 25+ with a bachelor's or advanced degree (QWI education group E4). A share.
+        meta: {additive: false}
+      - name: is_series_break
+        description: >
+          True where the year's rates are not comparable with 2019 (48-49 from 2024: the 2024 Q1 employer
+          reclassification). job_profile uses the sector's 2019 rate for these rows (D24 C).
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+
+  - name: mart_industry_employment_trend
+    description: >
+      One row per year x area (NYC and the five boroughs) x ownership x industry, QCEW annual averages 2019-2025.
+      Published rows from fct_industry_employment_annual (undisclosed government cells carry null employment);
+      the NYC all-ownership estimate by sector (private + government by sector, D18) is added from the audit table
+      as ownership 'All ownerships (estimate)' with employment only. Grain test is
+      tests/mart_industry_employment_trend_grain.sql.
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: year_start
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_date'), field: date_key}}
+      - name: area_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_area'), field: area_key}}
+      - name: ownership
+        data_tests: [not_null]
+      - name: ownership_kind
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [published, 'estimate (D18)']}}
+      - name: industry_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_industry'), field: industry_key}}
+      - name: is_total_row
+        description: Industry '00' (all industries) for the area x ownership. Never summed with the sector rows (D24 A).
+        data_tests: [not_null]
+      - name: is_leaf_row
+        description: Sector rows (industry_key <> '00'); within one area x ownership they sum to the '00' row less undisclosed cells (tests/mart_industry_leaf_sums.sql).
+        data_tests: [not_null]
+      - name: is_ownership_total
+        description: Ownership 'Total, All Ownerships' or 'Total, All Government', which total other ownership rows; never sum across ownership.
+        data_tests: [not_null]
+      - name: employment
+        description: Annual average jobs in the cell; null where undisclosed.
+        meta: {additive: true, base_filter: "one area_key, one ownership, one year; then is_leaf_row or is_total_row, never both"}
+      - name: avg_annual_pay
+        description: Average annual pay per job in the cell. An average, never summed.
+        meta: {additive: false}
+      - name: employment_2019
+        description: The same cell's 2019 employment, repeated on every year for the change columns; never summed across years.
+        meta: {additive: false}
+      - name: pct_change_vs_2019
+        description: employment / employment_2019 - 1. A ratio.
+        meta: {additive: false}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+
+  - name: mart_industry_employment_monthly
+    description: >
+      One row per month x CES series (NYC payroll jobs, latest NYS DOL vintage, Jan 2019 onward), all three CES
+      levels with ces_level as the filter. industry_key is the CES supersector row of dim_industry (CES-xx).
+      12-month change compares the same month a year earlier. Grain test is
+      tests/mart_industry_employment_monthly_grain.sql.
+    columns:
+      - name: month_start
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_date'), field: date_key}}
+      - name: area_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_area'), field: area_key}}
+      - name: series_code
+        data_tests: [not_null]
+      - name: ces_level
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [aggregate, supersector, detail]}}
+      - name: industry_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_industry'), field: industry_key}}
+      - name: is_total_row
+        description: CES aggregate rows (Total Nonfarm, Total Private, Goods Producing, Service-Providing, Private Service Providing) (D24 A).
+        data_tests: [not_null]
+      - name: is_leaf_row
+        description: The 10 top CES supersectors (15, 30, 40, 50, 55, 60, 65, 70, 80, 90); they sum to Total Nonfarm. Sub-supersectors and detail rows are neither and nest inside a leaf.
+        data_tests: [not_null]
+      - name: employment
+        data_tests: [not_null]
+        meta: {additive: true, base_filter: "is_leaf_row, one month (sum = Total Nonfarm); every other row is read one series at a time"}
+      - name: pct_change_12m
+        description: employment / employment 12 months earlier - 1. A ratio.
+        meta: {additive: false}
+      - name: pct_change_vs_2019
+        description: employment / the same month of 2019 - 1. A ratio.
+        meta: {additive: false}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+
+  - name: mart_industry_profile
+    description: >
+      One row per NAICS sector (20): private jobs 2019 and 2025 and the change (NYC and by borough, QCEW), GDP
+      share of the latest BEA year (five boroughs summed), the one degree-reachable line (NYC private jobs 2025 x
+      the NY staffing-pattern share over degree-reachable jobs, shares renormalized over readable shares; D3, D18),
+      QWI 2024 and 2019 separation and new-hire rates and the bachelor's share of hires 25+, the CES latest
+      12-month change through an explicit sector -> CES series map, and the 48-49 break note. Descriptive page;
+      no ranking. Row count test is tests/mart_industry_profile_row_count.sql.
+    columns:
+      - name: industry_key
+        data_tests:
+          - unique
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_industry'), field: industry_key}}
+      - name: industry_title
+        data_tests: [not_null]
+      - name: pct_change_2019_2025
+        description: private_jobs_2025 / private_jobs_2019 - 1. A ratio.
+        meta: {additive: false}
+      - name: share_of_nyc_private_2025
+        description: The sector's share of NYC private jobs in 2025. A share.
+        meta: {additive: false}
+      - name: gdp_share
+        description: The sector's share of the five boroughs' current-dollar GDP in gdp_year. A share.
+        meta: {additive: false}
+      - name: pattern_share_readable
+        description: Sum of the readable NY staffing-pattern shares of the sector (coverage of the degree-reachable line). A share.
+        meta: {additive: false}
+      - name: degree_reachable_share
+        description: Share of the sector's jobs that are degree-reachable (NY staffing pattern, renormalized). A share.
+        meta: {additive: false}
+      - name: degree_reachable_jobs_est
+        description: Estimated degree-reachable NYC private jobs in the sector, 2025 (through a bridge; an estimate). Not summed across sectors on a page without the estimate label.
+        meta: {additive: false}
+      - name: separation_rate_2024
+        meta: {additive: false}
+      - name: separation_rate_2019
+        meta: {additive: false}
+      - name: new_hire_rate_2024
+        meta: {additive: false}
+      - name: new_hire_rate_2019
+        meta: {additive: false}
+      - name: bachelor_share_hires_25plus_2024
+        meta: {additive: false}
+      - name: ces_pct_change_12m
+        meta: {additive: false}
+      - name: ces_pct_change_vs_2019
+        meta: {additive: false}
+      - name: ces_industry_key
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_industry'), field: industry_key}}
+      - name: source_key_jobs
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_gdp
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_pattern
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_hiring
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_ces
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_keys
+        data_tests: [not_null]
+      - name: as_of
+        data_tests: [not_null]
+
+  - name: mart_labor_market_monthly
+    description: >
+      One row per month x measure x seasonal flag, Jan 2015 onward: the NYC unemployment rate (BLS LAUS), NYC
+      people paid regular UI benefits in the month (NYS DOL; beneficiaries, not initial claims) and the New York
+      State job openings rate (BLS JOLTS). is_preferred_series marks the seasonally adjusted row where one exists.
+      Grain test is tests/mart_labor_market_monthly_grain.sql.
+    columns:
+      - name: month_start
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_date'), field: date_key}}
+      - name: measure_key
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [nyc_unemployment_rate, nyc_ui_beneficiaries, ny_job_openings_rate]}}
+      - name: seasonal
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [S, U]}}
+      - name: area_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_area'), field: area_key}}
+      - name: value
+        description: The measure's value in its unit (percent for the rates, persons for beneficiaries). Rates are never summed; beneficiaries is a monthly count, never summed across months.
+        meta: {additive: false}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]

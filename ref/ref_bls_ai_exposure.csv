@@ -1,0 +1,832 @@
+soc_code,bls_ai_tier,bls_ai_tier_rank
+11-1011,Very high,4
+11-1021,High,3
+11-2011,Very high,4
+11-2021,Very high,4
+11-2022,High,3
+11-2032,Very high,4
+11-2033,High,3
+11-3012,Moderate,2
+11-3013,High,3
+11-3021,Very high,4
+11-3031,Very high,4
+11-3051,High,3
+11-3061,Very high,4
+11-3071,Very high,4
+11-3111,High,3
+11-3121,High,3
+11-3131,Very high,4
+11-9013,Moderate,2
+11-9021,High,3
+11-9031,High,3
+11-9032,High,3
+11-9033,High,3
+11-9039,High,3
+11-9041,High,3
+11-9051,Moderate,2
+11-9071,High,3
+11-9072,Very high,4
+11-9081,High,3
+11-9111,High,3
+11-9121,High,3
+11-9131,High,3
+11-9141,High,3
+11-9151,Very high,4
+11-9161,High,3
+11-9171,High,3
+11-9179,High,3
+11-9199,High,3
+13-1011,Very high,4
+13-1020,Very high,4
+13-1031,Very high,4
+13-1032,High,3
+13-1041,Very high,4
+13-1051,High,3
+13-1071,Very high,4
+13-1074,Low,1
+13-1075,High,3
+13-1081,Very high,4
+13-1082,Very high,4
+13-1111,Very high,4
+13-1121,High,3
+13-1131,High,3
+13-1141,Very high,4
+13-1151,Very high,4
+13-1161,Very high,4
+13-1199,Very high,4
+13-2011,Very high,4
+13-2020,Very high,4
+13-2031,Very high,4
+13-2041,Very high,4
+13-2051,Very high,4
+13-2052,Very high,4
+13-2053,Very high,4
+13-2054,Very high,4
+13-2061,Very high,4
+13-2071,Very high,4
+13-2072,Very high,4
+13-2081,Very high,4
+13-2082,Very high,4
+13-2099,Very high,4
+15-1211,Very high,4
+15-1212,Very high,4
+15-1221,Very high,4
+15-1231,Very high,4
+15-1232,Very high,4
+15-1241,Very high,4
+15-1242,Very high,4
+15-1243,Very high,4
+15-1244,Very high,4
+15-1251,Very high,4
+15-1252,Very high,4
+15-1253,Very high,4
+15-1254,Very high,4
+15-1255,Very high,4
+15-1299,Very high,4
+15-2011,Very high,4
+15-2021,Very high,4
+15-2031,Very high,4
+15-2041,Very high,4
+15-2051,Very high,4
+15-2099,Very high,4
+17-1011,High,3
+17-1012,High,3
+17-1021,High,3
+17-1022,High,3
+17-2011,Very high,4
+17-2021,High,3
+17-2031,Very high,4
+17-2041,High,3
+17-2051,High,3
+17-2061,Very high,4
+17-2071,High,3
+17-2072,Very high,4
+17-2081,Very high,4
+17-2111,High,3
+17-2112,Very high,4
+17-2121,High,3
+17-2131,High,3
+17-2141,Very high,4
+17-2151,High,3
+17-2161,High,3
+17-2171,High,3
+17-2199,Very high,4
+17-3011,High,3
+17-3012,Very high,4
+17-3013,High,3
+17-3019,Very high,4
+17-3021,High,3
+17-3022,Very high,4
+17-3023,High,3
+17-3024,Moderate,2
+17-3025,High,3
+17-3026,High,3
+17-3027,High,3
+17-3028,High,3
+17-3029,High,3
+17-3031,High,3
+19-1011,High,3
+19-1012,High,3
+19-1013,Very high,4
+19-1021,Very high,4
+19-1022,High,3
+19-1023,High,3
+19-1029,Very high,4
+19-1031,High,3
+19-1032,Moderate,2
+19-1041,High,3
+19-1042,Very high,4
+19-1099,Very high,4
+19-2011,Very high,4
+19-2012,Very high,4
+19-2021,Very high,4
+19-2031,Very high,4
+19-2032,Very high,4
+19-2041,Very high,4
+19-2042,High,3
+19-2043,High,3
+19-2099,High,3
+19-3011,Very high,4
+19-3022,Very high,4
+19-3032,Very high,4
+19-3033,High,3
+19-3034,Very high,4
+19-3039,High,3
+19-3041,Very high,4
+19-3051,Very high,4
+19-3091,Very high,4
+19-3092,Very high,4
+19-3093,Very high,4
+19-3094,Very high,4
+19-3099,Very high,4
+19-4012,High,3
+19-4013,High,3
+19-4021,High,3
+19-4031,High,3
+19-4042,High,3
+19-4043,High,3
+19-4044,Very high,4
+19-4051,Moderate,2
+19-4061,Very high,4
+19-4071,Moderate,2
+19-4092,High,3
+19-4099,Very high,4
+19-5011,High,3
+19-5012,Moderate,2
+21-1012,Very high,4
+21-1013,High,3
+21-1015,High,3
+21-1018,High,3
+21-1019,High,3
+21-1021,High,3
+21-1022,High,3
+21-1023,Moderate,2
+21-1029,High,3
+21-1091,Very high,4
+21-1092,High,3
+21-1093,High,3
+21-1094,High,3
+21-1099,High,3
+21-2011,High,3
+21-2021,Very high,4
+21-2099,High,3
+23-1011,Very high,4
+23-1012,High,3
+23-1021,Very high,4
+23-1022,Very high,4
+23-1023,High,3
+23-2011,High,3
+23-2093,High,3
+23-2099,Very high,4
+25-1011,Very high,4
+25-1021,Very high,4
+25-1022,Very high,4
+25-1031,High,3
+25-1032,Very high,4
+25-1041,High,3
+25-1042,Very high,4
+25-1043,Very high,4
+25-1051,Very high,4
+25-1052,Very high,4
+25-1053,Very high,4
+25-1054,High,3
+25-1061,Very high,4
+25-1062,High,3
+25-1063,High,3
+25-1064,High,3
+25-1065,High,3
+25-1066,Very high,4
+25-1067,High,3
+25-1069,High,3
+25-1071,Very high,4
+25-1072,Very high,4
+25-1081,Very high,4
+25-1082,Very high,4
+25-1111,High,3
+25-1112,High,3
+25-1113,High,3
+25-1121,Very high,4
+25-1122,Very high,4
+25-1123,Very high,4
+25-1124,Very high,4
+25-1125,Very high,4
+25-1126,Very high,4
+25-1192,High,3
+25-1193,Very high,4
+25-1194,Very high,4
+25-1199,Very high,4
+25-2011,Moderate,2
+25-2012,Moderate,2
+25-2021,High,3
+25-2022,High,3
+25-2023,High,3
+25-2031,High,3
+25-2032,High,3
+25-2051,High,3
+25-2052,High,3
+25-2057,High,3
+25-2058,High,3
+25-2059,High,3
+25-3011,Very high,4
+25-3021,High,3
+25-3031,High,3
+25-3041,Very high,4
+25-3099,High,3
+25-4011,Very high,4
+25-4012,Very high,4
+25-4013,Moderate,2
+25-4022,Very high,4
+25-4031,Very high,4
+25-9021,High,3
+25-9031,Very high,4
+25-9044,Very high,4
+25-9045,High,3
+25-9099,High,3
+27-1011,Very high,4
+27-1012,High,3
+27-1013,High,3
+27-1014,High,3
+27-1019,High,3
+27-1021,High,3
+27-1022,High,3
+27-1023,Moderate,2
+27-1024,Very high,4
+27-1025,High,3
+27-1026,Moderate,2
+27-1027,High,3
+27-1029,High,3
+27-2011,Moderate,2
+27-2012,High,3
+27-2021,Moderate,2
+27-2022,Moderate,2
+27-2023,Moderate,2
+27-2031,Low,1
+27-2032,Moderate,2
+27-2041,High,3
+27-2042,Moderate,2
+27-2091,High,3
+27-2099,High,3
+27-3011,Very high,4
+27-3023,Very high,4
+27-3031,Very high,4
+27-3041,Very high,4
+27-3042,Very high,4
+27-3043,Very high,4
+27-3091,Very high,4
+27-3092,Very high,4
+27-3099,Very high,4
+27-4011,High,3
+27-4012,High,3
+27-4014,Moderate,2
+27-4015,Moderate,2
+27-4021,High,3
+27-4031,High,3
+27-4032,High,3
+27-4099,Moderate,2
+29-1011,Moderate,2
+29-1021,Moderate,2
+29-1022,Low,1
+29-1023,Moderate,2
+29-1024,Low,1
+29-1029,Moderate,2
+29-1031,Very high,4
+29-1041,Low,1
+29-1051,High,3
+29-1071,Low,1
+29-1081,Moderate,2
+29-1122,High,3
+29-1123,High,3
+29-1124,Moderate,2
+29-1125,Moderate,2
+29-1126,Low,1
+29-1127,High,3
+29-1128,Moderate,2
+29-1129,High,3
+29-1131,High,3
+29-1141,High,3
+29-1151,Low,1
+29-1161,High,3
+29-1171,High,3
+29-1181,High,3
+29-1211,Low,1
+29-1212,High,3
+29-1213,Moderate,2
+29-1214,High,3
+29-1215,High,3
+29-1216,High,3
+29-1217,High,3
+29-1218,High,3
+29-1221,High,3
+29-1222,High,3
+29-1223,High,3
+29-1224,High,3
+29-1229,High,3
+29-1241,Moderate,2
+29-1242,Moderate,2
+29-1243,Moderate,2
+29-1249,Moderate,2
+29-1291,Moderate,2
+29-1292,Low,1
+29-1299,High,3
+29-2010,Moderate,2
+29-2031,Moderate,2
+29-2032,Moderate,2
+29-2033,High,3
+29-2034,Moderate,2
+29-2035,Moderate,2
+29-2036,High,3
+29-2042,Low,1
+29-2043,Low,1
+29-2051,High,3
+29-2052,High,3
+29-2053,Moderate,2
+29-2055,Low,1
+29-2056,Moderate,2
+29-2057,Low,1
+29-2061,Low,1
+29-2072,Very high,4
+29-2081,Moderate,2
+29-2091,Low,1
+29-2092,Moderate,2
+29-2099,High,3
+29-9021,Very high,4
+29-9091,Moderate,2
+29-9092,Very high,4
+29-9093,Low,1
+29-9099,Moderate,2
+31-1120,Moderate,2
+31-1131,Low,1
+31-1132,Low,1
+31-1133,Low,1
+31-2011,Moderate,2
+31-2012,Moderate,2
+31-2021,Low,1
+31-2022,Low,1
+31-9011,Low,1
+31-9091,Low,1
+31-9092,Moderate,2
+31-9093,Low,1
+31-9094,High,3
+31-9095,Moderate,2
+31-9096,Moderate,2
+31-9097,Low,1
+31-9099,Moderate,2
+33-1011,Moderate,2
+33-1012,Moderate,2
+33-1021,Low,1
+33-1091,Moderate,2
+33-1099,High,3
+33-2011,Low,1
+33-2021,Moderate,2
+33-2022,Moderate,2
+33-3011,Moderate,2
+33-3012,Moderate,2
+33-3021,High,3
+33-3031,Moderate,2
+33-3041,Moderate,2
+33-3051,High,3
+33-3052,Moderate,2
+33-9011,Moderate,2
+33-9021,High,3
+33-9031,High,3
+33-9032,Moderate,2
+33-9091,Moderate,2
+33-9092,Low,1
+33-9093,Moderate,2
+33-9094,High,3
+33-9099,Moderate,2
+35-1011,Moderate,2
+35-1012,High,3
+35-2011,Moderate,2
+35-2012,Low,1
+35-2013,Moderate,2
+35-2014,Moderate,2
+35-2015,Low,1
+35-2019,Moderate,2
+35-2021,Low,1
+35-3011,Moderate,2
+35-3023,Moderate,2
+35-3031,Moderate,2
+35-3041,Moderate,2
+35-9011,Low,1
+35-9021,Low,1
+35-9031,High,3
+35-9099,Moderate,2
+37-1011,High,3
+37-1012,High,3
+37-2011,Low,1
+37-2012,Low,1
+37-2019,Low,1
+37-2021,Moderate,2
+37-3011,Low,1
+37-3012,Low,1
+37-3013,Low,1
+37-3019,Low,1
+39-1013,High,3
+39-1014,High,3
+39-1022,High,3
+39-2011,Low,1
+39-2021,Moderate,2
+39-3011,Moderate,2
+39-3012,High,3
+39-3019,Moderate,2
+39-3021,Low,1
+39-3031,Moderate,2
+39-3091,High,3
+39-3092,Moderate,2
+39-3093,Moderate,2
+39-3099,High,3
+39-4011,Low,1
+39-4012,Moderate,2
+39-4021,Moderate,2
+39-4031,Moderate,2
+39-5011,Moderate,2
+39-5012,Moderate,2
+39-5091,Moderate,2
+39-5092,Low,1
+39-5093,Low,1
+39-5094,Moderate,2
+39-6011,Moderate,2
+39-6012,Very high,4
+39-7010,High,3
+39-9011,Moderate,2
+39-9031,Moderate,2
+39-9032,Moderate,2
+39-9041,High,3
+39-9099,Moderate,2
+41-1011,High,3
+41-1012,Very high,4
+41-2011,High,3
+41-2012,Moderate,2
+41-2021,Very high,4
+41-2022,High,3
+41-2031,Very high,4
+41-3011,Very high,4
+41-3021,Very high,4
+41-3031,Very high,4
+41-3041,Very high,4
+41-3091,Very high,4
+41-4011,Very high,4
+41-4012,Very high,4
+41-9011,High,3
+41-9012,High,3
+41-9021,Very high,4
+41-9022,Very high,4
+41-9031,Very high,4
+41-9041,Very high,4
+41-9091,Very high,4
+41-9099,Very high,4
+43-1011,Very high,4
+43-2011,Very high,4
+43-2021,High,3
+43-2099,Very high,4
+43-3011,Very high,4
+43-3021,Very high,4
+43-3031,Very high,4
+43-3041,High,3
+43-3051,Very high,4
+43-3061,Very high,4
+43-3071,High,3
+43-3099,Very high,4
+43-4011,Very high,4
+43-4021,Very high,4
+43-4031,Very high,4
+43-4041,Very high,4
+43-4051,Very high,4
+43-4061,Very high,4
+43-4071,Very high,4
+43-4081,Very high,4
+43-4111,Very high,4
+43-4121,High,3
+43-4131,Very high,4
+43-4141,High,3
+43-4151,Very high,4
+43-4161,Very high,4
+43-4171,Very high,4
+43-4181,Very high,4
+43-4199,Very high,4
+43-5011,Very high,4
+43-5021,Moderate,2
+43-5031,Very high,4
+43-5032,Very high,4
+43-5041,Moderate,2
+43-5051,High,3
+43-5052,Moderate,2
+43-5053,Low,1
+43-5061,Very high,4
+43-5071,High,3
+43-5111,Moderate,2
+43-6011,Very high,4
+43-6012,Very high,4
+43-6013,Very high,4
+43-6014,Very high,4
+43-9021,Very high,4
+43-9022,Very high,4
+43-9031,Very high,4
+43-9041,Very high,4
+43-9051,Moderate,2
+43-9061,Very high,4
+43-9071,High,3
+43-9081,Very high,4
+43-9111,Very high,4
+43-9199,Very high,4
+45-1011,Low,1
+45-2011,Moderate,2
+45-2021,Moderate,2
+45-2041,Low,1
+45-2091,Low,1
+45-2092,Low,1
+45-2093,Moderate,2
+45-2099,Low,1
+45-3031,Low,1
+45-4011,Low,1
+45-4021,Low,1
+45-4022,Low,1
+45-4023,Low,1
+45-4029,Low,1
+47-1011,Moderate,2
+47-2011,Low,1
+47-2021,Low,1
+47-2022,Low,1
+47-2031,Low,1
+47-2041,Low,1
+47-2042,Low,1
+47-2043,Low,1
+47-2044,Low,1
+47-2051,Low,1
+47-2053,Low,1
+47-2061,Low,1
+47-2071,Low,1
+47-2072,Low,1
+47-2073,Low,1
+47-2081,Low,1
+47-2082,Low,1
+47-2111,Moderate,2
+47-2121,Low,1
+47-2131,Low,1
+47-2132,Moderate,2
+47-2141,Low,1
+47-2142,Low,1
+47-2151,Low,1
+47-2152,Moderate,2
+47-2161,Low,1
+47-2171,Low,1
+47-2181,Low,1
+47-2211,Low,1
+47-2221,Low,1
+47-2231,Moderate,2
+47-3011,Low,1
+47-3012,Low,1
+47-3013,Low,1
+47-3014,Low,1
+47-3015,Low,1
+47-3016,Low,1
+47-3019,Low,1
+47-4011,High,3
+47-4021,Low,1
+47-4031,Low,1
+47-4041,Low,1
+47-4051,Low,1
+47-4061,Low,1
+47-4071,Low,1
+47-4090,Moderate,2
+47-5011,Low,1
+47-5012,Low,1
+47-5013,Low,1
+47-5022,Low,1
+47-5023,Low,1
+47-5032,Low,1
+47-5041,Low,1
+47-5043,Low,1
+47-5044,Low,1
+47-5049,Low,1
+47-5051,Low,1
+47-5071,Low,1
+47-5081,Low,1
+47-5099,Low,1
+49-1011,High,3
+49-2011,High,3
+49-2021,Moderate,2
+49-2022,High,3
+49-2091,Moderate,2
+49-2092,Low,1
+49-2093,Moderate,2
+49-2094,Moderate,2
+49-2095,Moderate,2
+49-2096,Moderate,2
+49-2097,Moderate,2
+49-2098,Moderate,2
+49-3011,Low,1
+49-3021,Low,1
+49-3022,Low,1
+49-3023,Moderate,2
+49-3031,Low,1
+49-3041,Moderate,2
+49-3042,Low,1
+49-3043,Low,1
+49-3051,Low,1
+49-3052,Low,1
+49-3053,Low,1
+49-3091,Moderate,2
+49-3092,Moderate,2
+49-3093,Low,1
+49-9011,Low,1
+49-9012,Moderate,2
+49-9021,Moderate,2
+49-9031,Moderate,2
+49-9041,Moderate,2
+49-9043,Moderate,2
+49-9044,Low,1
+49-9045,Low,1
+49-9051,Low,1
+49-9052,Moderate,2
+49-9061,Moderate,2
+49-9062,Moderate,2
+49-9063,Low,1
+49-9064,Moderate,2
+49-9069,Moderate,2
+49-9071,Low,1
+49-9081,Moderate,2
+49-9091,Moderate,2
+49-9092,Low,1
+49-9094,Low,1
+49-9095,Moderate,2
+49-9096,Moderate,2
+49-9097,Low,1
+49-9098,Low,1
+49-9099,Moderate,2
+51-1011,High,3
+51-2011,Moderate,2
+51-2021,Low,1
+51-2028,Moderate,2
+51-2031,Low,1
+51-2041,Low,1
+51-2051,Low,1
+51-2061,Moderate,2
+51-2090,Moderate,2
+51-3011,Moderate,2
+51-3021,Moderate,2
+51-3022,Moderate,2
+51-3023,Low,1
+51-3091,Low,1
+51-3092,Moderate,2
+51-3093,Low,1
+51-3099,Moderate,2
+51-4021,Moderate,2
+51-4022,Low,1
+51-4023,Moderate,2
+51-4031,Low,1
+51-4032,Low,1
+51-4033,Low,1
+51-4034,Moderate,2
+51-4035,Moderate,2
+51-4041,Moderate,2
+51-4051,Low,1
+51-4052,Low,1
+51-4061,Low,1
+51-4062,Moderate,2
+51-4071,Low,1
+51-4072,Low,1
+51-4081,Moderate,2
+51-4111,Moderate,2
+51-4121,Low,1
+51-4122,Low,1
+51-4191,Moderate,2
+51-4192,Low,1
+51-4193,Low,1
+51-4194,Low,1
+51-4199,Moderate,2
+51-5111,High,3
+51-5112,Moderate,2
+51-5113,Low,1
+51-6011,Low,1
+51-6021,Low,1
+51-6031,Low,1
+51-6041,Low,1
+51-6042,Low,1
+51-6051,Low,1
+51-6052,Moderate,2
+51-6061,Moderate,2
+51-6062,Moderate,2
+51-6063,Moderate,2
+51-6064,Low,1
+51-6091,Low,1
+51-6092,Moderate,2
+51-6093,Low,1
+51-6099,Low,1
+51-7011,Low,1
+51-7021,Low,1
+51-7031,Moderate,2
+51-7032,Moderate,2
+51-7041,Low,1
+51-7042,Low,1
+51-7099,Low,1
+51-8011,Moderate,2
+51-8012,Moderate,2
+51-8013,Moderate,2
+51-8021,Moderate,2
+51-8031,Low,1
+51-8091,Low,1
+51-8092,Moderate,2
+51-8093,Moderate,2
+51-8099,Low,1
+51-9011,Moderate,2
+51-9012,Moderate,2
+51-9021,Moderate,2
+51-9022,Low,1
+51-9023,Low,1
+51-9031,Low,1
+51-9032,Moderate,2
+51-9041,Low,1
+51-9051,Moderate,2
+51-9061,Moderate,2
+51-9071,Moderate,2
+51-9081,Low,1
+51-9082,Low,1
+51-9083,Low,1
+51-9111,Low,1
+51-9123,Low,1
+51-9124,Low,1
+51-9141,Moderate,2
+51-9151,Moderate,2
+51-9161,High,3
+51-9162,Very high,4
+51-9191,Low,1
+51-9192,Low,1
+51-9193,Low,1
+51-9194,Low,1
+51-9195,Low,1
+51-9196,Low,1
+51-9197,Low,1
+51-9198,Low,1
+51-9199,Moderate,2
+53-1041,Low,1
+53-1047,High,3
+53-2011,Moderate,2
+53-2012,Moderate,2
+53-2021,Moderate,2
+53-2022,High,3
+53-2031,High,3
+53-3011,Low,1
+53-3031,Moderate,2
+53-3032,Moderate,2
+53-3033,Moderate,2
+53-3051,Moderate,2
+53-3052,Moderate,2
+53-3053,Moderate,2
+53-3054,Moderate,2
+53-3099,Moderate,2
+53-4011,Moderate,2
+53-4013,Moderate,2
+53-4022,Low,1
+53-4031,Moderate,2
+53-4041,Moderate,2
+53-4099,Moderate,2
+53-5011,Low,1
+53-5021,Moderate,2
+53-5022,Low,1
+53-5031,Low,1
+53-6011,Low,1
+53-6021,Moderate,2
+53-6031,Low,1
+53-6032,Low,1
+53-6041,High,3
+53-6051,Moderate,2
+53-6061,High,3
+53-6099,Moderate,2
+53-7011,Low,1
+53-7021,Low,1
+53-7031,Low,1
+53-7041,Low,1
+53-7051,Low,1
+53-7061,Low,1
+53-7062,Low,1
+53-7063,Low,1
+53-7064,Low,1
+53-7065,Moderate,2
+53-7071,Low,1
+53-7072,Moderate,2
+53-7073,Low,1
+53-7081,Low,1
+53-7121,Low,1
+53-7199,Low,1

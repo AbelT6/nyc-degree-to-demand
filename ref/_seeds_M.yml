@@ -1,0 +1,141 @@
+# Step 5 (mart) seeds, docs/mart-plan.md §1 and §4g.
+version: 2
+
+seeds:
+  - name: ref_indeed_category_soc_group
+    description: >
+      Indeed Hiring Lab posting categories (47) mapped to one SOC 2018 major group each, built in nb 45 §4
+      (plan §3f): a category takes the group of its two example titles in Hiring Lab's
+      sector-job-title-examples.csv; when the two titles sit in different groups the first title's group is
+      used and map_flag = split (11); six categories absent from the examples file are mapped by name.
+      Groups 23 (Legal) and 45 (Farming) receive no category. Used by mart ai_group_exposure for the U.S. check.
+    config:
+      column_types: {category: text, soc_major_code: text, basis: text, map_flag: text}
+    columns:
+      - name: category
+        data_tests: [unique, not_null]
+      - name: soc_major_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('dim_job'), field: soc_code}}
+      - name: map_flag
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [example_titles, split, by_name]}}
+
+  - name: ref_footnote
+    description: >
+      The caveats that travel with a number (brief S13), one row each, drafted from the limits paragraphs of
+      nb 40-46 and the decisions they cite. page_keys is a comma-separated list of the pages the footnote
+      belongs on (overview, jobs, job, industries, majors, major, entry, graduates, ai, all). Power BI reads
+      mart.footnote and shows the rows for the page; no caveat is typed into a text box. A key whose footer sentence
+      differs by page has one row per wording (page 3 build plan §3.8: nyc_jobs_estimate, entry_wage_definition,
+      ai_exposure_observed and escape_route have a row for the job page alone), so footnote_key repeats here and
+      (footnote_key, page_key) is the grain of mart.footnote (tests/mart_footnote_grain.sql).
+    config:
+      column_types: {footnote_key: text, page_keys: text, subject: text, footnote_text: text, short_text: text, decision_ref: text, sort_order: integer}
+    columns:
+      - name: footnote_key
+        data_tests: [not_null]
+      - name: page_keys
+        data_tests: [not_null]
+      - name: footnote_text
+        data_tests: [not_null]
+      - name: short_text
+        description: >
+          The one-line version a page footer shows beside its marker (design brief §4.1, mockups);
+          footnote_text is the full note behind "All notes". Filled for the pages built so far (overview, jobs);
+          empty until a page that shows the note is designed.
+      - name: sort_order
+        data_tests: [unique, not_null]
+
+  - name: ref_bls_ai_exposure
+    description: >
+      BLS relative AI exposure category for every occupation in the 2025-35 projections (published 2026-08-27; D50
+      item 1): Low / Moderate / High / Very high, from a clustering of five research measures (Felten-Raj-Seamans,
+      Eloundou GPT-4 beta, Eisfeldt, Anthropic, Microsoft). "Relative to other occupations … not a forecast of
+      employment growth or decline" (BLS). Parsed from ai-exposure-categories.xlsx (retrieved 2026-10-17) by
+      a working script (not published) reader; 831 rows: Low 213, Moderate 206, High 206, Very high 206.
+    config:
+      column_types: {soc_code: text, bls_ai_tier: text, bls_ai_tier_rank: integer}
+    columns:
+      - name: soc_code
+        data_tests: [unique, not_null]
+      - name: bls_ai_tier
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: ['Low', 'Moderate', 'High', 'Very high']}}
+      - name: bls_ai_tier_rank
+        data_tests: [not_null]
+
+  - name: ref_living_wage
+    description: >
+      Living-cost lines for the pay yardstick (D50 item 2). The report line is MIT's living wage for one adult, NY
+      metro, 2026, before taxes (the same year as the wages and pre-tax like them); the city's True Cost of Living
+      (2022 data, taxes and savings included) is named in the note only.
+    config:
+      column_types: {line_key: text, source_key: text, area: text, household: text, annual_usd: numeric, data_year: integer, basis: text, is_report_line: boolean}
+    columns:
+      - name: line_key
+        data_tests: [unique, not_null]
+      - name: annual_usd
+        data_tests: [not_null]
+
+  - name: ref_job_short_title
+    description: >
+      Display titles for the degree-level jobs whose official SOC title runs past 31 characters (design brief
+      §10.5 item 5): 31 characters fit the 216 px job column at 10 pt Segoe UI (checked in the page-1 mockup with
+      "General and Operations Managers"). Hand-written; the official title stays in tooltips and on the job page.
+      One override inside the limit: "Substitute Teachers, Short-Term" -> "Substitute Teachers". official_title
+      is kept for review and tested against core.dim_job.
+    config:
+      column_types: {soc_code: text, short_title: text, official_title: text}
+    columns:
+      - name: soc_code
+        data_tests:
+          - unique
+          - not_null
+          - relationships: {arguments: {to: ref('dim_job'), field: soc_code}}
+      - name: short_title
+        data_tests: [unique, not_null]
+
+  - name: ref_job_description_override
+    description: >
+      Hand check of the job page's description line (build plan §4 item 1; nb 15 §5; card bls_ooh.md): the 63 named
+      job-page jobs whose BLS Occupational Outlook Handbook profile covers other jobs too, one verdict each, made by
+      reading the sentence under the job's own title. keep = the profile sentence fits (47); profile_part = the half of
+      a two-job description about this job (9); bls_type = the first sentence of BLS's "types of" paragraph for this
+      job (7); shortened = the source's own first sentence (BLS, 2 jobs) or O*NET's sentence up to its "such as" list
+      (25-9044), for the 3 lines too long for the page (sweep). `description` holds the replacement (blank
+      for keep); every replacement is the source's own wording (profile_part / bls_type checked word for word against
+      the file by notebooks 15 and 36; shortened checked by tests/mart_dim_job_page_additions.sql). dim_job: this
+      text, else the OOH sentence, else the O*NET first sentence.
+    config:
+      column_types: {soc_code: text, soc_title: text, ooh_title: text, verdict: text, description: text, reason: text}
+    columns:
+      - name: soc_code
+        data_tests:
+          - unique
+          - not_null
+          - relationships: {arguments: {to: ref('dim_job'), field: soc_code}}
+      - name: verdict
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [keep, profile_part, bls_type, onet, shortened]}}
+
+  - name: ref_industry_short_title
+    description: >
+      Sentence-case short names (24 characters or fewer) for the 20 NAICS sectors, the all-industries total and
+      unclassified (design brief §7.5 item 1), used as bar labels on the overview and the Industries page; plus
+      GOV-OEWS "Government" (OEWS research sector 99: government without state and local schools, hospitals and the
+      postal service) for the job page's employer bars (page 3 build plan §3.9).
+    config:
+      column_types: {industry_key: text, short_title: text}
+    columns:
+      - name: industry_key
+        data_tests:
+          - unique
+          - not_null
+          - relationships: {arguments: {to: ref('dim_industry'), field: industry_key}}
+      - name: short_title
+        data_tests: [unique, not_null]

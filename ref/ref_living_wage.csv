@@ -1,0 +1,3 @@
+line_key,source_key,area,household,annual_usd,data_year,basis,is_report_line
+mit_ny_metro_1adult,mit_living_wage,"New York-Newark-Jersey City metro area (35620)",One adult no children,65510,2026,"Before taxes ($31.50 an hour x 2,080 hours)",true
+nyc_tcol_single_adult,nyc_tcol,New York City,Single adult under 65,70334,2022,"Includes taxes and savings",false

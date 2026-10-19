@@ -1,0 +1,280 @@
+# Step 4 group D (industries): docs/step4-facts-plan.md §3d, §4 items 11-14, §5 risk 7, §6.4.
+# Singular tie-outs live in tests/fct_industry_*.sql.
+version: 2
+
+models:
+  - name: fct_industry_employment_annual
+    description: >
+      QCEW annual average jobs, establishments and wages for NYC and the five boroughs by ownership and NAICS sector,
+      2019-2025, at NAICS levels 0 (all industries) and 2 (sectors + 99 unclassified) only (decision §6.4). Grain
+      year x area_key x ownership x industry_key. NYS DOL rows as published (source_key nysdol_qcew_annual, 1,827
+      rows); BLS county rows (bls_qcew_county) fill only the government x sector cells NYS DOL does not publish:
+      borough rows straight from the county files, NYC rows as the sum of the boroughs only when every borough is
+      disclosed (otherwise disclosed = false, measures null, n_boroughs_disclosed says how many were published;
+      a partial sum would read as a false series break next to the NYS DOL years, e.g. NYC local government 61:
+      NYS DOL 202 k in 2019 and 211 k in 2025, three disclosed boroughs 137-142 k in between). Undisclosed measures
+      are null, never 0. A NYC government x sector series can still change source between years (source_key says
+      which); read it with the flags. avg_annual_pay = total_wages / employment, unrounded. Levels tie
+      to the BLS open-data files within a few jobs (source card §5); risk 7 (mixed sources) is covered by the
+      one-source-per-cell test.
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: area_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_area')
+                field: area_key
+      - name: ownership
+        description: As NYS DOL publishes it; BLS own_code 1 / 2 / 3 spelled the same way.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Private', 'Federal Government', 'State Government', 'Local Government',
+                         'Total, All Government', 'Total, All Ownerships']
+      - name: industry_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_industry')
+                field: industry_key
+      - name: establishments
+        description: Annual average employer locations; null on undisclosed BLS rows.
+      - name: employment
+        description: Annual average jobs; null on undisclosed BLS rows (NYS DOL suppresses by omitting the row).
+      - name: total_wages
+        description: Total annual wages paid, dollars.
+      - name: avg_annual_pay
+        description: total_wages / employment, numeric, unrounded; null where employment is null or 0.
+      - name: disclosed
+        description: >
+          True for every NYS DOL row and every disclosed BLS row; false where BLS suppressed the borough cell, or
+          where any borough in a BLS NYC sum was suppressed.
+        data_tests: [not_null]
+      - name: naics_detail_complete
+        description: >
+          NYS DOL staging flag: false where the 3-/4-digit detail under this sector is incomplete in the published
+          file (NAICS 2022 codes missing for retail and information from 2022). Null on BLS rows.
+      - name: n_boroughs_disclosed
+        description: BLS NYC sum rows only; how many of the five boroughs contributed a disclosed value (0-5).
+      - name: source_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [nysdol_qcew_annual, bls_qcew_county]
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+
+  - name: fct_industry_hiring_quarterly
+    description: >
+      Census LEHD QWI (release R2026Q3) hires, separations, jobs and earnings for private UI-covered jobs in the five
+      boroughs by NAICS sector and worker group, 2019Q1-2025Q4. Grain year x quarter x area_key x industry_key x
+      breakdown x group_code; breakdown = age (A00 all ages, A01-A08) or education (E1-E5; workers 25+ only, E5 =
+      everyone under 25), labels in seed qwi_group. Measures as staged: present only where the LEHD status flag is 1,
+      null where suppressed (flag 5), never 0; noise-infused, so groups add to A00 within a few jobs, not exactly.
+      quarter_complete = false for the latest quarter (stable-job measures not yet published). Not seasonally
+      adjusted. Levels run +3-6% above QCEW; never added to fct_industry_employment_annual.
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: quarter
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4]
+                quote: false
+      - name: area_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_area')
+                field: area_key
+      - name: industry_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_industry')
+                field: industry_key
+      - name: breakdown
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [age, education]
+      - name: group_code
+        description: LEHD agegrp (A00-A08) or education (E1-E5) code; (breakdown, group_code) is in seed qwi_group (singular test).
+        data_tests: [not_null]
+      - name: emp_begin
+        description: Jobs at the start of the quarter (QWI Emp).
+      - name: emp_stable
+        description: Full-quarter (stable) jobs (EmpS).
+      - name: hires_all
+        description: All hires incl. recalls (HirA).
+      - name: hires_new
+        description: New hires, no recalls (HirN).
+      - name: separations
+        description: Separations (Sep); blank in the latest quarter.
+      - name: earn_stable_monthly
+        description: Average monthly earnings of stable jobs, dollars (EarnS).
+      - name: earn_new_hire_stable_monthly
+        description: Average monthly earnings of stable new hires, dollars (EarnHirNS).
+      - name: job_creation
+        description: Job creation (FrmJbC).
+      - name: emp_begin_flag
+        description: LEHD status flag for emp_begin; 1 released, 5 suppressed. Same pattern for every _flag column.
+        data_tests: [not_null]
+      - name: emp_stable_flag
+        data_tests: [not_null]
+      - name: hires_all_flag
+        data_tests: [not_null]
+      - name: hires_new_flag
+        data_tests: [not_null]
+      - name: separations_flag
+        data_tests: [not_null]
+      - name: earn_stable_monthly_flag
+        data_tests: [not_null]
+      - name: earn_new_hire_stable_monthly_flag
+        data_tests: [not_null]
+      - name: job_creation_flag
+        data_tests: [not_null]
+      - name: quarter_complete
+        data_tests: [not_null]
+      - name: release
+        description: LEHD release id (R2026Q3).
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [census_qwi]
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+
+  - name: fct_industry_employment_monthly
+    description: >
+      NYS DOL Current Employment Statistics nonfarm payroll jobs for NYC by CES industry series, monthly, January 2019
+      to the latest published month (not seasonally adjusted; latest months preliminary, benchmarked each March;
+      vintage = download date). Grain year x month x series_code, 105 series, area_key always nyc. industry_key =
+      'CES-' || supersector_code (the NYS DOL supersector; detail series keep their supersector). ces_level =
+      aggregate (00, 05, 06, 07, 08 totals) / supersector / detail. The annual average is not stored; the mart
+      averages twelve months. Level runs +3.5-5.2% above QCEW NYC total employment (tested); never added to QCEW.
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: month
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                quote: false
+      - name: area_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [nyc]
+          - relationships:
+              arguments:
+                to: ref('dim_area')
+                field: area_key
+      - name: series_code
+        description: CES 8-digit series code (00000000 total nonfarm; xx000000 supersectors).
+        data_tests: [not_null]
+      - name: series_title
+        data_tests: [not_null]
+      - name: supersector_code
+        description: NYS DOL supersector code the series belongs to (two digits).
+        data_tests: [not_null]
+      - name: industry_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_industry')
+                field: industry_key
+      - name: ces_level
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [aggregate, supersector, detail]
+      - name: employment
+        description: Nonfarm payroll jobs, rounded to the hundred by the publisher.
+        data_tests: [not_null]
+      - name: vintage
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [nysdol_ces]
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+
+  - name: fct_industry_gdp
+    description: >
+      BEA GDP by county and industry for the five boroughs, 2019-2024: current dollars (CAGDP2) and real chained 2017
+      dollars (CAGDP9), thousands; release 2026-02-05. Grain year x area_key x line_code over the 22 non-overlapping
+      BEA lines (1 all-industry total, 2 private industries, 20 sectors incl. 83 government). industry_key through
+      seed industry_code_alias (line 1 -> 00, line 2 -> none, line 83 -> CES-90 government) else by naics_label ->
+      dim_industry.naics_sector. Withheld cells are null with is_withheld (never 0). Current-dollar sectors add to
+      line 1 where nothing is withheld; chained dollars do not add across lines. A model estimate, revised yearly.
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: area_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_area')
+                field: area_key
+      - name: line_code
+        description: BEA CAGDP line code.
+        data_tests: [not_null]
+      - name: line_title
+        data_tests: [not_null]
+      - name: naics_label
+        description: BEA IndustryClassification as published ('...' for lines 1 and 2; 92 for line 83).
+      - name: industry_key
+        description: Null only for line 2 (private industries, an ownership total).
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_industry')
+                field: industry_key
+      - name: gdp_current_thousands
+        description: GDP in thousands of current dollars; null where withheld.
+      - name: gdp_real_chained2017_thousands
+        description: Real GDP in thousands of chained 2017 dollars; null where withheld. Not additive across lines.
+      - name: is_withheld
+        data_tests: [not_null]
+      - name: release
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [bea_county_gdp]
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key

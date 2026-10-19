@@ -1,0 +1,14 @@
+# Connection settings. No secrets here: the password comes from the PG_PIPELINE_PASSWORD
+# environment variable (set from the git-ignored .env at the project root).
+cuny_gap:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('PGHOST', 'localhost') }}"
+      port: "{{ env_var('PGPORT', '5432') | as_number }}"
+      user: pipeline_writer
+      password: "{{ env_var('PG_PIPELINE_PASSWORD') }}"
+      dbname: cuny_gap
+      schema: core
+      threads: 4

@@ -1,0 +1,121 @@
+version: 2
+
+# ---- Step 4 group F: graduate outcomes from ACS PUMS (docs/step4-facts-plan.md §3e, §6.1; D2, D4, D5) ----
+
+models:
+  - name: int_grad_outcome_person_cut
+    description: >
+      Ephemeral (no table). The ACS PUMS 2020-2024 person rows behind fct_grad_outcome: NYC residents, civilian
+      employed (employment_status 1-2), not enrolled, socp present (141,890 persons), landed on dim_job (the Census code
+      itself when it is a dim_job code, else the bridge_job_code acs_socp parts by weight; 57 group codes, 13.5% of
+      workers) and expanded to one row per person x job part x age band (22-27, 28-34, 22-34, 35-64) x cut. Carries
+      weight, pwgtp1-80, part_weight, is_ftyr (35+ hours, 50+ weeks, positive earnings), earnings_2024usd and the three
+      imputation flags. Read by fct_grad_outcome and by the singular tests that recompute group totals.
+
+  - name: fct_grad_outcome
+    description: >
+      What NYC residents with each degree level, and each bachelor's field of degree, do and earn: ACS PUMS 2020-2024
+      (5-year, period-average weights), civilian employed, not enrolled, aged 22-64. One long fact at period x cut x
+      group_1 x group_2 x age_band x degree_level. Cuts (plan §6.1): field_x_soc_major (field x SOC major group),
+      degree_x_soc (degree level x landed job code, detailed or the broad / minor group the Census code stands for),
+      field_total (field, all jobs), field_x_linked (field x whether the job is one D2 links to the field's CIP codes at
+      the bachelor's level through ref_fod_cip: linked / not_linked / job_not_detailed). Field cuts exist for bachelor's
+      and graduate holders only (ACS has no field below a bachelor's). Measures: workers (sum of weights), share of the
+      cut's group, mean and weighted-median earnings for full-time year-round workers in 2024 dollars, each with a 90%
+      MOE from the 80 replicate weights (SE = sqrt(4/80 sum (rep - est)^2); card acs_pums.md §3). suppressed when fewer
+      than 30 person rows: estimates and MOEs null, counts kept; earnings_suppressed when fewer than 30 full-time
+      year-round rows: the earnings estimates and MOEs null (brief S13). 21,791 rows, 3,260 unsuppressed, of which 2,618
+      carry earnings. Values are unrounded.
+    columns:
+      - name: period
+        description: The pooled ACS file; one value.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['2020-2024']
+      - name: cut
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [field_x_soc_major, degree_x_soc, field_total, field_x_linked]
+      - name: group_1
+        description: ACS field of degree code (FOD1P) for the field cuts; 'all' for degree_x_soc.
+        data_tests: [not_null]
+      - name: group_1_label
+        description: ref_fod_cip.fod_title for the 78 mapped fields; null for other fields and for 'all'.
+      - name: group_2
+        description: >
+          dim_job.soc_code (major group for field_x_soc_major; the landed code for degree_x_soc), 'all' for
+          field_total, or linked / not_linked / job_not_detailed for field_x_linked. Membership in dim_job for the two
+          SOC cuts is tested in tests/fct_grad_outcome_group_2_in_dim_job.sql.
+        data_tests: [not_null]
+      - name: group_2_label
+        description: dim_job.soc_title for SOC codes, else the group_2 literal.
+        data_tests: [not_null]
+      - name: age_band
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['22-27', '28-34', '22-34', '35-64']
+      - name: degree_level
+        description: Highest degree (staging degree_level). Field cuts carry bachelor and graduate only.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [below associate, associate, bachelor, graduate]
+      - name: n_unweighted
+        description: Person rows in the cell (a person split across job parts counts once per cell).
+        data_tests: [not_null]
+      - name: n_ftyr
+        description: Person rows behind the earnings measures (full-time year-round, positive earnings).
+        data_tests: [not_null]
+      - name: suppressed
+        description: n_unweighted < 30 (D5); workers, share, earnings and every MOE are null when true.
+        data_tests: [not_null]
+      - name: earnings_suppressed
+        description: >
+          n_ftyr < 30 (brief S13 applied to the earnings sample); mean_earnings_2024usd, median_earnings_2024usd and
+          their MOEs are null when true, n_ftyr kept.
+        data_tests: [not_null]
+      - name: workers
+        description: Sum of person weights x part weights (NYC residents, period average); null when suppressed.
+      - name: moe_workers
+        description: 90% margin of error of workers.
+      - name: share_of_group
+        description: >
+          workers / group_workers. Group = field x age_band x degree_level for field_x_soc_major and field_x_linked;
+          age_band x degree_level for degree_x_soc and field_total.
+      - name: moe_share
+        description: 90% MOE of share_of_group (replicate shares re-divide by the replicate group total).
+      - name: mean_earnings_2024usd
+        description: Weighted mean of earnings_2024usd over full-time year-round workers (PERNP x ADJINC, 2024 dollars).
+      - name: moe_mean_earnings
+      - name: median_earnings_2024usd
+        description: Weighted median (smallest earnings where the cumulative weight reaches half the total).
+      - name: moe_median_earnings
+        description: 90% MOE of the median, from the 80 replicate weighted medians.
+      - name: group_workers
+        description: The share denominator, before suppression; identical on every row of the group. Never null.
+        data_tests: [not_null]
+      - name: pct_fod_imputed
+        description: Weighted share of the cell whose field of degree was imputed (null for degree levels without a field).
+      - name: pct_occ_imputed
+        description: Weighted share of the cell whose occupation was imputed.
+        data_tests: [not_null]
+      - name: pct_wage_imputed
+        description: Weighted share of the cell whose wages were imputed.
+        data_tests: [not_null]
+      - name: includes_allocated_codes
+        description: True if any person in the cell reached the job through a split Census group code (bridge_job_code acs_socp).
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key

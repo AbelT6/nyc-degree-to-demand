@@ -1,0 +1,185 @@
+# Hand-built reference tables, loaded by `dbt seed` into the `ref` schema.
+# Codes are kept as text so leading zeros survive (CIP "04.02", FOD "1100").
+version: 2
+
+seeds:
+  - name: ref_fod_cip
+    description: >
+      Decision D4. ACS field of degree (FOD1P) → CIP 2020 4-digit series, 142 links
+      over 78 fields. `match` = primary (the main CIP for that field) or partial.
+    config:
+      column_types: {fod1p: text, fod_title: text, fod_group: text, acs_rows_ba_22_27: integer,
+                     cip2020: text, cip_title: text, match: text, note: text}
+    columns:
+      - name: fod1p
+        data_tests: [not_null]
+      - name: cip2020
+        data_tests: [not_null]
+      - name: match
+        data_tests:
+          - accepted_values: {arguments: {values: [primary, partial]}}
+
+  - name: cuny_unit_unitid
+    description: >
+      CUNY college/unit names in the CUNY program files → IPEDS UNITID. Units with no
+      own IPEDS record map to their parent college (is_parent_assumption = true).
+    config:
+      column_types: {college: text, unitid: text, is_parent_assumption: boolean, note: text}
+    columns:
+      - name: college
+        data_tests: [unique, not_null]
+      - name: unitid
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: "source('staging', 'stg_ipeds__institutions')", field: unitid}}
+
+  - name: cuny_award_level
+    description: CUNY award names (AA, AS, BA, ...) → award level and IPEDS AWLEVEL code.
+    config:
+      column_types: {award_name: text, award_level: text, ipeds_awlevel: integer}
+    columns:
+      - name: award_name
+        data_tests: [unique, not_null]
+      - name: award_level
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [certificate, associate, bachelor, graduate]}}
+
+  # ---- Step 1 dimension seeds (docs/step1-dimensions-plan.md §6). Each feeds one dim_ model. ----
+
+  - name: ipeds_award_level
+    description: >
+      IPEDS AWLEVEL codes with the official labels from the downloaded dictionary (C2024_A_Dict.zip,
+      Frequencies sheet). award_group matches ref/cuny_award_level.csv; in_v1_scope = associate's (3)
+      and bachelor's (5). Code 1 ran through C2019 and was split into 20 and 21 from C2020.
+      bls_entry_education / bls_attainment_level (step 2b, docs/step2b-major-bridges-plan.md §2): the BLS
+      Employment Projections labels the award level is compared against in the D2 filter, filled for the degree
+      codes (3, 5, 7, 17, 18, 19); the labels are spelled as dim_job.entry_education and
+      stg_bls__ep_attainment.attainment_level spell them.
+    config:
+      column_types: {award_level: integer, award_label: text, award_group: text, is_degree: boolean,
+                     in_v1_scope: boolean, sort_order: integer, bls_entry_education: text,
+                     bls_attainment_level: text, note: text}
+    columns:
+      - name: award_level
+        data_tests: [unique, not_null]
+      - name: award_label
+        data_tests: [not_null]
+      - name: award_group
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [certificate, associate, bachelor, graduate]}}
+      - name: bls_entry_education
+        description: Checked against dim_job.entry_education by tests/ipeds_award_level_bls_labels.sql (the labels hold apostrophes, which accepted_values does not escape).
+      - name: bls_attainment_level
+        description: Checked against stg_bls__ep_attainment.attainment_level by tests/ipeds_award_level_bls_labels.sql.
+
+  - name: naics_sector
+    description: >
+      NAICS 2022 sectors (official range codes 31-33, 44-45, 48-49 as QWI, the BLS matrix, BLS QCEW
+      county and Career Clusters use them), plus 00 all industries, 99 unclassified, and the CES
+      supersector / sector / aggregate codes the NYS DOL CES file carries. Alias columns map each
+      source's own spelling (NYS DOL QCEW 31 / 44 / 48, BLS QCEW county 10 = total) to one row.
+      CES supersector membership per BLS (https://www.bls.gov/sae/additional-resources/naics-supersectors-for-ces-program.htm).
+    config:
+      column_types: {industry_key: text, level: text, industry_title: text, naics_sector: text,
+                     qcew_ny_code: text, qcew_bls_code: text, ces_supersector_code: text,
+                     ces_supersector_title: text, ces_nysdol_code: text, ces_nysdol_title: text,
+                     sort_order: integer, note: text}
+    columns:
+      - name: industry_key
+        data_tests: [unique, not_null]
+      - name: level
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [all, sector, unclassified, ces_aggregate, ces_supersector, ces_sector, oews_government]}}
+
+  - name: area
+    description: >
+      The ten geographies v1 reports on, with one column per source code system so facts resolve
+      without string matching. NYC and the NY metro are separate rows and never mixed.
+    config:
+      column_types: {area_key: text, area_name: text, area_type: text, sort_order: integer, state_fips: text,
+                     county_fips: text, cbsa_code: text, laus_area_code: text, qcew_ny_area_code: text,
+                     nysdol_area_code: text, oews_area_code: text, indeed_area_code: text, cpi_area_code: text,
+                     jolts_state_code: text, ui_region: text, ui_county: text, note: text}
+    columns:
+      - name: area_key
+        data_tests: [unique, not_null]
+      - name: area_type
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [city, borough, metro, state, balance, nation]}}
+
+  - name: source_registry
+    description: >
+      One row per raw-data manifest key that feeds a staging table (brief S13: every number labeled).
+      Hand-built from the source cards and data/raw/manifest.csv; download_url is the first manifest
+      file for the key, retrieved_date the latest download for the key.
+    config:
+      column_types: {source_key: text, publisher: text, dataset: text, edition: text, download_url: text,
+                     landing_url: text, retrieved_date: date, license: text, is_government: boolean,
+                     label: text, source_card: text}
+    columns:
+      - name: source_key
+        data_tests: [unique, not_null]
+      - name: label
+        data_tests: [not_null]
+      - name: is_government
+        data_tests: [not_null]
+
+  # ---- Step 2 bridge seeds (docs/step2-bridges-plan.md §7) ----
+
+  - name: soc_2010_group_map
+    description: >
+      The two SOC 2010 minor groups the NYS DOL 2016-26 and 2018-28 editions publish as group rows, mapped by
+      hand to their SOC 2018 minor group (the BLS crosswalk lists detailed codes only).
+    config:
+      column_types: {soc_2010: text, soc_2010_title: text, soc_code: text, note: text}
+    columns:
+      - name: soc_2010
+        data_tests: [unique, not_null]
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('dim_job'), field: soc_code}}
+
+  - name: acs_socp_group_map
+    description: >
+      ACS PUMS SOCP group codes (59 codes with X/Y, where the Census collapses several SOC codes) -> their SOC 2018
+      detailed members, derived from the Census 2018 occupation code list by a working script (not published): explicit
+      lists as given; masks (13-20XX) = matching detailed codes that no other Census code claims. Weights are
+      computed in bridge_job_code. 559830 (military) and 999920 (unemployed, never worked) stay unmapped.
+    config:
+      column_types: {socp: text, pums_label: text, soc_code: text, rule: text,
+                     in_nyc_sample: boolean}
+    columns:
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('dim_job'), field: soc_code}}
+
+  - name: industry_code_alias
+    description: >
+      Industry codes that are not NAICS sectors and not CES codes, mapped to the dim_industry row they belong to:
+      OEWS research sector 99 (government), BLS matrix 491 / 90 / 91, Revelio combined sectors, BEA total and
+      government lines. An empty industry_key means the code has no industry (Revelio Unknown, BEA Private).
+    config:
+      column_types: {code_system: text, source_code: text, industry_key: text, weight: double precision, note: text}
+    columns:
+      - name: industry_key
+        data_tests:
+          - relationships: {arguments: {to: ref('dim_industry'), field: industry_key}}
+
+  - name: acs_fod1p
+    description: >
+      Official ACS PUMS field-of-degree labels (FOD1P), all 174 codes, copied from the Census
+      PUMS_Data_Dictionary_2020-2024.csv (VAL rows, the "bbbb" N/A code dropped). Gives every
+      field a title, including the 96 fields not in ref_fod_cip.
+    config:
+      column_types: {fod1p: text, fod_title: text}
+    columns:
+      - name: fod1p
+        data_tests: [unique, not_null]
+      - name: fod_title
+        data_tests: [not_null]

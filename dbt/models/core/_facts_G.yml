@@ -1,0 +1,196 @@
+# Step 4 group G ("context") facts: docs/step4-facts-plan.md §3f, tests §4 items 16-18; decision D10.
+version: 2
+
+models:
+  - name: fct_postings_revelio_monthly
+    description: >
+      Revelio Labs Public Labor Statistics active job postings for New York State by month x SOC major group x NAICS
+      sector, Jan 2022 - Sep 2026 (22,899 rows, the staging table unchanged). The one labeled non-government layer
+      (D10): a model estimate from online postings, job groups not single jobs, state not city. soc_major_code lands
+      the 22 civilian majors and 55 Military on dim_job; the Unknown/Other group (00, 923 rows) has no job and is
+      never mapped to 00-0000. industry_key is the NAICS sector where Revelio publishes one, the CES supersector row
+      (through ref.industry_code_alias, code_system revelio) for the four combined sectors, and null for Unknown/Other
+      (00, 1,368 rows). Unknown rows are kept so month totals tie to the source. tagging_break marks Aug 2025 onward
+      (card issue 2); the window rule is a mart decision (plan §5 risk 6). Measures as published, unrounded.
+    columns:
+      - name: month
+        description: First day of the month.
+        data_tests: [not_null]
+      - name: area_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [ny_state]
+          - relationships:
+              arguments:
+                to: ref('dim_area')
+                field: area_key
+      - name: soc_group_code
+        description: Revelio soc2d_code as published; 2-digit SOC major group, 55 Military or 00 Unknown/Other.
+        data_tests: [not_null]
+      - name: soc_group_name
+        data_tests: [not_null]
+      - name: soc_major_code
+        description: dim_job major-group code (NN-0000); null for 00 Unknown/Other.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: industry_code_source
+        description: Revelio naics2d_code as published (NAICS sector, a combined sector such as 52-53, 99 or 00).
+        data_tests: [not_null]
+      - name: industry_name
+        data_tests: [not_null]
+      - name: industry_key
+        description: dim_industry row (NAICS sector or CES supersector); null for 00 Unknown/Other.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_industry')
+                field: industry_key
+      - name: active_postings_nsa
+        description: Postings open during the month, not seasonally adjusted (integer in the source).
+        data_tests: [not_null]
+      - name: active_postings_sa
+        description: Same, seasonally adjusted by Revelio.
+        data_tests: [not_null]
+      - name: tagging_break
+        description: True from 2025-08-01, when Revelio's job tagging changed (card issue 2).
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [revelio_rpls]
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+      - name: source_file
+        data_tests: [not_null]
+
+  - name: fct_postings_indeed_index
+    description: >
+      Indeed Hiring Lab job postings index (Feb 1, 2020 = 100), daily Feb 2020 - Oct 2026, long format: U.S. aggregate
+      total and new postings (SA and NSA), New York State and NY metro total postings (SA), and 47 U.S. Indeed job
+      categories total and new (SA). 238,728 rows = the three staging tables. Grain date x area_key x category x
+      measure; category is the literal 'all' for the aggregate series. The national direction check beside Revelio
+      (D10); Indeed categories are not SOC and the category -> SOC map is deferred (plan §6.3). An index, not counts.
+    columns:
+      - name: date
+        data_tests: [not_null]
+      - name: area_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [us, ny_state, ny_metro]
+          - relationships:
+              arguments:
+                to: ref('dim_area')
+                field: area_key
+      - name: category
+        description: Indeed job category name, or 'all' for the aggregate series.
+        data_tests: [not_null]
+      - name: measure
+        description: total = all active postings; new = postings on Indeed for seven days or fewer.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [total, new]
+      - name: index_sa
+        description: Seasonally adjusted index, 7-day trailing average.
+        data_tests: [not_null]
+      - name: index_nsa
+        description: Not seasonally adjusted; national aggregate rows only, null elsewhere.
+      - name: is_category_series
+        description: True for the 47 Indeed category series (category <> 'all').
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [indeed_hiring_lab]
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+      - name: source_file
+        data_tests: [not_null]
+
+  - name: fct_labor_market_monthly
+    description: >
+      Labor-market context series, long format, 19,071 rows: BLS JOLTS for the U.S. and New York State (6,793 rows,
+      2015+; openings, hires, quits, layoffs, other and total separations as levels in thousands and rates, unemployed
+      per opening, two U.S. response rates), BLS LAUS for nine areas (8,582 rows, 2015+; labor force, employment,
+      unemployment, unemployment rate, and population ratios for the state and city) and NYS DOL regular UI
+      beneficiaries and benefits paid for the five boroughs plus an 'nyc' sum row (3,696 rows, 2001+). Grain
+      source_key x area_key x measure_code x seasonal x year x period_type x month; month = 0 on annual rows (BLS M13;
+      period_type says average or 12-month total). ref.labor_measure labels every source_key x measure_code and gives
+      the unit and scale. value is as published and null where BLS did not collect it (Oct 2025 lapse: all LAUS
+      series, the JOLTS unemployed-per-opening ratio; footnote_code says why).
+    columns:
+      - name: source_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [bls_jt, bls_la, nysdol_ui_beneficiaries]
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+      - name: area_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_area')
+                field: area_key
+      - name: measure_code
+        description: JOLTS dataelement_rateLevel (JO_L, JO_R, ...), LAUS 03-09, UI beneficiaries / benefit_amount_usd.
+        data_tests: [not_null]
+      - name: seasonal
+        description: S seasonally adjusted, U not adjusted (UI and LAUS counties / metro are U only).
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [S, U]
+      - name: year
+        data_tests: [not_null]
+      - name: period_type
+        description: month; annual_avg (BLS M13 average); annual_total (JOLTS M13 12-month sum of hires / separations levels).
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [month, annual_avg, annual_total]
+      - name: month
+        description: 1-12 for monthly rows; 0 for annual rows.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                quote: false
+      - name: period
+        description: BLS period code M01-M13 (synthesized for UI).
+        data_tests: [not_null]
+      - name: period_date
+        description: First day of the month; null for annual rows.
+      - name: series_id
+        description: BLS series id; null for UI rows.
+      - name: value
+        description: As published (JOLTS levels in thousands); null where not collected.
+      - name: footnote_code
+        description: BLS footnote (P preliminary; JOLTS 9 / LAUS X not collected in the 2025 lapse; LAUS G 11-month average).
+      - name: note
+        description: Set on the UI 'nyc' rows (sum of five counties, rounded source values).
+      - name: source_file
+        data_tests: [not_null]

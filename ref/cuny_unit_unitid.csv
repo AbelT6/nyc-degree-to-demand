@@ -1,0 +1,27 @@
+college,unitid,is_parent_assumption,note
+Baruch College,190512,false,
+Borough of Manhattan Community College,190521,false,
+Bronx Community College,190530,false,
+Brooklyn College,190549,false,
+The College of Staten Island,190558,false,
+City College,190567,false,
+Graduate Center,190576,false,
+Hostos Community College,190585,false,
+Hunter College,190594,false,
+John Jay College,190600,false,
+Kingsborough Community College,190619,false,
+LaGuardia Community College,190628,false,
+Lehman College,190637,false,
+Medgar Evers College,190646,false,
+NYC College of Technology,190655,false,
+Queens College,190664,false,
+Queensborough Community College,190673,false,
+CUNY Law School,190682,false,
+York College,190691,false,
+Guttman Community College,475565,false,
+Medical School (CC),190567,true,No IPEDS record; reported under City College
+Medical School (GC),190576,true,No IPEDS record; reported under the Graduate Center
+School Prof Studies (GC),190576,true,No IPEDS record; reported under the Graduate Center
+School of Journalism,190576,true,No IPEDS record; reported under the Graduate Center
+School of Public Health,190576,true,No IPEDS record; reported under the Graduate Center
+Labor and Urban Studies,190576,true,No IPEDS record; reported under the Graduate Center

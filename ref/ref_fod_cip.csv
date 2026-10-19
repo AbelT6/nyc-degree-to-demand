@@ -1,0 +1,143 @@
+fod1p,fod_title,fod_group,acs_rows_ba_22_27,cip2020,cip_title,match,note
+5501,Economics,Social Science,599,45.06,Economics,primary,
+5501,Economics,Social Science,599,52.06,Business/Managerial Economics,partial,Business/managerial economics; ACS may code as business
+2102,Computer Science,"Computers, Mathematics and Statistics",728,11.07,Computer Science,primary,
+2102,Computer Science,"Computers, Mathematics and Statistics",728,11.08,Computer Software and Media Applications,partial,Software and media applications
+5200,Psychology,Psychology,717,42.01,"Psychology, General",primary,
+5200,Psychology,Psychology,717,42.27,Research and Experimental Psychology,primary,Research and experimental psychology
+5200,Psychology,Psychology,717,42.2812,Forensic Psychology,primary,Forensic psychology (John Jay); ACS has no forensic field
+5200,Psychology,Psychology,717,42.2813,Applied Psychology,partial,Applied psychology
+6207,Finance,Business,505,52.08,Finance and Financial Management Services,primary,
+6207,Finance,Business,505,52.17,Insurance,partial,Insurance; no ACS field of its own
+1901,Communications,Communications,332,09.01,Communication and Media Studies,primary,
+6203,Business Management And Administration,Business,412,52.02,"Business Administration, Management and Operations",primary,
+6203,Business Management And Administration,Business,412,52.07,Entrepreneurial and Small Business Operations,partial,Entrepreneurship
+6203,Business Management And Administration,Business,412,52.1301,Management Science,partial,Management science (Baruch); split with 6212
+3600,Biology,"Biological, Agricultural, and Environmental Sciences",430,26.01,"Biology, General",primary,
+3600,Biology,"Biological, Agricultural, and Environmental Sciences",430,30.27,Human Biology,partial,Human biology
+3600,Biology,"Biological, Agricultural, and Environmental Sciences",430,26.04,Cell/Cellular Biology and Anatomical Sciences,partial,Cell biology
+6200,General Business,Business,395,52.01,"Business/Commerce, General",primary,
+6206,Marketing,Business,383,52.14,Marketing,primary,
+6206,Marketing,Business,383,52.18,"General Sales, Merchandising and Related Marketing Operations",primary,General sales and marketing
+6206,Marketing,Business,383,52.19,"Specialized Sales, Merchandising and  Marketing Operations",primary,"Specialized sales, merchandising"
+5506,Political Science And Government,Social Science,359,45.10,Political Science and Government,primary,
+3301,English Language And Literature,Literature and Languages,351,23.01,"English Language and Literature, General",primary,
+3301,English Language And Literature,Literature and Languages,351,23.14,Literature,primary,Literature
+6001,Drama And Theater Arts,Visual and Performing Arts,302,50.05,Drama/Theatre Arts and Stagecraft,primary,
+6201,Accounting,Business,310,52.03,Accounting and Related Services,primary,
+6004,Commercial Art And Graphic Design,Visual and Performing Arts,308,50.04,Design and Applied Arts,primary,Design and applied arts
+6004,Commercial Art And Graphic Design,Visual and Performing Arts,308,10.03,Graphic Communications,partial,Graphic communications
+6107,Nursing,Science and Engineering Related Fields,306,51.38,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing",primary,
+5301,Criminal Justice And Fire Protection,Other,236,43.01,Criminal Justice and Corrections,primary,
+5301,Criminal Justice And Fire Protection,Other,236,43.02,Fire Protection,partial,Fire protection
+5301,Criminal Justice And Fire Protection,Other,236,43.04,Security Science and Technology,partial,Security science
+6000,Fine Arts,Visual and Performing Arts,196,50.0701,"Art/Art Studies, General",primary,"Art/art studies, general"
+6000,Fine Arts,Visual and Performing Arts,196,50.0702,"Fine/Studio Arts, General",partial,"Fine/studio arts, general; split with 6007"
+6000,Fine Arts,Visual and Performing Arts,196,50.0799,"Fine Arts and Art Studies, Other",partial,"Fine and studio arts, other"
+6005,Film Video And Photographic Arts,Visual and Performing Arts,184,50.06,Film/Video and Photographic Arts,primary,
+1903,Mass Media,Communications,206,09.07,"Radio, Television, and Digital Communication",primary,"Radio, TV, digital communication"
+6402,History,Liberal Arts and History,174,54.01,History,primary,
+5507,Sociology,Social Science,173,45.11,Sociology,primary,
+5507,Sociology,Social Science,173,45.13,Sociology and Anthropology,partial,Sociology and anthropology; split with 5502
+3700,Mathematics,"Computers, Mathematics and Statistics",172,27.01,Mathematics,primary,
+3700,Mathematics,"Computers, Mathematics and Statistics",172,27.99,"Mathematics and Statistics, Other",partial,"Math and statistics, other"
+2300,General Education,Education,147,13.01,"Education, General",primary,
+6002,Music,Visual and Performing Arts,146,50.09,Music,primary,
+5098,Multi-Disciplinary Or General Science,Physical and Related Science,100,30.01,Biological and Physical Sciences,primary,Biological and physical sciences
+5098,Multi-Disciplinary Or General Science,Physical and Related Science,100,30.18,Natural Sciences,primary,Natural sciences
+5098,Multi-Disciplinary Or General Science,Physical and Related Science,100,40.01,"Physical Sciences, General",primary,"Physical sciences, general"
+3401,Liberal Arts,Liberal Arts and History,111,24.01,"Liberal Arts and Sciences, General Studies and Humanities",primary,
+1904,Advertising And Public Relations,Communications,118,09.09,"Public Relations, Advertising, and Applied Communication",primary,
+1902,Journalism,Communications,126,09.04,Journalism,primary,
+3202,Pre-Law And Legal Studies,Other,230,22.00,Non-Professional Legal Studies,primary,
+3202,Pre-Law And Legal Studies,Other,230,22.03,Legal Support Services,partial,Legal support (paralegal)
+3202,Pre-Law And Legal Studies,Other,230,22.99,"Legal Professions and Studies, Other",partial,
+2407,Computer Engineering,Engineering,135,14.09,Computer Engineering,primary,
+2407,Computer Engineering,Engineering,135,15.12,Computer Engineering Technologies/Technicians,partial,Computer engineering technology
+4801,Philosophy And Religious Studies,Liberal Arts and History,103,38.01,Philosophy,primary,
+4801,Philosophy And Religious Studies,Liberal Arts and History,103,38.02,Religion/Religious Studies,primary,Religious studies
+2400,General Engineering,Engineering,88,14.01,"Engineering, General",primary,
+2400,General Engineering,Engineering,88,15.15,Engineering-Related Fields,partial,Engineering-related fields
+6100,General Medical And Health Services,Science and Engineering Related Fields,99,51.00,"Health Services/Allied Health/Health Sciences, General",primary,
+6003,Visual And Performing Arts,Visual and Performing Arts,78,50.99,"Visual and Performing Arts, Other",primary,
+6003,Visual And Performing Arts,Visual and Performing Arts,78,50.01,"Visual and Performing Arts, General",primary,
+6003,Visual And Performing Arts,Visual and Performing Arts,78,50.03,Dance,partial,Dance; ACS has no dance field
+6003,Visual And Performing Arts,Visual and Performing Arts,78,50.10,"Arts, Entertainment, and Media Management",partial,Arts and media management
+1501,Area Ethnic And Civilization Studies,Social Science,81,05.01,Area Studies,primary,
+1501,Area Ethnic And Civilization Studies,Social Science,81,05.02,"Ethnic, Cultural Minority, Gender, and Group Studies",primary,"Ethnic, gender and group studies"
+2100,Computer And Information Systems-General,"Computers, Mathematics and Statistics",84,11.01,"Computer and Information Sciences, General",primary,
+2100,Computer And Information Systems-General,"Computers, Mathematics and Statistics",84,11.99,"Computer and Information Sciences and Support Services, Other",partial,
+2414,Mechanical Engineering,Engineering,95,14.19,Mechanical Engineering,primary,
+2414,Mechanical Engineering,Engineering,95,15.08,Mechanical Engineering Related Technologies/Technicians,partial,Mechanical engineering technology
+3611,Neuroscience,"Biological, Agricultural, and Environmental Sciences",74,26.15,Neurobiology and Neurosciences,primary,
+5003,Chemistry,Physical and Related Science,71,40.05,Chemistry,primary,
+6006,Art History And Criticism,Visual and Performing Arts,65,50.0703,"Art History, Criticism and Conservation",primary,Art history (6-digit: the rest of 50.07 is studio art)
+1401,Architecture,Science and Engineering Related Fields,85,04.02,Architecture,primary,
+1401,Architecture,Science and Engineering Related Fields,85,04.09,Architectural Sciences and Technology,partial,Architectural sciences and technology
+4101,Physical Fitness Parks Recreation And Leisure,Other,84,31.05,"Sports, Kinesiology, and Physical Education/Fitness",primary,"Sports, kinesiology, physical ed"
+4101,Physical Fitness Parks Recreation And Leisure,Other,84,31.01,"Parks, Recreation, and Leisure Studies",primary,Parks and recreation
+5007,Physics,Physical and Related Science,59,40.08,Physics,primary,
+5007,Physics,Physical and Related Science,59,40.02,Astronomy and Astrophysics,partial,Astronomy
+5007,Physics,Physical and Related Science,59,14.12,Engineering Physics,partial,Engineering physics
+5505,International Relations,Social Science,60,45.09,International Relations and National Security Studies,primary,
+6211,Hospitality Management,Business,62,52.09,Hospitality Administration/Management,primary,
+2408,Electrical Engineering,Engineering,74,14.10,"Electrical, Electronics, and Communications Engineering",primary,
+2408,Electrical Engineering,Engineering,74,15.03,Electrical/Electronic Engineering Technologies/Technicians,partial,Electrical engineering technology
+3302,Composition And Rhetoric,Literature and Languages,61,23.13,Rhetoric and Composition/Writing Studies,primary,
+5502,Anthropology And Archeology,Social Science,59,45.02,Anthropology,primary,
+5502,Anthropology And Archeology,Social Science,59,45.03,Archeology,primary,Archeology
+5502,Anthropology And Archeology,Social Science,59,45.13,Sociology and Anthropology,partial,Sociology and anthropology; split with 5507
+6109,Treatment Therapy Professions,Science and Engineering Related Fields,54,51.23,Rehabilitation and Therapeutic Professions,primary,Rehabilitation and therapeutic
+1301,Environmental Science,"Biological, Agricultural, and Environmental Sciences",54,03.01,Natural Resources Conservation and Research,primary,"Natural resources conservation, incl. environmental science"
+1301,Environmental Science,"Biological, Agricultural, and Environmental Sciences",54,30.33,Sustainability Studies,partial,Sustainability studies
+6103,Health And Medical Administrative Services,Science and Engineering Related Fields,42,51.07,Health and Medical Administrative Services,primary,
+5404,Social Work,Other,47,44.07,Social Work,primary,
+6106,Health And Medical Preparatory Programs,Science and Engineering Related Fields,88,51.11,Health/Medical Preparatory Programs,primary,"Pre-med, pre-dental and other preparatory"
+6110,Community And Public Health,Science and Engineering Related Fields,60,51.22,Public Health,primary,
+2105,Information Sciences,"Computers, Mathematics and Statistics",41,11.04,Information Science/Studies,primary,
+6209,Human Resources And Personnel Management,Business,44,52.10,Human Resources Management and Services,primary,
+3601,Biochemical Sciences,"Biological, Agricultural, and Environmental Sciences",55,26.02,"Biochemistry, Biophysics and Molecular Biology",primary,
+6299,Miscellaneous Business,Business,44,52.99,"Business, Management, Marketing, and Related Support Services, Other",primary,
+6299,Miscellaneous Business,Business,44,52.15,Real Estate,partial,Real estate; no ACS field of its own
+6299,Miscellaneous Business,Business,44,52.05,Business/Corporate Communications,partial,Business communications
+6210,International Business,Business,39,52.11,International Business,primary,
+2001,Communication Technologies,Communications,50,10.01,Communications Technologies/Technicians,primary,
+2001,Communication Technologies,Communications,50,10.02,Audiovisual Communications Technologies/Technicians,primary,Audiovisual communications technology
+4001,Intercultural And International Studies,Multidisciplinary Studies,42,30.20,International/Globalization Studies,primary,
+5299,Miscellaneous Psychology,Psychology,47,42.99,"Psychology, Other",primary,
+2405,Chemical Engineering,Engineering,51,14.07,Chemical Engineering,primary,
+2602,French German Latin And Other Common Foreign Language Studies,Literature and Languages,38,16.09,"Romance Languages, Literatures, and Linguistics",primary,Romance languages
+2602,French German Latin And Other Common Foreign Language Studies,Literature and Languages,38,16.05,"Germanic Languages, Literatures, and Linguistics",primary,Germanic languages
+2602,French German Latin And Other Common Foreign Language Studies,Literature and Languages,38,16.12,"Classics and Classical Languages, Literatures, and Linguistics",primary,Classics
+2901,Family And Consumer Sciences,Other,37,19.01,"Family and Consumer Sciences/Human Sciences, General",primary,
+2901,Family And Consumer Sciences,Other,37,19.07,"Human Development, Family Studies, and Related Services",partial,"Human development, family studies"
+2901,Family And Consumer Sciences,Other,37,19.09,Apparel and Textiles,partial,Apparel and textiles
+2406,Civil Engineering,Engineering,38,14.08,Civil Engineering,primary,
+2406,Civil Engineering,Engineering,38,15.10,Construction Engineering Technology/Technician,partial,Construction engineering technology
+6007,Studio Arts,Visual and Performing Arts,40,50.0702,"Fine/Studio Arts, General",partial,"Fine/studio arts, general; split with 6000"
+6007,Studio Arts,Visual and Performing Arts,40,50.0705,Drawing,primary,
+6007,Studio Arts,Visual and Performing Arts,40,50.0706,Intermedia/Multimedia,primary,
+6007,Studio Arts,Visual and Performing Arts,40,50.0708,Painting,primary,
+6007,Studio Arts,Visual and Performing Arts,40,50.0709,Sculpture,primary,
+6007,Studio Arts,Visual and Performing Arts,40,50.0710,Printmaking,primary,
+6007,Studio Arts,Visual and Performing Arts,40,50.0711,Ceramic Arts and Ceramics,primary,
+6007,Studio Arts,Visual and Performing Arts,40,50.0712,"Fiber, Textile and Weaving Arts",primary,
+6007,Studio Arts,Visual and Performing Arts,40,50.0713,Jewelry Arts,primary,
+6007,Studio Arts,Visual and Performing Arts,40,50.0714,Metal Arts,primary,
+2601,Linguistics And Comparative Language And Literature,Literature and Languages,38,16.01,"Linguistic, Comparative, and Related Language Studies and Services",primary,
+2304,Elementary Education,Education,36,13.1202,Elementary Education and Teaching,primary,Elementary teacher education (6-digit)
+6212,Management Information Systems And Statistics,Business,32,52.12,Management Information Systems and Services,primary,
+6212,Management Information Systems And Statistics,Business,32,52.1301,Management Science,partial,Management science (Baruch); split with 6203
+6212,Management Information Systems And Statistics,Business,32,52.1302,Business Statistics,primary,Business statistics
+6212,Management Information Systems And Statistics,Business,32,52.1399,"Management Sciences and Quantitative Methods, Other",partial,
+6105,Medical Technologies Technicians,Science and Engineering Related Fields,37,51.10,Clinical/Medical Laboratory Science/Research and Allied Professions,primary,Clinical/medical lab science
+6105,Medical Technologies Technicians,Science and Engineering Related Fields,37,51.09,"Allied Health Diagnostic, Intervention, and Treatment Professions",primary,"Radiologic, radiation therapy, nuclear medicine; physician assistant (51.0912) arguably 6199"
+2307,Early Childhood Education,Education,34,13.1210,Early Childhood Education and Teaching,primary,Early childhood teacher education (6-digit)
+3701,Applied Mathematics,"Computers, Mathematics and Statistics",33,27.03,Applied Mathematics,primary,
+3608,Physiology,"Biological, Agricultural, and Environmental Sciences",34,26.09,"Physiology, Pathology and Related Sciences",primary,
+5402,Public Policy,Other,31,44.05,Public Policy Analysis,primary,
+4901,Theology And Religious Vocations,Liberal Arts and History,33,39.06,Theological and Ministerial Studies,primary,
+4901,Theology And Religious Vocations,Liberal Arts and History,33,39.04,Religious Education,partial,Religious education
+2106,Computer Administration Management And Security,"Computers, Mathematics and Statistics",35,11.10,Computer/Information Technology Administration and Management,primary,
+4009,Data Science and Data Analytics,"Computers, Mathematics and Statistics",1,30.70,Data Science,primary,"Data science; new ACS code, too few rows to check against ACS jobs"
+4009,Data Science and Data Analytics,"Computers, Mathematics and Statistics",1,30.71,Data Analytics,primary,"Data analytics; new ACS code, too few rows to check against ACS jobs"

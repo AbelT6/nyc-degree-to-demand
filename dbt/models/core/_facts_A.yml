@@ -1,0 +1,192 @@
+version: 2
+
+# Step 4 group A (jobs: pay and counts): docs/step4-facts-plan.md §3a, §4 items 1, 2, 4.
+
+models:
+  - name: fct_cpi_annual
+    description: >
+      BLS CPI-U annual averages (series M13) for the NY metro area (S12A -> ny_metro) and the US city average
+      (0000 -> us), 2015-2025, with deflator_to_2025 = index(2025) / index(year) for the project's real-dollar
+      columns (plan §3a; Tier 1 default in §6: real dollars use the NY metro annual average of the data year). 22
+      rows. The 2025 average covers 11 months (through November 2025), recorded in months_collected; every other
+      year has 12.
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: area_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_area')
+                field: area_key
+          - accepted_values:
+              arguments:
+                values: [ny_metro, us]
+      - name: cpi_index
+        description: Annual-average index, 1982-84 = 100.
+        data_tests: [not_null]
+      - name: base_year
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [2025]
+                quote: false
+      - name: deflator_to_2025
+        description: Multiply a nominal value of that year and area by this to express it in 2025 dollars.
+        data_tests: [not_null]
+      - name: months_collected
+        description: Monthly index values published for that year and area (11 in 2025, else 12).
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+
+  - name: fct_job_employment_wage_annual
+    description: >
+      BLS OEWS metro estimates for the New York-Newark-Jersey City MSA, May 2018 - May 2025, on dim_job codes.
+      Grain year x area_key ('ny_metro') x soc_code at every published level (total, 22 major groups, and the lowest
+      published rows, occ_level = 'detailed'). 2018 is on SOC 2010 and 2019-20 on the OEWS hybrid list; those rows
+      reach SOC 2018 through bridge_job_code with the same chain as fct_job_projection. Employment is split by the
+      bridge weights (yearly totals conserved); wages are never split: a part inherits its source row's percentiles
+      (quality_flag = 'split') and a target fed by two or more source rows gets the employment-weighted mean of each
+      wage column ('combined'; 21 codes in 2018). Real-dollar columns are nominal x the NY metro deflator of the
+      data year from fct_cpi_annual. series_note marks the OEWS breaks (2022 top-code cap raised, 2024 MSA redrawn,
+      2025 no top-coding). Plan §3a, §4 item 2, §5 risks 4-5, §7. Values are unrounded numerics.
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: area_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_area')
+                field: area_key
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: occ_level
+        description: >
+          Level of the source row(s) as OEWS publishes it: total, major, or detailed (the lowest published level,
+          which for 12 codes such as 13-1020 is a broad or BLS-aggregate code in dim_job).
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [total, major, detailed]
+      - name: employment
+        description: >
+          Employment, sum of source employment x bridge weight; null where a contributing source cell is withheld.
+      - name: employment_rse_pct
+        description: Relative standard error of employment, kept only when the row has one source.
+      - name: jobs_per_1000
+        description: Published rows only (an occupation's share of the area's employment per 1,000 jobs).
+      - name: location_quotient
+        description: Published rows only (jobs_per_1000 relative to the national share).
+      - name: hourly_mean
+      - name: annual_mean
+      - name: mean_rse_pct
+        description: Relative standard error of the mean wage, kept only when the row has one source.
+      - name: annual_p50
+        description: Annual median wage; percentiles p10-p90 are hourly and annual as published.
+      - name: annual_mean_2025usd
+        description: annual_mean x fct_cpi_annual.deflator_to_2025 (ny_metro, same year); likewise annual_p10..p90_2025usd.
+      - name: annual_only
+        description: True when BLS publishes annual wages only (no hourly rate, e.g. teachers, pilots).
+        data_tests: [not_null]
+      - name: hourly_only
+        description: True when BLS publishes an hourly rate only (no annual, e.g. actors, musicians).
+        data_tests: [not_null]
+      - name: is_top_coded
+        description: True if any source row hit the BLS wage top code (never in 2025, when top-coding ended).
+        data_tests: [not_null]
+      - name: quality_flag
+        description: >
+          published = one source row at weight 1, values as published; split = one source at weight < 1, employment
+          weighted and wages inherited; combined = two or more source rows, employment summed and wages averaged.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [published, split, combined]
+      - name: series_note
+        description: topcode_cap_change (2022), area_delineation_2024 (2024), no_topcode (2025), else null.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [topcode_cap_change, area_delineation_2024, no_topcode]
+      - name: source_codes
+        description: Trace, as in fct_job_projection, the source code for published rows; system:code*weight pairs otherwise.
+        data_tests: [not_null]
+      - name: weight_basis
+        description: bridge_job_code basis of the weights (single for published rows).
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+
+  - name: fct_job_wage_nyc
+    description: >
+      NYS DOL occupational wages for New York City (OEWS regional estimates, wage reference 2026Q1, survey May
+      2025), as published, 702 rows at every level. Grain vintage x area_key ('nyc') x soc_code; the codes are SOC
+      2018 and all exist in dim_job, so nothing is bridged, split or imputed. entry_wage_at_floor and median_at_floor
+      mark values NYS DOL raised to the NYC minimum wage. Plan §3a, §4 item 4.
+    columns:
+      - name: vintage
+        description: NYS DOL release date of the staged file.
+        data_tests: [not_null]
+      - name: wage_reference
+        description: Quarter the wages are aged to (2026Q1).
+        data_tests: [not_null]
+      - name: survey_reference
+        description: OEWS survey reference period (May 2025).
+        data_tests: [not_null]
+      - name: area_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_area')
+                field: area_key
+          - accepted_values:
+              arguments:
+                values: [nyc]
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: employment
+      - name: mean_wage
+      - name: median_wage
+      - name: entry_wage
+        description: Approximately the mean of the lowest third of wages, as NYS DOL defines it.
+      - name: experienced_wage
+        description: Approximately the mean of the top two-thirds of wages.
+      - name: entry_wage_at_floor
+        data_tests: [not_null]
+      - name: median_at_floor
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key

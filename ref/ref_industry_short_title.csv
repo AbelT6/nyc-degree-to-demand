@@ -1,0 +1,24 @@
+industry_key,short_title
+00,All industries
+11,Agriculture
+21,Mining
+22,Utilities
+23,Construction
+31-33,Manufacturing
+42,Wholesale trade
+44-45,Retail trade
+48-49,Transportation
+51,Information
+52,Finance and insurance
+53,Real estate
+54,Professional services
+55,Company management
+56,Administrative support
+61,Education
+62,Health care
+71,Arts and recreation
+72,Hotels and restaurants
+81,Other services
+92,Public administration
+99,Unclassified
+GOV-OEWS,Government

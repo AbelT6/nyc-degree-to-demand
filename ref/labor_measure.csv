@@ -1,0 +1,25 @@
+source_key,measure_code,measure_label,unit,scale,is_rate,sort_order,note
+bls_jt,JO_L,Job openings (level),jobs,1000,false,10,"JOLTS level, published in thousands (jt-txt); multiply by scale for jobs. Annual row (M13) is an average"
+bls_jt,JO_R,Job openings rate,percent,1,true,11,"Openings as a percent of employment plus openings"
+bls_jt,HI_L,Hires (level),jobs,1000,false,20,"JOLTS level in thousands. Annual row (M13) is a 12-month total"
+bls_jt,HI_R,Hires rate,percent,1,true,21,"Hires as a percent of employment"
+bls_jt,TS_L,Total separations (level),jobs,1000,false,30,"JOLTS level in thousands. Annual row is a 12-month total"
+bls_jt,TS_R,Total separations rate,percent,1,true,31,
+bls_jt,QU_L,Quits (level),jobs,1000,false,40,"JOLTS level in thousands. Annual row is a 12-month total"
+bls_jt,QU_R,Quits rate,percent,1,true,41,
+bls_jt,LD_L,Layoffs and discharges (level),jobs,1000,false,50,"JOLTS level in thousands. Annual row is a 12-month total"
+bls_jt,LD_R,Layoffs and discharges rate,percent,1,true,51,
+bls_jt,OS_L,Other separations (level),jobs,1000,false,60,"JOLTS level in thousands; U.S. only in the staged series. Annual row is a 12-month total"
+bls_jt,OS_R,Other separations rate,percent,1,true,61,"U.S. only in the staged series"
+bls_jt,UO_R,Unemployed persons per job opening,ratio,1,true,70,"Seasonally adjusted only; U.S. and New York. Null Oct 2025 (CPS unemployment not collected, footnote 9)"
+bls_jt,R1_R,First closing response rate,percent,1,true,80,"Survey response rate, U.S. only; a data-quality series, not a labor-market measure"
+bls_jt,R2_R,Second closing response rate,percent,1,true,81,"Survey response rate, U.S. only"
+bls_la,03,Unemployment rate,percent,1,true,10,"= unemployment / labor force x 100, to one decimal"
+bls_la,04,Unemployment,persons,1,false,20,
+bls_la,05,Employment,persons,1,false,30,"Employed residents (household concept), not payroll jobs"
+bls_la,06,Labor force,persons,1,false,40,
+bls_la,07,Employment-population ratio,percent,1,true,50,"State and city series only"
+bls_la,08,Labor force participation rate,percent,1,true,60,"State and city series only"
+bls_la,09,Civilian noninstitutional population,persons,1,false,70,"State and city series only"
+nysdol_ui_beneficiaries,beneficiaries,UI beneficiaries,persons,1,false,10,"People paid regular UI benefits in the month; source rounds to 100"
+nysdol_ui_beneficiaries,benefit_amount_usd,UI benefits paid,usd,1,false,20,"Dollars paid in the month, nominal; source rounds to 10,000"

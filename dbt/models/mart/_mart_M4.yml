@@ -1,0 +1,206 @@
+# M4: AI exposure and postings views (docs/mart-plan.md §4f, §4b job_escape_route; D7, D10, D21, D22).
+# Tie-outs (plan §5) are singular tests: tests/mart_ai_group_exposure_tieout.sql, tests/mart_postings_monthly_tieout.sql,
+# tests/mart_job_escape_route_tieout.sql; rule checks in tests/mart_job_escape_route_rules.sql.
+version: 2
+
+models:
+  - name: mart_ai_group_exposure
+    description: >
+      One row per SOC major group (the 23 job-group rows of dim_job). NY-metro OEWS May 2025 employment-weighted
+      observed AI exposure (D7) with the Eloundou beta beside it, the High-band share, coverage against the
+      published group row (flagged under 85 percent); Revelio New York State postings change over the long window
+      (Jun 2022 to latest), the headline one-year window (Aug 2025 to latest, "since the Aug 2025 data break", D21)
+      and the Jun 2025 sensitivity (D10); the U.S. Indeed index change for the same months through
+      ref_indeed_category_soc_group. The weighted Pearson across the 22 civilian groups lives in the tie-out test,
+      not in a column; in_correlation marks the rows it uses. Military 55-0000 has postings only.
+    columns:
+      - name: soc_code
+        data_tests:
+          - unique
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: soc_group_code
+        data_tests: [unique, not_null]
+      - name: exposure_observed
+        description: Employment-weighted mean of the group's scored detailed jobs' observed exposure (0 to 1).
+        meta: {additive: false}
+      - name: exposure_beta_gpt4
+        description: Employment-weighted Eloundou beta, shown beside the observed score, never blended.
+        meta: {additive: false}
+      - name: high_share
+        description: Share of the group's scored NY-metro employment in jobs banded High (exposure at or above 0.30).
+        meta: {additive: false}
+      - name: coverage
+        description: Scored detailed employment divided by the published OEWS major-group row.
+        meta: {additive: false}
+      - name: pct_change_long
+        description: Revelio NY State SA postings, Jun 2022 to the latest month, as a fraction.
+        meta: {additive: false}
+      - name: pct_change_1y
+        description: Headline one-year change, Aug 2025 (first post-break month) to the latest month, as a fraction (D21).
+        meta: {additive: false}
+      - name: pct_change_1y_jun
+        description: Sensitivity, Jun 2025 to the latest month (the D10 window as first written).
+        meta: {additive: false}
+      - name: indeed_pct_change_long
+        description: U.S. Indeed index change over the long window, unweighted mean of the group's categories.
+        meta: {additive: false}
+      - name: indeed_pct_change_1y
+        description: U.S. Indeed index change, Aug 2025 to the latest Revelio month, unweighted mean of the group's categories.
+        meta: {additive: false}
+      - name: indeed_pct_change_1y_jun
+        description: U.S. Indeed index change, Jun 2025 to the latest Revelio month.
+        meta: {additive: false}
+      - name: tagging_break_group
+        data_tests: [not_null]
+      - name: in_correlation
+        data_tests: [not_null]
+      - name: wording_key
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [since_aug_2025_data_break]}}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_exposure
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_employment
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_indeed
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+
+  - name: mart_postings_monthly
+    description: >
+      Month x series. Revelio New York State active postings by SOC major group (summed over sectors, SA and NSA;
+      '00' Unknown and '55' Military included, soc_code null for '00') with the Aug 2025 tagging break flagged on
+      the row (tagging_break = the fact's month flag, tagging_break_group = the five groups it moved); and the
+      Indeed Hiring Lab total postings index for NY State, the NYC metro and the U.S. (monthly mean of daily values,
+      complete months only). Grain (source_key, area_key, group_code, month_start) in tests/mart_postings_monthly_grain.sql.
+    columns:
+      - name: month_start
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_date'), field: date_key}}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: area_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_area'), field: area_key}}
+      - name: group_code
+        data_tests: [not_null]
+      - name: soc_code
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: series_kind
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: ['Revelio active postings', 'Indeed postings index (Feb 1 2020 = 100)']}}
+      - name: index_sa
+        description: Indeed seasonally adjusted index, monthly mean of daily values; Feb 1 2020 = 100. Not summable.
+        meta: {additive: false}
+      - name: index_nsa
+        description: Indeed not seasonally adjusted index, monthly mean of daily values.
+        meta: {additive: false}
+      - name: tagging_break
+        data_tests: [not_null]
+      - name: tagging_break_group
+        data_tests: [not_null]
+      - name: as_of
+        data_tests: [not_null]
+      - name: active_postings_sa
+        meta: {additive: semi, additive_over: [group_code], within: [source_key, area_key, series_kind], never_over: month_start}
+      - name: active_postings_nsa
+        meta: {additive: semi, additive_over: [group_code], within: [source_key, area_key, series_kind], never_over: month_start}
+
+  - name: mart_job_escape_route
+    description: >
+      One row per High-exposure origin job x route rank (D22 as amended): the top three degree-reachable
+      destinations by the 68-element O*NET importance-profile correlation, with observed exposure below 0.10,
+      at least 100 projected openings a year, not All Other, and a NYC median wage at least 90 percent of the
+      origin's; listed only at r at or above 0.75 (close at or above 0.82, possible 0.75 to 0.82). An origin
+      with no listed route keeps one row at route_rank 0. Words on pages come from wording_key; never "safe job".
+      Grain (origin_soc_code, route_rank) in tests/mart_job_escape_route_grain.sql.
+    columns:
+      - name: origin_soc_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: route_rank
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [0, 1, 2, 3]}}
+      - name: destination_soc_code
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: r
+        description: Pearson correlation of the two jobs' 68 O*NET importance ratings; similarity, not a transition rate.
+        meta: {additive: false}
+      - name: r_knowledge
+        description: The same correlation over the 33 knowledge elements only.
+        meta: {additive: false}
+      - name: r_skills
+        description: The same correlation over the 35 skill elements (10 essential, 25 transferable).
+        meta: {additive: false}
+      - name: closeness
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [close, possible, none]}}
+      - name: wording_key
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [route_close, route_possible, no_route_listed]}}
+      - name: origin_exposure
+        meta: {additive: false}
+      - name: origin_median_wage
+        description: NYC median wage of the origin (NYS DOL, not an offer).
+        meta: {additive: false}
+      - name: destination_exposure
+        meta: {additive: false}
+      - name: destination_median_wage
+        meta: {additive: false}
+      - name: wage_ratio
+        description: Destination NYC median divided by the origin's; the pay floor is 0.90, there is no ceiling.
+        meta: {additive: false}
+      - name: destination_openings
+        description: Destination's projected annual openings, 2022-32 leaf row; a floor of 100 applies.
+        meta: {additive: false}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_exposure
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_wage
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: source_key_openings
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: as_of
+        data_tests: [not_null]
+      - name: destination_title
+        description: The destination's display title (dim_job.soc_short_title); null on the 'no_route_listed' row.
+      - name: destination_label
+        description: The destination's job_label, for the hover card and any link to its page.
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: job_label}}
+      - name: destination_description
+        description: The destination's job_description (hover card, D31).
+      - name: destination_entry_wage
+        description: The destination's NYC entry wage, card 2's starting pay (hover card, D31). Never summed.
+        meta: {additive: false}
+      - name: pay_words
+        description: >
+          The route's pay in words (page 3 build plan §3.4): "pays 3.4 times as much" when the ratio rounds to 2 or more,
+          "pays about the same" within 0.5%, else "pays 25% more" / "pays 9% less" (whole percent, half away from zero).
+

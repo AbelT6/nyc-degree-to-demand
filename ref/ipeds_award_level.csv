@@ -1,0 +1,14 @@
+award_level,award_label,award_group,is_degree,in_v1_scope,sort_order,bls_entry_education,bls_attainment_level,note
+1,Certificates of less than 1 year,certificate,false,false,1,,,"Used through award year 2018-19 (C2019); split into 20 and 21 from 2019-20"
+20,Certificates of less than 12 weeks,certificate,false,false,2,,,"From award year 2019-20 (C2020)"
+21,Certificates of at least 12 weeks but less than 1 year,certificate,false,false,3,,,"From award year 2019-20 (C2020)"
+2,Certificates of at least 1 but less than 2 years,certificate,false,false,4,,,
+3,Associate's degree,associate,true,true,5,Associate's degree,Associate's degree,
+4,Certificates of at least 2 but less than 4 years,certificate,false,false,6,,,
+5,Bachelor's degree,bachelor,true,true,7,Bachelor's degree,Bachelor's degree,
+6,Postbaccalaureate certificate,graduate,false,false,8,,,
+7,Master's degree,graduate,true,false,9,Master's degree,Master's degree,
+8,Post-master's certificate,graduate,false,false,10,,,
+17,Doctor's degree - research/scholarship,graduate,true,false,11,Doctoral or professional degree,Doctoral or professional degree,
+18,Doctor's degree - professional practice,graduate,true,false,12,Doctoral or professional degree,Doctoral or professional degree,
+19,Doctor's degree - other,graduate,true,false,13,Doctoral or professional degree,Doctoral or professional degree,

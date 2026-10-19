@@ -1,0 +1,170 @@
+version: 2
+
+# ---- Step 4 group C: graduates (docs/step4-facts-plan.md §3c, §4 items 9-10) ----
+
+models:
+  - name: fct_degree_awards
+    description: >
+      IPEDS completions for NYC colleges, 2015-2024, on CIP 2020 codes. Grain year x unitid x cip_code x
+      major_number x award_level (58,343 rows, 1,493,986 awards). 2015-2019 rows (CIP 2010) are carried to CIP 2020
+      through bridge_cip_2010_2020 (cip_bridged, cip_code_source, cip_edition_source); 2020-2024 rows are identity.
+      Keys that would receive several source rows are summed with every source code recorded in cip_code_source
+      (none in the loaded data). Graduate counts are major_number = 1; second majors stay for a "majors" view.
+      Grand-total rows (CIP 99) are not here. 2024 is the provisional release.
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: release
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [revised, provisional]
+      - name: unitid
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_college')
+                field: unitid
+      - name: cip_code
+        description: CIP 2020 detailed code (dim_major).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_major')
+                field: cip_code
+      - name: cip_code_source
+        description: The code(s) as reported by IPEDS; comma-separated when several source rows landed on one key.
+        data_tests: [not_null]
+      - name: cip_edition_source
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['2010', '2020']
+      - name: cip_bridged
+        description: True when the row was carried from CIP 2010 (award years 2015-2019).
+        data_tests: [not_null]
+      - name: major_number
+        description: 1 = first major, 2 = second major.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1, 2]
+                quote: false
+      - name: award_level
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_award_level')
+                field: award_level
+      - name: awards_total
+        data_tests: [not_null]
+      - name: awards_men
+        data_tests: [not_null]
+      - name: awards_women
+        data_tests: [not_null]
+      - name: imputation_flag
+        description: IPEDS XCTOTALT; R reported, P carried forward, Z implied zero (card §3).
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+
+  - name: dim_cuny_program
+    description: >
+      One row per registered CUNY program in the CUNY Programs open-data file (2,991 programs). program_key =
+      irp_code | college | award_name. award_level is the CUNY grouping (certificate / associate / bachelor /
+      graduate); ipeds_award_level is the IPEDS AWLEVEL code from seed cuny_award_level (3 or 5, null for
+      certificate and graduate names). unitid is the IPEDS unit mapped in staging (unitid_is_parent_assumption marks
+      the 6 units hand-mapped to a parent college). cip_code is CIP 2020 in every year.
+    columns:
+      - name: program_key
+        data_tests: [unique, not_null]
+      - name: irp_code
+        data_tests: [not_null]
+      - name: college
+        data_tests: [not_null]
+      - name: unitid
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_college')
+                field: unitid
+      - name: unitid_is_parent_assumption
+        data_tests: [not_null]
+      - name: program_name
+        data_tests: [not_null]
+      - name: award_name
+        data_tests: [not_null]
+      - name: award_level
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [certificate, associate, bachelor, graduate]
+      - name: ipeds_award_level
+        description: IPEDS AWLEVEL for the award name (seed cuny_award_level); null where the seed leaves it unmapped.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_award_level')
+                field: award_level
+      - name: cip_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_major')
+                field: cip_code
+      - name: is_closed
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+
+  - name: fct_cuny_program
+    description: >
+      Graduates (academic year ending in year) and fall enrollment (Fall of year) per CUNY program, 2008-2025.
+      Grain year x program_key (53,838 rows = 2,991 programs x 18 years); full outer join of the two staging tables
+      with the period labels kept. Zeros are real zeros (closed or not-yet-open programs). Bachelor's graduates
+      count double majors twice; fct_degree_awards is the count source, this fact the latest-year and enrollment
+      source (card cuny_programs.md §5-6).
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: program_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_cuny_program')
+                field: program_key
+      - name: period_graduates
+        description: Source label of the graduates period (AY_YYYY_YYYY).
+      - name: period_enrollment
+        description: Source label of the enrollment period (Fall_YYYY).
+      - name: graduates
+        description: Degrees or certificates awarded in the academic year ending in year.
+      - name: enrolled_fall
+        description: Students enrolled in the program in the Fall of year.
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key

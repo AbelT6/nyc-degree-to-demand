@@ -1,0 +1,241 @@
+# core layer, step 4 group B facts: job requirements, entry signals, skills, software.
+# Rules in docs/step4-facts-plan.md §3b, §4 items 5-8; decision D5. Singular tests in tests/fct_job_attainment_*.sql,
+# tests/fct_job_entry_signal_*.sql, tests/fct_job_skill_*.sql, tests/fct_job_software_*.sql.
+version: 2
+
+models:
+  - name: fct_job_attainment
+    description: >
+      BLS Employment Projections Table 5.3: share of workers 25 and older in each occupation by highest educational
+      attainment (7 levels), one edition (2023-24 ACS pooled years), as published. Grain soc_code x attainment_level;
+      832 jobs including 00-0000 (all occupations). Shares sum to 100 +- 0.2 per job (BLS rounding); acs_inexact marks
+      shares BLS borrowed from a broader Census occupation. Plan §3b, §4 item 5.
+    columns:
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: attainment_level
+        description: BLS label (Less than high school diploma ... Doctoral or professional degree).
+        data_tests: [not_null]
+      - name: attainment_rank
+        description: 1 (less than high school) to 7 (doctoral or professional).
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7]
+                quote: false
+      - name: pct_of_workers
+        description: Published share of the job's workers at this level, percent, unrounded numeric.
+        data_tests: [not_null]
+      - name: acs_inexact
+        description: True when BLS took the share from a broader Census occupation than the SOC code.
+        data_tests: [not_null]
+      - name: edition
+        description: BLS EP edition year (2025).
+        data_tests: [not_null]
+      - name: attainment_years
+        description: ACS years the shares are pooled from (2023-24).
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [bls_ep_education]
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+
+  - name: fct_job_entry_signal
+    description: >
+      Three estimates of how open a job is to newcomers, side by side and never merged (D5). Grain soc_code x measure.
+      bls_experience (831 rows): BLS EP Table 5.4 typical work experience in a related occupation, value = rank 1-3,
+      band none / under_5_years / 5_years_plus. acs_young_share (639 rows): share of employed NYC residents in the
+      job aged 22-29 from ACS PUMS, Census group codes allocated to SOC parts with bridge_job_code acs_socp weights,
+      moe_90 from the 80 replicate weights, n = unweighted person rows, suppressed (value, band, moe_90 null) when
+      n < 30 (482 rows pass); band high >= 0.30, mid 0.15-0.30, low < 0.15. onet_newcomer (782 rows): share of O*NET
+      respondents who needed at most 1 month of related experience (RW categories 1-2), the .00 record if rated else
+      the mean of the rated specialties; suppressed = O*NET's recommend-suppress flag on the categories used (value
+      kept; false where O*NET publishes no flag); band high >= 0.25, mid 0.10-0.25, low < 0.10. Medians agree in direction across the BLS bands
+      (O*NET 0.228 / 0.115 / 0.000; ACS 0.184 / 0.157 / 0.128). Plan §3b, §4 item 6.
+    columns:
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: measure
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [bls_experience, acs_young_share, onet_newcomer]
+      - name: value
+        description: Rank 1-3 for bls_experience; a share in [0, 1] for the other two; null when ACS suppressed.
+      - name: band
+        description: Per-measure band label; null when ACS suppressed.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [none, under_5_years, 5_years_plus, high, mid, low]
+      - name: moe_90
+        description: 90% margin of error (1.645 x replicate SE); acs_young_share only.
+      - name: n
+        description: Null for BLS; unweighted contributing person rows for ACS; O*NET respondents (mean when averaged).
+      - name: n_young
+        description: >
+          acs_young_share only (null on the other measures): unweighted contributing person rows aged 22-29, counted
+          the same way as n (a person on a split Census code counts once per target). Suppression uses n, not
+          n_young; n_young >= 30 reproduces D5's count of jobs with 30+ young respondents.
+      - name: suppressed
+        data_tests: [not_null]
+      - name: quality_flag
+        description: >
+          published (BLS); direct / includes_allocated (ACS: whether any person came through an acs_socp group code);
+          onet_base / onet_mean (O*NET roll-up rule).
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [published, direct, includes_allocated, onet_base, onet_mean]
+      - name: source_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [bls_ep_education, acs_pums, onet]
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+      - name: note
+        description: Human-readable trace of the source rows and rules behind the value.
+        data_tests: [not_null]
+
+  - name: fct_job_skill
+    description: >
+      O*NET knowledge (33 elements), essential skills (10) and transferable skills (25) on the Importance (IM, 1-5)
+      and Level (LV, 0-7) scales, rolled from O*NET-SOC profiles to dim_job codes. Grain soc_code x domain x
+      element_id x scale; 136 rows per job, 790 jobs (785 rated SOC codes plus the 5 BLS aggregates). Roll-up: the
+      .00 record as published (onet_base, 761 codes); else the plain mean of value, n, std_error, ci_low, ci_high
+      over rated specialties, suppress / not_relevant OR'd, rated_date max (onet_mean, 24 codes); the 5 BLS
+      aggregates get the group_parts-weighted mean of their parts, weights renormalised over the rated parts
+      (pooled_parts; 25-9049 and 53-1049 have no O*NET profile). n is null on 594 published rows (as in O*NET).
+      Plan §3b, §4 item 7; card onet.md issues 2-3.
+    columns:
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: domain
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [knowledge, skill_essential, skill_transferable]
+      - name: element_id
+        description: O*NET content model element id (2.C.x knowledge, 2.A.x essential skills, 2.B.x transferable).
+        data_tests: [not_null]
+      - name: element_name
+        data_tests: [not_null]
+      - name: scale
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [IM, LV]
+      - name: value
+        description: Rating on the scale, unrounded; mean or weighted mean where rolled up.
+        data_tests: [not_null]
+      - name: n
+        description: O*NET respondent count (null where O*NET publishes none; mean / weighted mean where rolled up).
+      - name: std_error
+      - name: ci_low
+      - name: ci_high
+      - name: suppress
+        description: >
+          O*NET recommend-suppress flag (any true across records used); false where O*NET publishes no flag
+          (Occupational Expert and some Analyst-Transition ratings).
+        data_tests: [not_null]
+      - name: not_relevant
+        description: >
+          O*NET not-relevant flag (any true across records used); defined on LV only, so always false on IM. The
+          value is kept as published.
+        data_tests: [not_null]
+      - name: rated_date
+        data_tests: [not_null]
+      - name: rollup_rule
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [onet_base, onet_mean, pooled_parts]
+      - name: n_specialties
+        description: O*NET-SOC records of the SOC carrying the element (all, used or not); sum over parts for pooled rows.
+        data_tests: [not_null]
+      - name: rating_source
+        description: "O*NET rating source(s): Incumbent, Analyst, Analyst - Transition, Occupational Expert."
+        data_tests: [not_null]
+      - name: onet_release
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [onet]
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key
+
+  - name: fct_job_software
+    description: >
+      O*NET Technology Skills: software products per job, the union across the O*NET-SOC profiles of each SOC
+      (29,433 rows from 31,821 staging rows; 798 jobs). Grain soc_code x product. is_hot_technology and is_in_demand
+      are OR'd across profiles; the UNSPSC commodity is the pair with the lowest commodity_id when profiles disagree;
+      n_specialties_listing counts the profiles listing the product. Plan §3b, §4 item 8.
+    columns:
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: product
+        data_tests: [not_null]
+      - name: is_hot_technology
+        data_tests: [not_null]
+      - name: is_in_demand
+        data_tests: [not_null]
+      - name: commodity_id
+        description: UNSPSC commodity code.
+        data_tests: [not_null]
+      - name: commodity_title
+        data_tests: [not_null]
+      - name: n_specialties_listing
+        data_tests: [not_null]
+      - name: onet_release
+        data_tests: [not_null]
+      - name: source_key
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [onet]
+          - relationships:
+              arguments:
+                to: ref('dim_source')
+                field: source_key

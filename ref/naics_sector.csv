@@ -1,0 +1,45 @@
+industry_key,level,industry_title,naics_sector,qcew_ny_code,qcew_bls_code,ces_supersector_code,ces_supersector_title,ces_nysdol_code,ces_nysdol_title,sort_order,note
+00,all,"Total, all industries",00,00,10,,,,,0,"QWI and NYS DOL QCEW code 00; BLS QCEW county code 10 (agglvl 71). CES total nonfarm is a different universe: see CES-00"
+11,sector,"Agriculture, Forestry, Fishing and Hunting",11,11,11,,,,,11,"Not in CES (CES covers logging 1133 only, inside supersector 10)"
+21,sector,"Mining, Quarrying, and Oil and Gas Extraction",21,21,21,10,Natural resources and mining,15,"Mining, Logging and Construction",21,"NYS DOL publishes NYC supersectors 10 and 20 merged as 15"
+22,sector,Utilities,22,22,22,40,"Trade, transportation, and utilities",43,"Transportation, Warehousing, and Utilities",22,
+23,sector,Construction,23,23,23,20,Construction,15,"Mining, Logging and Construction",23,"NYS DOL publishes NYC supersectors 10 and 20 merged as 15"
+31-33,sector,Manufacturing,31-33,31,31-33,30,Manufacturing,30,Manufacturing,31,"NYS DOL QCEW writes the range as 31"
+42,sector,Wholesale Trade,42,42,42,40,"Trade, transportation, and utilities",41,Wholesale Trade,42,
+44-45,sector,Retail Trade,44-45,44,44-45,40,"Trade, transportation, and utilities",42,Retail Trade,44,"NYS DOL QCEW writes the range as 44"
+48-49,sector,Transportation and Warehousing,48-49,48,48-49,40,"Trade, transportation, and utilities",43,"Transportation, Warehousing, and Utilities",48,"NYS DOL QCEW writes the range as 48"
+51,sector,Information,51,51,51,50,Information,50,Information,51,
+52,sector,Finance and Insurance,52,52,52,55,Financial activities,55,Financial Activities,52,
+53,sector,Real Estate and Rental and Leasing,53,53,53,55,Financial activities,55,Financial Activities,53,
+54,sector,"Professional, Scientific, and Technical Services",54,54,54,60,Professional and business services,60,Professional and Business Services,54,
+55,sector,Management of Companies and Enterprises,55,55,55,60,Professional and business services,60,Professional and Business Services,55,
+56,sector,"Administrative and Support and Waste Management and Remediation Services",56,56,56,60,Professional and business services,60,Professional and Business Services,56,
+61,sector,Educational Services,61,61,61,65,Education and health services,65,Private Education and Health Services,61,"CES 65 is private only; public schools and CUNY sit in CES 90 Government"
+62,sector,Health Care and Social Assistance,62,62,62,65,Education and health services,65,Private Education and Health Services,62,"CES 65 is private only; public hospitals sit in CES 90 Government"
+71,sector,"Arts, Entertainment, and Recreation",71,71,71,70,Leisure and hospitality,70,Leisure and Hospitality,71,
+72,sector,Accommodation and Food Services,72,72,72,70,Leisure and hospitality,70,Leisure and Hospitality,72,
+81,sector,Other Services (except Public Administration),81,81,81,80,Other services,80,Other Services,81,
+92,sector,Public Administration,92,92,92,90,Government,90,Government,92,"CES 90 Government is all public ownership (every industry), wider than NAICS 92"
+99,unclassified,Unclassified,99,99,99,,,,,99,"QCEW establishments without a NAICS code"
+CES-00,ces_aggregate,Total Nonfarm,,,,,,00,Total Nonfarm,100,"CES universe: nonfarm payroll jobs by place of work"
+CES-05,ces_aggregate,Total Private,,,,,,05,Total Private,105,
+CES-06,ces_aggregate,Goods Producing,,,,,,06,Goods Producing,106,
+CES-07,ces_aggregate,Service-Providing,,,,,,07,Service-Providing,107,
+CES-08,ces_aggregate,Private Service Providing,,,,,,08,Private Service Providing,108,
+CES-15,ces_supersector,"Mining, Logging and Construction",,,,,,15,"Mining, Logging and Construction",115,"NYS DOL merge of BLS supersectors 10 and 20 for NYC"
+CES-20,ces_supersector,Construction,,,,20,Construction,20,Construction,120,"BLS supersector 20. In the NYS DOL NYC file only the Specialty Trade Contractors sub-series (20238000) carries this code"
+CES-30,ces_supersector,Manufacturing,,,,30,Manufacturing,30,Manufacturing,130,
+CES-31,ces_sector,Durable Goods,,,,30,Manufacturing,31,Durable Goods,131,
+CES-32,ces_sector,Non-Durable Goods,,,,30,Manufacturing,32,Non-Durable Goods,132,
+CES-40,ces_supersector,"Trade, Transportation, and Utilities",,,,40,"Trade, transportation, and utilities",40,"Trade, Transportation, and Utilities",140,
+CES-41,ces_sector,Wholesale Trade,,,,40,"Trade, transportation, and utilities",41,Wholesale Trade,141,
+CES-42,ces_sector,Retail Trade,,,,40,"Trade, transportation, and utilities",42,Retail Trade,142,
+CES-43,ces_sector,"Transportation, Warehousing, and Utilities",,,,40,"Trade, transportation, and utilities",43,"Transportation, Warehousing, and Utilities",143,
+CES-50,ces_supersector,Information,,,,50,Information,50,Information,150,
+CES-55,ces_supersector,Financial Activities,,,,55,Financial activities,55,Financial Activities,155,
+CES-60,ces_supersector,Professional and Business Services,,,,60,Professional and business services,60,Professional and Business Services,160,
+CES-65,ces_supersector,Private Education and Health Services,,,,65,Education and health services,65,Private Education and Health Services,165,
+CES-70,ces_supersector,Leisure and Hospitality,,,,70,Leisure and hospitality,70,Leisure and Hospitality,170,
+CES-80,ces_supersector,Other Services,,,,80,Other services,80,Other Services,180,
+CES-90,ces_supersector,Government,,,,90,Government,90,Government,190,"All public ownership: federal, state and local, every industry"
+GOV-OEWS,oews_government,"Government, excluding schools, hospitals and postal (OEWS research designation)",,,,,,,,900,"OEWS research estimates sector 99: federal, state and local government without state and local schools, hospitals and the U.S. Postal Service. Not NAICS 92 and not Unclassified"

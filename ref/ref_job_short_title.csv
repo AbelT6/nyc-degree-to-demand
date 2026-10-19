@@ -1,0 +1,105 @@
+soc_code,short_title,official_title
+11-2011,Advertising Managers,Advertising and Promotions Managers
+11-3012,Administrative Managers,Administrative Services Managers
+11-3021,Computer and IT Managers,Computer and Information Systems Managers
+11-3111,Pay and Benefits Managers,Compensation and Benefits Managers
+11-3131,Training Managers,Training and Development Managers
+11-9031,Childcare Center Directors,"Education and Childcare Administrators, Preschool and Daycare"
+11-9039,"Education Admins, All Other","Education Administrators, All Other"
+11-9041,Engineering Managers,Architectural and Engineering Managers
+11-9072,Entertainment Managers,"Entertainment and Recreation Managers, Except Gambling"
+11-9111,Health Services Managers,Medical and Health Services Managers
+11-9151,Social Service Managers,Social and Community Service Managers
+13-1011,Talent Agents and Managers,"Agents and Business Managers of Artists, Performers, and Athletes"
+13-1121,Event Planners,"Meeting, Convention, and Event Planners"
+13-1141,Pay and Benefits Specialists,"Compensation, Benefits, and Job Analysis Specialists"
+13-1151,Training Specialists,Training and Development Specialists
+13-1161,Market Research Analysts,Market Research Analysts and Marketing Specialists
+13-1199,"Business Operations, All Other","Business Operations Specialists, All Other"
+13-2020,Property Appraisers,Property Appraisers and Assessors
+13-2051,Financial Analysts,Financial and Investment Analysts
+13-2081,Tax Examiners and Collectors,"Tax Examiners and Collectors, and Revenue Agents"
+13-2099,"Finance Specialists, All Other","Financial Specialists, All Other"
+15-1231,Network Support Specialists,Computer Network Support Specialists
+15-1244,Systems Administrators,Network and Computer Systems Administrators
+15-1253,Software Testers,Software Quality Assurance Analysts and Testers
+15-1255,Web and Interface Designers,Web and Digital Interface Designers
+15-2099,"Math Occupations, All Other","Mathematical Science Occupations, All Other"
+17-1011,Architects,"Architects, Except Landscape and Naval"
+17-1021,Cartographers,Cartographers and Photogrammetrists
+17-2031,Biomedical Engineers,Bioengineers and Biomedical Engineers
+17-2072,Electronics Engineers,"Electronics Engineers, Except Computer"
+17-2111,Health and Safety Engineers,"Health and Safety Engineers, Except Mining Safety Engineers and Inspectors"
+17-2121,Marine Engineers,Marine Engineers and Naval Architects
+17-2151,Mining and Geological Engineers,"Mining and Geological Engineers, Including Mining Safety Engineers"
+17-3011,Architectural Drafters,Architectural and Civil Drafters
+17-3012,Electrical Drafters,Electrical and Electronics Drafters
+17-3021,Aerospace Eng. Technicians,Aerospace Engineering and Operations Technologists and Technicians
+17-3022,Civil Engineering Technicians,Civil Engineering Technologists and Technicians
+17-3023,Electrical Eng. Technicians,Electrical and Electronic Engineering Technologists and Technicians
+17-3024,Electro-Mechanical Technicians,Electro-Mechanical and Mechatronics Technologists and Technicians
+17-3025,Environmental Eng. Technicians,Environmental Engineering Technologists and Technicians
+17-3026,Industrial Eng. Technicians,Industrial Engineering Technologists and Technicians
+17-3027,Mechanical Eng. Technicians,Mechanical Engineering Technologists and Technicians
+17-3028,Calibration Technicians,Calibration Technologists and Technicians
+17-3029,"Eng. Technicians, All Other","Engineering Technologists and Technicians, Except Drafters, All Other"
+19-1012,Food Scientists,Food Scientists and Technologists
+19-1023,Wildlife Biologists,Zoologists and Wildlife Biologists
+19-1029,"Biologists, All Other","Biological Scientists, All Other"
+19-2021,Atmospheric Scientists,Atmospheric and Space Scientists
+19-2041,Environmental Scientists,"Environmental Scientists and Specialists, Including Health"
+19-2042,Geoscientists,"Geoscientists, Except Hydrologists and Geographers"
+19-3099,"Social Scientists, All Other","Social Scientists and Related Workers, All Other"
+19-4042,Environmental Technicians,"Environmental Science and Protection Technicians, Including Health"
+19-4043,Geological Technicians,"Geological Technicians, Except Hydrologic Technicians"
+19-4061,Social Science Assistants,Social Science Research Assistants
+19-4071,Conservation Technicians,Forest and Conservation Technicians
+19-4099,"Science Technicians, All Other","Life, Physical, and Social Science Technicians, All Other"
+19-5011,Health and Safety Specialists,Occupational Health and Safety Specialists
+21-1018,Substance Abuse and Mental Health Counselors,"Substance abuse, behavioral disorder, and mental health counselors"
+21-1021,Child and Family Social Workers,"Child, Family, and School Social Workers"
+21-1092,Probation Officers,Probation Officers and Correctional Treatment Specialists
+21-1099,"Social Service, All Other","Community and Social Service Specialists, All Other"
+21-2021,Religious Education Directors,"Directors, Religious Activities and Education"
+23-1022,Mediators and Arbitrators,"Arbitrators, Mediators, and Conciliators"
+23-2099,"Legal Support, All Other","Legal Support Workers, All Other"
+25-1194,"Career/Tech Teachers, College","Career/Technical Education Teachers, Postsecondary"
+25-2011,Preschool Teachers,"Preschool Teachers, Except Special Education"
+25-2012,Kindergarten Teachers,"Kindergarten Teachers, Except Special Education"
+25-2021,Elementary School Teachers,"Elementary School Teachers, Except Special Education"
+25-2022,Middle School Teachers,"Middle School Teachers, Except Special and Career/Technical Education"
+25-2023,"Career/Tech Teachers, Middle","Career/Technical Education Teachers, Middle School"
+25-2031,Secondary School Teachers,"Secondary School Teachers, Except Special and Career/Technical Education"
+25-2032,"Career/Tech Teachers, Secondary","Career/Technical Education Teachers, Secondary School"
+25-2051,"Special Ed Teachers, Preschool","Special Education Teachers, Preschool"
+25-2052,"Special Ed Teachers, Elementary","Special education teachers, kindergarten and elementary school"
+25-2057,"Special Ed Teachers, Middle","Special Education Teachers, Middle School"
+25-2058,"Special Ed Teachers, Secondary","Special Education Teachers, Secondary School"
+25-2059,"Special Ed Teachers, All Other","Special Education Teachers, All Other"
+25-3011,Adult Ed and ESL Instructors,"Adult Basic Education, Adult Secondary Education, and English as a Second Language Instructors"
+25-3031,Substitute Teachers,"Substitute Teachers, Short-Term"
+25-3099,"Teachers, All Other","Teachers and Instructors, All Other"
+25-4013,Museum Technicians,Museum Technicians and Conservators
+25-9044,"Teaching Assistants, College","Teaching Assistants, Postsecondary"
+25-9045,Teaching Assistants,"Teaching assistants, except postsecondary"
+25-9099,"Instruction Workers, All Other","Educational Instruction and Library Workers, All Other"
+27-1013,Fine Artists,"Fine Artists, Including Painters, Sculptors, and Illustrators"
+27-1014,Animators and Effects Artists,Special Effects Artists and Animators
+27-1021,Industrial Designers,Commercial and Industrial Designers
+27-3011,Broadcast Announcers,Broadcast Announcers and Radio Disc Jockeys
+27-3023,Reporters and Journalists,"News Analysts, Reporters, and Journalists"
+27-4031,Camera Operators,"Camera Operators, Television, Video, and Film"
+29-2010,Clinical Lab Technologists,Clinical Laboratory Technologists and Technicians
+29-2031,Cardiovascular Technologists,Cardiovascular Technologists and Technicians
+29-2034,Radiologic Technologists,Radiologic Technologists and Technicians
+29-2035,MRI Technologists,Magnetic Resonance Imaging Technologists
+29-2056,Veterinary Technicians,Veterinary Technologists and Technicians
+29-9021,Health Information Specialists,Health Information Technologists and Medical Registrars
+39-4031,Funeral Directors,"Morticians, Undertakers, and Funeral Arrangers"
+41-3031,Securities Sales Agents,"Securities, Commodities, and Financial Services Sales Agents"
+41-4011,Technical Sales Representatives,"Sales Representatives, Wholesale and Manufacturing, Technical and Scientific Products"
+43-4161,Human Resources Assistants,"Human Resources Assistants, Except Payroll and Timekeeping"
+49-2021,Radio and Tower Installers,"Radio, Cellular, and Tower Equipment Installers and Repairers"
+51-2028,Electrical and Electronic Assemblers,"Electrical, electronic, and electromechanical assemblers, except coil winders, tapers, and finishers"
+53-1047,Transportation and Material Moving Supervisors,"First-line supervisors of transportation and material moving workers, except aircraft cargo handling supervisors"
+53-2011,Airline Pilots,"Airline Pilots, Copilots, and Flight Engineers"

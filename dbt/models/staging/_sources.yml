@@ -1,0 +1,103 @@
+# Staging tables are written by the load notebooks (notebooks/2x-load-*.ipynb), not by dbt.
+# One entry per stg_ table; grain = the primary key each notebook asserts (source cards, section 7).
+version: 2
+sources:
+  - name: staging
+    schema: staging
+    tables:
+      - name: stg_anthropic__job_exposure
+        description: "Grain: soc_code. Source key anthropic_ai_exposure; loaded by 31-load-anthropic-ai-exposure.ipynb; 756 rows."
+      - name: stg_anthropic__task_penetration
+        description: "Grain: task. Source key anthropic_ai_exposure; loaded by 31-load-anthropic-ai-exposure.ipynb; 17,992 rows."
+      - name: stg_bea__county_gdp
+        description: "Grain: county_fips + line_code + year. Source key bea_county_gdp; loaded by 25-load-industry.ipynb; 660 rows."
+      - name: stg_bls__cpi
+        description: "Grain: series_id + year + period. Source key bls_cu; loaded by 29-load-cpi.ipynb; 302 rows."
+      - name: stg_bls__ep_attainment
+        description: "Grain: soc_code + attainment_level. Source key bls_ep_education; loaded by 22-load-bls-education.ipynb; 5,824 rows."
+      - name: stg_bls__ep_entry_requirements
+        description: "Grain: soc_code. Source key bls_ep_education; loaded by 22-load-bls-education.ipynb; 831 rows."
+      - name: stg_bls__ep_occupation_projections
+        description: "Grain: soc_code. Source key bls_ep_occupation; loaded by 22-load-bls-education.ipynb; 1,112 rows."
+      - name: stg_bls__ind_occ_matrix
+        description: "Grain: industry_code + occ_code. Source key bls_ind_occ_matrix; loaded by 26-load-industry-job-bridge.ipynb; 113,898 rows."
+      - name: stg_bls__jolts
+        description: "Grain: series_id + year + period. Source key bls_jt; loaded by 34-load-bls-jolts-laus.ipynb; 6,793 rows."
+      - name: stg_bls__laus
+        description: "Grain: series_id + year + period. Source key bls_la; loaded by 34-load-bls-jolts-laus.ipynb; 8,582 rows."
+      - name: stg_bls__ooh_description
+        description: "Grain: soc_code. Source key bls_ooh; loaded by 36-load-ooh-in-demand.ipynb; 606 rows."
+      - name: stg_bls__oews_hybrid
+        description: "Grain: oes_2019 + soc_2018 + oes_2018 + soc_2010. Source key bls_oews_hybrid; loaded by 24-load-crosswalks.ipynb; 868 rows."
+      - name: stg_bls__oews_metro_occupations
+        description: "Grain: year + occ_code. Source key bls_oews_metro; loaded by 21-load-oews-wages.ipynb; 6,281 rows."
+      - name: stg_bls__oews_research_ny
+        description: "Grain: year + naics + i_group + occ_code. Source key bls_oews_research; loaded by 26-load-industry-job-bridge.ipynb; 204,386 rows."
+      - name: stg_bls__qcew_county
+        description: "Grain: county_fips + year + own_code + industry_code. Source key bls_qcew_county; loaded by 25-load-industry.ipynb; 1,365 rows."
+      - name: stg_bls__soc_2010_2018
+        description: "Grain: soc_2010 + soc_2018. Source key bls_soc_crosswalk; loaded by 24-load-crosswalks.ipynb; 900 rows."
+      - name: stg_bls__soc_2018_structure
+        description: "Grain: soc_code. Source key bls_soc_structure; loaded by 24-load-crosswalks.ipynb; 1,447 rows."
+      - name: stg_census__acs_pums_person
+        description: "Grain: serialno + sporder. Source key acs_pums; loaded by 27-load-acs-pums.ipynb; 279,311 rows."
+      - name: stg_census__qwi
+        description: "Grain: county_fips + naics_sector + breakdown + group_code + year + quarter. Source key census_qwi; loaded by 25-load-industry.ipynb; 39,648 rows."
+      - name: stg_cte__cip_subcluster
+        description: "Grain: cip_code + subcluster_name. Source key career_clusters; loaded by 28-load-skills-ai-clusters.ipynb; 4,725 rows."
+      - name: stg_cte__cluster
+        description: "Grain: subcluster_name. Source key career_clusters; loaded by 28-load-skills-ai-clusters.ipynb; 72 rows."
+      - name: stg_cte__naics_subcluster
+        description: "Grain: naics_sector + subcluster_name. Source key career_clusters; loaded by 28-load-skills-ai-clusters.ipynb; 112 rows."
+      - name: stg_cte__soc_subcluster
+        description: "Grain: soc_code + subcluster_name. Source key career_clusters; loaded by 28-load-skills-ai-clusters.ipynb; 1,203 rows."
+      - name: stg_cuny__program_enrollment
+        description: "Grain: irp_code + college + award_name + period. Source key cuny_programs; loaded by 23-load-graduates.ipynb; 53,838 rows."
+      - name: stg_cuny__program_graduates
+        description: "Grain: irp_code + college + award_name + period. Source key cuny_programs; loaded by 23-load-graduates.ipynb; 53,838 rows."
+      - name: stg_eloundou__job_exposure
+        description: "Grain: onet_soc_code. Source key eloundou_ai_exposure; loaded by 28-load-skills-ai-clusters.ipynb; 923 rows."
+      - name: stg_eloundou__task_exposure
+        description: "Grain: onet_soc_code + task_id. Source key eloundou_ai_exposure; loaded by 28-load-skills-ai-clusters.ipynb; 19,265 rows."
+      - name: stg_indeed__postings_area
+        description: "Grain: date + area_code. Source key indeed_hiring_lab; loaded by 33-load-indeed-postings.ipynb; 4,872 rows."
+      - name: stg_indeed__postings_category
+        description: "Grain: date + measure + category. Source key indeed_hiring_lab; loaded by 33-load-indeed-postings.ipynb; 228,984 rows."
+      - name: stg_indeed__postings_national
+        description: "Grain: date + measure. Source key indeed_hiring_lab; loaded by 33-load-indeed-postings.ipynb; 4,872 rows."
+      - name: stg_ipeds__completions
+        description: "Grain: year + unitid + cip_code + major_number + award_level. Source key ipeds_completions; loaded by 23-load-graduates.ipynb; 58,343 rows."
+      - name: stg_ipeds__institutions
+        description: "Grain: year + unitid. Source key ipeds_directory; loaded by 23-load-graduates.ipynb; 1,836 rows."
+      - name: stg_nces__cip_2010_2020
+        description: "Grain: cip_2010. Source key nces_cip; loaded by 24-load-crosswalks.ipynb; 1,720 rows."
+      - name: stg_nces__cip_2020
+        description: "Grain: cip_code. Source key nces_cip; loaded by 24-load-crosswalks.ipynb; 2,848 rows."
+      - name: stg_nces__cip_soc
+        description: "Grain: cip_code + soc_code. Source key nces_cip; loaded by 24-load-crosswalks.ipynb; 6,097 rows."
+      - name: stg_nysdol__ces_monthly
+        description: "Grain: series_code + year + month. Source key nysdol_ces; loaded by 25-load-industry.ipynb; 9,660 rows."
+      - name: stg_nysdol__occupation_projections
+        description: "Grain: edition + soc_code. Source key nysdol_projections; loaded by 20-load-nysdol-projections.ipynb; 2,575 rows."
+      - name: stg_nysdol__occupation_wages
+        description: "Grain: area_code + soc_code. Source key nysdol_oews_regions; loaded by 21-load-oews-wages.ipynb; 702 rows."
+      - name: stg_nysdol__projections_xlsx
+        description: "Grain: soc_code. Source key nysdol_projections_xlsx; loaded by 20-load-nysdol-projections.ipynb; 657 rows."
+      - name: stg_nysdol__qcew_annual
+        description: "Grain: area_code + ownership + naics_code + year. Source key nysdol_qcew_annual; loaded by 25-load-industry.ipynb; 24,114 rows."
+      - name: stg_nysdol__ui_beneficiaries
+        description: "Grain: year + month + county. Source key nysdol_ui_beneficiaries; loaded by 35-load-nysdol-ui.ipynb; 19,712 rows."
+      - name: stg_onet__descriptor_rating
+        description: "Grain: onet_soc_code + element_id + scale. Source key onet; loaded by 28-load-skills-ai-clusters.ipynb; 123,760 rows."
+      - name: stg_onet__education_experience
+        description: "Grain: onet_soc_code + scale + category. Source key onet; loaded by 28-load-skills-ai-clusters.ipynb; 19,007 rows."
+      - name: stg_onet__in_demand_pct
+        description: "Grain: onet_soc_code + product. Source key onet_in_demand; loaded by 36-load-ooh-in-demand.ipynb; 1,302 rows."
+      - name: stg_onet__job_zone
+        description: "Grain: onet_soc_code. Source key onet; loaded by 28-load-skills-ai-clusters.ipynb; 923 rows."
+      - name: stg_onet__occupation
+        description: "Grain: onet_soc_code. Source key onet; loaded by 28-load-skills-ai-clusters.ipynb; 1,016 rows."
+      - name: stg_onet__software
+        description: "Grain: onet_soc_code + product + commodity_id. Source key onet; loaded by 28-load-skills-ai-clusters.ipynb; 31,821 rows."
+      - name: stg_revelio__postings
+        description: "Grain: month + naics2d_code + soc2d_code. Source key revelio_rpls; loaded by 32-load-revelio-postings (kept private: the provider's terms bar republishing).ipynb; 22,899 rows."

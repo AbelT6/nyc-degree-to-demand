@@ -1,0 +1,48 @@
+category,soc_major_code,basis,map_flag
+Accounting,13-0000,"accountant 13-2011, financial analyst 13-2051",example_titles
+Administrative Assistance,43-0000,"administrative assistant 43-6014, receptionist 43-4171",example_titles
+Architecture,17-0000,"architect 17-1011; interior designer 27-1025",split
+Arts & Entertainment,27-0000,"designer 27-102x, artist 27-1013",example_titles
+Aviation,53-0000,by name: pilots 53-2011 (not in the examples file),by_name
+Banking & Finance,13-0000,"risk manager 13-2054; relationship banker 41-3031",split
+Childcare,25-0000,"preschool teacher 25-2011; baby-sitter 39-9011",split
+Civil Engineering,17-0000,"civil engineer 17-2051; EHS specialist 19-5011",split
+Cleaning & Sanitation,37-0000,"housekeeper 37-2012, cleaner 37-2011",example_titles
+Community & Social Service,21-0000,"case manager 21-1093, social worker 21-102x",example_titles
+Construction,47-0000,"laborer 47-2061, equipment operator 47-2073",example_titles
+Customer Service,43-0000,"customer service representative 43-4051, front desk agent 43-4081",example_titles
+Data & Analytics,15-0000,by name: data analysts 15-2051 / 15-2041 (not in the examples file),by_name
+Dental,31-0000,"dental assistant 31-9091; dental hygienist 29-1292",split
+Driving,53-0000,"truck driver 53-3032, delivery driver 53-3031",example_titles
+Education & Instruction,25-0000,"teacher 25-2xxx, instructor 25-1xxx",example_titles
+Electrical Engineering,17-0000,"electrical engineer 17-2071, controls engineer 17-2072",example_titles
+Food Preparation & Service,35-0000,"cook 35-2014, server 35-3031",example_titles
+Hospitality & Tourism,39-0000,"porter 39-6011, concierge 39-6012",example_titles
+Human Resources,13-0000,"recruiter 13-1071; HR manager 11-3121",split
+"IT Infrastructure, Operations & Support",15-0000,by name (examples file IT Operations & Helpdesk: it manager 11-3021; systems administrator 15-1244),by_name
+IT Systems & Solutions,15-0000,by name (not in the examples file),by_name
+Industrial Engineering,17-0000,"system engineer 17-2112, process engineer 17-2112",example_titles
+Installation & Maintenance,49-0000,"technician 49-9xxx, maintenance technician 49-9071",example_titles
+Insurance,41-0000,"insurance agent 41-3021; underwriter 13-2053",split
+Legal,13-0000,"compliance officer 13-1041; legal assistant 23-2011",split
+Loading & Stocking,53-0000,"warehouse worker 53-7065, forklift operator 53-7051",example_titles
+Logistic Support,13-0000,"supply chain specialist 13-1081; dispatcher 43-5032",split
+Management,11-0000,"shift manager 11-9051, general manager 11-1021",example_titles
+Marketing,11-0000,"marketing manager 11-2021; digital marketer 13-1161",split
+Mechanical Engineering,17-0000,by name: 17-2141 (not in the examples file),by_name
+Media & Communications,27-0000,"photographer 27-4021, writer 27-3043",example_titles
+Medical Information,43-0000,"patient services representative 43-4051; coding specialist 29-2072",split
+Medical Technician,31-0000,"medical assistant 31-9092, patient care technician 31-1131",example_titles
+Nursing,29-0000,"registered nurse 29-1141, licensed practical nurse 29-2061",example_titles
+Personal Care & Home Health,31-0000,"caregiver 31-1120, support worker 31-1120",example_titles
+Pharmacy,29-0000,"pharmacy technician 29-2052, pharmacist 29-1051",example_titles
+Physicians & Surgeons,29-0000,"optometrist 29-1041, physician 29-12xx",example_titles
+Production & Manufacturing,51-0000,"machine operator 51-9xxx, assembler 51-2xxx",example_titles
+Project Management,13-0000,"project manager 13-1082, program manager 13-1082",example_titles
+Retail,41-0000,"retail sales associate 41-2031, cashier 41-2011",example_titles
+Sales,41-0000,"sales associate 41-2031, sales representative 41-4012",example_titles
+Scientific Research & Development,19-0000,"scientist 19-xxxx, laboratory assistant 19-4xxx",example_titles
+Security & Public Safety,33-0000,"security officer 33-9032, security guard 33-9032",example_titles
+Social Science,19-0000,by name: 19-3xxx (not in the examples file),by_name
+Software Development,15-0000,"software engineer 15-1252, full stack developer 15-1252",example_titles
+Therapy,29-0000,"physical therapist 29-1123, occupational therapist 29-1122",example_titles

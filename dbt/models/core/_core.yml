@@ -1,0 +1,697 @@
+# core layer: dimensions, bridges, facts. One entry per model; rules in docs/step1-dimensions-plan.md
+# and docs/schema-design.md. Singular tests for this layer live in tests/ (dim_job_*.sql).
+version: 2
+
+models:
+  - name: dim_job
+    description: >
+      One row per job code that core facts land on: the SOC 2018 hierarchy (1,447), the 5 BLS reporting
+      aggregates (21-1018, 25-2052, 25-9045, 51-2028, 53-1047) and 00-0000. Entry requirements (BLS EP 2025),
+      O*NET job zone, the Anthropic observed-exposure score with its band (D7 revised), the Eloundou β
+      (rebuilt from task labels), and the four featured-area flags (S7, D11). SOC 2010 and OEWS hybrid codes
+      are bridged onto these rows in step 2, never stored here.
+    columns:
+      - name: soc_code
+        description: SOC 2018 code (NN-NNNN), a BLS reporting aggregate, or 00-0000.
+        data_tests:
+          - unique
+          - not_null
+      - name: soc_title
+        data_tests:
+          - not_null
+      - name: soc_level
+        description: total / major / minor / broad / detailed / bls_aggregate.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['total', 'major', 'minor', 'broad', 'detailed', 'bls_aggregate']
+      - name: major_code
+        description: Parent major group (null only for 00-0000).
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: minor_code
+        description: Parent minor group (null for total and major rows).
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: broad_code
+        description: Parent broad group (null above broad level).
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: is_all_other
+        description: Title contains "All Other" (D11; kept in totals, left out of top-jobs lists).
+      - name: ep_edition
+        description: BLS Employment Projections edition the entry requirements come from.
+      - name: entry_education
+        description: BLS typical education needed for entry, as published; no imputation.
+      - name: is_degree_entry
+        description: entry_education is Associate's or Bachelor's degree (the v1 dashboard universe).
+        data_tests:
+          - not_null
+      - name: job_zone
+        description: >
+          O*NET job zone 1-5. Detailed codes: the .00 record, else the most common zone (ties lower).
+          Aggregates and broad codes: most common zone of their parts. See job_zone_rule.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4, 5]
+                quote: false
+      - name: job_zone_rule
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['onet_base', 'onet_mode', 'onet_single', 'pooled_parts']
+      - name: ai_observed_exposure
+        description: Anthropic observed exposure (Massenkoff & McCrory 2026), as published, 0-1.
+      - name: ai_band
+        description: >
+          D7 bands on ai_observed_exposure: Not seen yet = 0, Low < 0.10, Medium < 0.30, High >= 0.30,
+          Not rated when the job has no score.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Not seen yet', 'Low', 'Medium', 'High', 'Not rated']
+      - name: ai_beta_gpt4
+        description: >
+          Eloundou et al. β (GPT-4 labels) rebuilt at SOC level from task labels; shown beside the main
+          score as a plain number, never banded.
+      - name: in_tech
+        description: In the Digital Technology career cluster (featured area Tech).
+      - name: in_health
+        description: In Healthcare & Human Services (featured area Healthcare).
+      - name: in_business
+        description: In Financial Services, Management & Entrepreneurship, or Marketing & Sales (D11).
+      - name: in_education
+        description: In the Education career cluster.
+
+  - name: dim_major
+    description: >
+      One row per CIP 2020 code at every level: 50 families, 473 series (4-digit), 2,325 detailed = 2,848.
+      Titles as NCES publishes them (ending in a period) plus *_clean versions. cip_soc_status says whether the
+      NCES CIP-SOC crosswalk links the detailed major to a job. CIP 2010 codes are bridged in step 2.
+    columns:
+      - name: cip_code
+        description: CIP 2020 code, NN / NN.NN / NN.NNNN, text so leading zeros survive.
+        data_tests: [unique, not_null]
+      - name: cip_level
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [family, series, detailed]
+      - name: cip_title
+        data_tests: [not_null]
+      - name: cip_family
+        description: 2-digit family code; a dim_major row itself.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_major')
+                field: cip_code
+      - name: cip_series
+        description: 4-digit series code (null for family rows); a dim_major row itself.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_major')
+                field: cip_code
+      - name: cip_soc_status
+        description: Detailed codes only. linked / no_job_link (NCES major_no_job) / not_in_crosswalk.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [linked, no_job_link, not_in_crosswalk]
+      - name: has_job_link
+        data_tests: [not_null]
+
+  - name: dim_college
+    description: >
+      One row per IPEDS institution seen in any NYC directory year 2015-2024, with attributes from its latest
+      directory row (225 colleges; 21 CUNY). Year-specific directory rows stay in staging.
+    columns:
+      - name: unitid
+        data_tests: [unique, not_null]
+      - name: college_name
+        data_tests: [not_null]
+      - name: borough
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [Bronx, Brooklyn, Manhattan, Queens, Staten Island]
+      - name: county_fips
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_area')
+                field: county_fips
+      - name: is_cuny
+        data_tests: [not_null]
+      - name: directory_year
+        data_tests: [not_null]
+
+  - name: dim_award_level
+    description: The 13 IPEDS award-level codes with official labels, award_group and the v1 scope flag.
+    columns:
+      - name: award_level
+        data_tests: [unique, not_null]
+      - name: award_group
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [certificate, associate, bachelor, graduate]
+      - name: in_v1_scope
+        data_tests: [not_null]
+
+  - name: dim_industry
+    description: >
+      NAICS 2022 sectors with 00 all and 99 unclassified (22 rows) plus the CES codes in the NYS DOL file
+      (21 rows). Alias columns: qcew_ny_code (NYS DOL QCEW 31/44/48), qcew_bls_code (BLS QCEW county, 10 = total),
+      ces_supersector_code (BLS), ces_nysdol_code (code in the NYS DOL CES file).
+    columns:
+      - name: industry_key
+        data_tests: [unique, not_null]
+      - name: level
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [all, sector, unclassified, ces_aggregate, ces_supersector, ces_sector, oews_government]
+      - name: industry_title
+        data_tests: [not_null]
+      - name: naics_sector
+        description: Official NAICS code (range codes 31-33, 44-45, 48-49); null on CES rows.
+        data_tests: [unique]
+
+  - name: dim_area
+    description: The ten geographies v1 reports on, one column per source code system. NYC and NY metro never mixed.
+    columns:
+      - name: area_key
+        data_tests: [unique, not_null]
+      - name: area_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [city, borough, metro, state, balance, nation]
+      - name: county_fips
+        data_tests: [unique]
+      - name: laus_area_code
+        data_tests: [unique]
+
+  - name: dim_career_cluster
+    description: >
+      One row per Career Clusters sub-cluster (71 after case-insensitive matching; the files print
+      'water systems' twice), 14 clusters. featured_area maps clusters to the brief S7 areas (D11).
+    columns:
+      - name: subcluster_id
+        data_tests: [unique, not_null]
+      - name: subcluster_match_key
+        description: lower(trim(subcluster_name)); the key bridges join on.
+        data_tests: [unique, not_null]
+      - name: cluster_name
+        data_tests: [not_null]
+      - name: featured_area
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [Tech, Healthcare, Business, Education]
+
+  - name: dim_source
+    description: One row per raw manifest key that feeds staging (32), with publisher, edition, URL, retrieved date, license and the S13 label.
+    columns:
+      - name: source_key
+        data_tests: [unique, not_null]
+      - name: label
+        data_tests: [not_null]
+      - name: is_government
+        data_tests: [not_null]
+      - name: retrieved_date
+        data_tests: [not_null]
+
+  # ---- Step 2a bridges (docs/step2-bridges-plan.md) ----
+
+  - name: bridge_job_code
+    description: >
+      Any job code a source uses -> dim_job rows with weights summing to 1 per code_system x source_code.
+      Systems: soc_2018 (identity), soc_2010 (BLS crosswalk + unchanged group rows), soc_2010_group (seed),
+      oews_hybrid (OEWS 2019/2018 hybrid codes -> SOC 2018 parts), group_parts (every group or aggregate ->
+      detailed members), acs_socp (PUMS codes incl. the 59 X/Y groups), onet_soc. One-to-many rows are
+      weighted by OEWS NY metro employment in the system's reference year, then BLS national 2025, then
+      equal (D12); weight_basis says which.
+    columns:
+      - name: code_system
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [soc_2018, soc_2010, soc_2010_group, oews_hybrid, group_parts, acs_socp, onet_soc]
+      - name: source_code
+        data_tests: [not_null]
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: weight
+        data_tests: [not_null]
+      - name: weight_basis
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [single, oews_ny_metro_2021, oews_ny_metro_2022, oews_ny_metro_2025, bls_national_2025, equal]
+
+  - name: bridge_cip_2010_2020
+    description: CIP 2010 -> CIP 2020, strictly 1:1; deleted codes keep a row with a null target.
+    columns:
+      - name: cip_2010
+        data_tests: [unique, not_null]
+      - name: cip_2020
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_major')
+                field: cip_code
+
+  - name: bridge_industry_job
+    description: >
+      NAICS sector x SOC 2018 detailed job (D3). share_of_industry and share_of_job from OEWS research estimates
+      New York May 2025 (sector level; suppressed cells keep null shares); share_us_2035 from the national matrix
+      for projections only.
+    columns:
+      - name: naics_sector
+        data_tests: [not_null]
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: industry_key
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_industry')
+                field: industry_key
+
+  - name: bridge_job_cluster
+    description: SOC 2018 job x Career Clusters sub-cluster, as published (D6, many-to-many).
+    columns:
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: subcluster_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_career_cluster')
+                field: subcluster_id
+
+  - name: bridge_industry_cluster
+    description: NAICS sector x Career Clusters sub-cluster, as published (D6).
+    columns:
+      - name: industry_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_industry')
+                field: industry_key
+      - name: subcluster_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_career_cluster')
+                field: subcluster_id
+
+  - name: int_projection_fill_2022_parts
+    description: >
+      Ephemeral (no table). The 24 D1 fill candidates for NYS DOL 2022-32 and their 60 SOC 2018 parts, with the
+      within-candidate weight from bridge_job_code and the minor group each candidate is filled from. Candidate rule:
+      a 2022-32 row flagged publisher_defect, or a 2020-30 leaf with no 2022-32 row that is a BLS projection
+      aggregate or a broad group and none of whose parts has a 2022-32 row (docs/step3-d1-fill-plan.md §3; D15).
+
+  - name: audit_projection_fill_2022
+    description: >
+      Group-level arithmetic of the D1 fill, one row per minor group holding a fill candidate (19). For base,
+      projected and openings: published total, published leaves outside the collapsed rows, collapsed rows'
+      published values, residual, and the split of the residual into filled (to the 60 part rows) and retained
+      (the group's "normal" unpublished share, measured in 2020-30 and scaled to the 2022 total; rule B, D15).
+      fct_job_projection reads the fill targets from here; dashboards cite it in the footnote.
+    columns:
+      - name: fill_group
+        description: SOC 2018 minor group code; a dim_job row.
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: candidates
+        description: Space-separated candidate codes filled from this group.
+        data_tests: [not_null]
+      - name: normal_share_2020
+        description: max(2020-30 group residual, 0) / 2020-30 group total; the share held back.
+      - name: f_retained
+        description: Share of the unpublished gap (residual minus collapsed published) that is retained, 0-1.
+        data_tests: [not_null]
+      - name: base_filled
+        description: Base employment the part rows receive; base_residual = base_filled + base_retained.
+        data_tests: [not_null]
+      - name: openings_filled
+        data_tests: [not_null]
+
+  - name: fct_job_projection
+    description: >
+      NYS DOL long-term occupational projections for NYC, four editions (2016-26, 2018-28 on SOC 2010; 2020-30,
+      2022-32 on the hybrid code list), landed on dim_job codes through bridge_job_code. Grain edition x soc_code at
+      any level; group rows are kept for roll-ups and tie-outs. published rows carry the source values exactly
+      (older editions' openings do not always equal growth + separations by up to 11, as published); split rows are
+      weighted from SOC 2010 or hybrid codes (sums conserved); imputed rows are the 60 D1 fill parts for 2022-32
+      (docs/step3-d1-fill-plan.md §3-5; D1, D12, D15). Values are unrounded numerics.
+    columns:
+      - name: edition
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['2016-2026', '2018-2028', '2020-2030', '2022-2032']
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: is_leaf
+        description: True if any source row was a leaf (lowest published level in that edition).
+        data_tests: [not_null]
+      - name: base_employment
+        data_tests: [not_null]
+      - name: projected_employment
+        data_tests: [not_null]
+      - name: annual_openings_avg
+        data_tests: [not_null]
+      - name: quality_flag
+        description: published = one source row at weight 1; split = weighted from one or more codes; imputed = D1 fill.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [published, split, imputed]
+      - name: edition_flag
+        description: covid_base for 2020-30 (base year 2020), else null.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [covid_base]
+      - name: source_codes
+        description: >
+          Trace: the source code for published rows; system:code*weight pairs for split rows; fill:candidate for
+          imputed rows.
+        data_tests: [not_null]
+      - name: weight_basis
+        description: bridge_job_code basis of the weights (single for published rows).
+      - name: fill_group
+        description: Imputed rows only; the minor group the row was filled from (an audit_projection_fill_2022 row).
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('audit_projection_fill_2022')
+                field: fill_group
+      - name: fill_candidate
+        description: Imputed rows only; the collapsed or missing code the row is a part of.
+
+  # ---- Step 2b major bridges (docs/step2b-major-bridges-plan.md; D2, D6, D13, D14, D16) ----
+
+  - name: int_major_job_filter
+    description: >
+      Ephemeral (no table). The D2 degree-level filter evaluated once for every NCES CIP-SOC link at each in-scope
+      award level (5,694 x 2 after D57). A link passes at level L when dim_job.entry_education equals L's BLS label
+      (dim_award_level.bls_entry_education) or the BLS Table 5.3 share of the job's workers whose highest attainment
+      is L is at or above 10 / 15 / 20 percent. Read by audit_major_job_filter and bridge_major_job.
+
+  - name: audit_major_job_filter
+    description: >
+      The evidence behind the D2 filter for every crosswalk link at both in-scope award levels (11,388 rows, D57): entry
+      education and whether it matches, the attainment share and whether BLS borrowed it from a broader Census
+      occupation, and the pass flags at 10 / 15 / 20 percent. bridge_major_job holds only the 15% rows. The 10%
+      column re-admits postsecondary teaching (1,398 bachelor's links through 25-1xxx; plan §3b), so it is a
+      sensitivity on the filter, not a mild one.
+    columns:
+      - name: cip_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_major')
+                field: cip_code
+      - name: award_level
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_award_level')
+                field: award_level
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: entry_match
+        description: dim_job.entry_education equals the level's BLS label (false when the job has no entry education).
+        data_tests: [not_null]
+      - name: attainment_pct
+        description: BLS Table 5.3 (ACS 2023-24, workers 25+) share at the level; null for the 32 linked jobs without a row.
+      - name: attainment_inexact
+        description: BLS acs_inexact; the profile is shared with other SOC codes combined in the Census classification.
+      - name: passes_filter_15
+        data_tests: [not_null]
+      - name: pass_basis
+        description: On 15% rows only; entry / attainment / both.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [entry, attainment, both]
+
+  - name: int_job_openings_2022
+    description: >
+      Ephemeral (no table). One NYC annual-openings figure per detailed SOC 2018 job for the openings weight: the
+      fct_job_projection 2022-32 leaf row (basis published / split / imputed), else the D13 estimate = BLS national
+      2025-35 openings x OEWS NY metro 2025 employment / BLS national 2025 employment (estimated), else 0 (none).
+
+  - name: bridge_major_job
+    description: >
+      Detailed CIP 2020 major x award level x SOC 2018 job for the crosswalk links that pass the D2 filter at 15%
+      (460 associate's + 3,413 bachelor's = 3,873 rows, D57). weight_equal and weight_openings each sum to 1 per major x
+      level (D2: shown as a range); weight_openings is null for the 10 + 18 majors whose passing jobs have no
+      openings. The 23 jobs with openings_basis none (no NY metro employment and no NYC row) are small and mostly
+      outside NYC's economy: agricultural technicians, petroleum / nuclear / mining / agricultural engineers, gambling
+      cage workers and managers, embalmers, nuclear reactor operators, motorboat operators, sociologists, geographers,
+      astronomers, animal scientists, hydrologic technicians, craft artists, woodworkers, patternmakers, watch
+      repairers, refractory materials repairers, auto damage appraisers, communications equipment operators.
+      All Other jobs keep their weight and are flagged (is_all_other; D11, D16 option A).
+    columns:
+      - name: major_award_key
+        description: cip_code|award_level; the dim_major_award key.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_major_award')
+                field: major_award_key
+      - name: cip_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_major')
+                field: cip_code
+      - name: award_level
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [3, 5]
+                quote: false
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_job')
+                field: soc_code
+      - name: pass_basis
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [entry, attainment, both]
+      - name: attainment_inexact
+        description: True when the attainment share is a profile BLS borrowed from a broader Census occupation (54% of bachelor's rows).
+      - name: openings_nyc
+        description: Annual openings, NYC 2022-32, unrounded; 0 when openings_basis is none.
+        data_tests: [not_null]
+      - name: openings_basis
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [published, split, imputed, estimated, none]
+      - name: weight_openings
+        description: openings_nyc / sum over the major's passing jobs at this level; null for the whole group when that sum is 0.
+      - name: weight_equal
+        description: 1 / n_jobs_in_major.
+        data_tests: [not_null]
+      - name: is_all_other
+        data_tests: [not_null]
+      - name: n_jobs_in_major
+        data_tests: [not_null]
+
+  - name: int_major_field_lift
+    description: >
+      The ACS test of the major -> job bridge (docs/explore-plan.md section 3e, nb 44, D20), one row per ACS field of
+      degree in ref_fod_cip (78). linked_share = share of the field's bachelor's-only NYC workers aged 22-34 in the
+      field's linked jobs (fct_grad_outcome field_x_linked); base_rate = share of all bachelor's-only workers 22-34 in
+      the same jobs (degree_x_soc, suppressed jobs count 0); lift = linked_share / base_rate; verdict pathway (>= 3),
+      weak (>= 1.5), convention (< 1.5), unreadable (linked cell under 30 responses). Read by dim_major_award.
+    columns:
+      - name: fod1p
+        data_tests: [unique, not_null]
+      - name: n_linked_jobs
+        data_tests: [not_null]
+      - name: base_rate
+        description: Null only when the field has no bachelor's bridge row (3 fields).
+      - name: lift
+        description: Null when the verdict is unreadable.
+      - name: verdict
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [pathway, weak, convention, unreadable]
+
+  - name: dim_major_award
+    description: >
+      Every detailed CIP 2020 major x the two in-scope award levels (2,325 x 2 = 4,650), with the D2 filter's result:
+      link counts, pass counts at 10 / 15 / 20 percent, and link_status (linked = has bridge rows and the ACS test does
+      not reject the link; dispersed = has bridge rows but the major's ACS field holds them at the population rate, D20,
+      bachelor's only; transfer_pathway = crosswalk links but none passes at this level; not_in_crosswalk = no links,
+      NCES no_job_link or absent). The awards fact joins it so every IPEDS row carries a label (D14: 12,382 associate's
+      and 5,288 bachelor's 2024 first-major awards are not linked at 15%). field_fod1p / field_lift / field_verdict
+      carry the ACS field the major maps to through ref_fod_cip (higher readable lift when a major maps to two fields).
+    columns:
+      - name: major_award_key
+        data_tests: [unique, not_null]
+      - name: cip_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_major')
+                field: cip_code
+      - name: award_level
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_award_level')
+                field: award_level
+      - name: cip_soc_status
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [linked, no_job_link, not_in_crosswalk]
+      - name: n_links
+        data_tests: [not_null]
+      - name: n_pass_15
+        data_tests: [not_null]
+      - name: link_status
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [linked, dispersed, transfer_pathway, not_in_crosswalk]
+      - name: openings_nyc_total
+        description: Sum of openings_nyc over the passing jobs; null when the major has none.
+      - name: has_openings_weight
+        description: False when link_status is not linked or dispersed, or the passing jobs have no openings (weight_openings null).
+        data_tests: [not_null]
+      - name: n_all_other_jobs
+        description: Passing jobs whose title contains All Other (D11).
+        data_tests: [not_null]
+      - name: field_fod1p
+        description: ACS field of degree (ref_fod_cip.fod1p) the major maps to; null for majors under no mapped field.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('int_major_field_lift')
+                field: fod1p
+      - name: field_lift
+        description: int_major_field_lift.lift of that field; null when unreadable or no field.
+      - name: field_verdict
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [pathway, weak, convention, unreadable, no_field]
+
+  - name: bridge_major_cluster
+    description: >
+      Detailed CIP 2020 major x award level x Career Clusters sub-cluster, reached through the major's passing jobs
+      (D6): 966 + 6,835 = 7,801 rows. share_openings and share_equal are the sum of the major's job weights falling in
+      the sub-cluster and are NON-ADDITIVE (a job sits in up to several sub-clusters; never sum shares across
+      sub-clusters or clusters). share_openings is null when the major has no openings weight.
+    columns:
+      - name: major_award_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_major_award')
+                field: major_award_key
+      - name: cip_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_major')
+                field: cip_code
+      - name: award_level
+        data_tests: [not_null]
+      - name: subcluster_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_career_cluster')
+                field: subcluster_id
+      - name: n_jobs
+        data_tests: [not_null]
+      - name: share_equal
+        data_tests: [not_null]

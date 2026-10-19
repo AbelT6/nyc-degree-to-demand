@@ -1,0 +1,269 @@
+# mart layer: what Power BI reads (docs/mart-plan.md; D23). Conventions for every mart model:
+#   - the file is mart_<name>.sql with config(alias='<name>'), so the database object is mart.<name>;
+#   - every fact view carries source_key (relationships to dim_source) and an as_of text column;
+#   - columns Power BI must not sum carry meta: {additive: false} and are hidden in the model;
+#   - each view has a unique test on its declared grain and relationships to the dims it joins.
+# M0 = dimensions, bridges, dim_date (this file). Fact views are documented in _mart_<group>.yml.
+version: 2
+
+models:
+  - name: mart_dim_degree_level
+    description: >
+      The two degree levels in v1 scope (associate's, bachelor's), from core.dim_award_level. One field for the
+      synced degree-level slicer: 1:* to dim_job.degree_level_key and dim_major.award_level (design brief §10.5 item 3).
+    columns:
+      - name: degree_level_key
+        data_tests: [unique, not_null]
+      - name: degree_level
+        description: "Slicer label, Associate's or Bachelor's (checked in tests/mart_powerbi_additions.sql; accepted_values cannot hold an apostrophe)."
+        data_tests: [not_null, unique]
+
+  - name: mart_dim_job
+    description: >
+      Job dimension: every detailed, broad and BLS-aggregate SOC 2018 code in core (the levels projection
+      leaves and the cluster bridge use) plus the major-group rows (job_kind = 'job group'), so group-grain
+      facts relate to the same table. Entry requirements (BLS EP), job zone, AI exposure (D7),
+      featured-area flags (S7). List ranks live on job_profile.
+    columns:
+      - name: soc_code
+        data_tests: [unique, not_null]
+      - name: soc_title
+        data_tests: [not_null]
+      - name: soc_short_title
+        description: >
+          Display title for lists and slicers: the hand-written short title from seed ref_job_short_title where the
+          official title runs past 31 characters (design brief §10.5 item 5), else the official title. Unique and
+          31 characters or fewer on degree-reachable rows (tests/mart_job_short_title.sql).
+        data_tests: [not_null]
+      - name: degree_level_key
+        description: >
+          IPEDS award level of the job's BLS entry education (3 associate's, 5 bachelor's) on degree-reachable rows,
+          null otherwise; relates to dim_degree_level for the synced degree-level slicer (design brief §10.5 item 3).
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_degree_level'), field: degree_level_key}}
+      - name: job_kind
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: ['job group', 'degree-reachable job', 'other job']}}
+      - name: major_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: major_group_title
+        data_tests: [not_null]
+      - name: ai_band
+        data_tests:
+          - accepted_values: {arguments: {values: ['High', 'Medium', 'Low', 'Not seen yet', 'Not rated']}}
+      - name: entry_education_rank
+        meta: {additive: false}
+      - name: entry_experience_rank
+        meta: {additive: false}
+      - name: entry_training_rank
+        meta: {additive: false}
+      - name: job_zone
+        meta: {additive: false}
+      - name: ai_observed_exposure
+        meta: {additive: false}
+      - name: ai_beta_gpt4
+        meta: {additive: false}
+      - name: job_label
+        description: >
+          The job's one display label (D29; page 3 build plan §3.7, §4 item 4): soc_short_title + " °" when the 2022-32
+          projection is imputed (D1) + "◆" when the 2019 metro count is carried from split codes ("Software Developers °◆").
+          The drill-through field of the job page and the job column of both Jobs lists. Filled on the 225 job-page rows
+          (job_profile's universe) only, where it is unique; null elsewhere, because short titles repeat across levels
+          (17-2130 / 17-2131 Materials Engineers). Marks tied to job_profile in tests/mart_dim_job_page_additions.sql.
+        data_tests: [unique]
+      - name: job_description
+        description: >
+          The one line under the job page's title (design brief §11.10 R2; D32), on the 225 job-page rows: the hand-checked
+          replacement in seed ref_job_description_override (profile_part, bls_type), else the BLS Occupational Outlook
+          Handbook profile sentence, else the first sentence of the O*NET 31.0 .00 definition (13 named jobs BLS doesn't
+          profile, and the 23 "All other" groups: "All engineers not listed separately."). 260 characters or fewer (D32).
+      - name: description_source
+        description: Source key of job_description (bls_ooh or onet).
+        data_tests:
+          - accepted_values: {arguments: {values: [bls_ooh, onet]}}
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+      - name: description_basis
+        description: >
+          How the line was chosen: ooh_own_profile (124 named jobs), ooh_shared_profile (47, the seed's keep),
+          ooh_profile_part (9), ooh_type_sentence (7, BLS's "types of" sentence), onet_first_sentence (12),
+          onet_all_other (23), shortened_to_fit (3: the seed's shortened, the source's own words cut to fit the page).
+        data_tests:
+          - accepted_values: {arguments: {values: [ooh_own_profile, ooh_shared_profile, ooh_profile_part, ooh_type_sentence, onet_first_sentence, onet_all_other, shortened_to_fit]}}
+
+  - name: mart_dim_major
+    description: >
+      Major dimension: one row per CIP x award level in core.dim_major_award (associate's and bachelor's),
+      with the D14 / D20 link status, the D20 field columns, and whether CUNY offers it.
+    columns:
+      - name: major_award_key
+        data_tests: [unique, not_null]
+      - name: cip_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('dim_major'), field: cip_code}}
+      - name: major_title
+        data_tests: [not_null]
+      - name: award_level
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [3, 5]}}
+      - name: link_status
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [linked, dispersed, transfer_pathway, not_in_crosswalk]}}
+      - name: n_cuny_colleges
+        data_tests: [not_null]
+      - name: openings_nyc_total
+        meta: {additive: false}
+      - name: field_fod1p
+        data_tests:
+          - relationships: {arguments: {to: ref('mart_dim_field'), field: fod1p}}
+      - name: field_lift
+        meta: {additive: false}
+      - name: major_label
+        description: Drill-through field of the Major page (release-plan §7b); unique by construction (CIP code added to repeated titles).
+        data_tests: [unique, not_null]
+      - name: level_label
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: ["Associate''s", "Bachelor''s"]}}
+      - name: kind_key
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [degree_jobs, outside_jobs, dispersed, transfer, no_link]}}
+      - name: has_graduates_2024
+        data_tests: [not_null]
+      - name: degree_jobs_openings
+        meta: {additive: false}
+      - name: outside_jobs_openings
+        meta: {additive: false}
+
+  - name: mart_dim_field
+    description: >
+      ACS field of degree (FOD1P): the 174 codes of the Census PUMS dictionary with the official title, whether the
+      field is one of the 78 mapped to CIP majors (is_mapped), and D20's lift and verdict (null where unmapped).
+      1:* to grad_outcome_field and grad_outcome_destination, *:1 from dim_major.field_fod1p (D24 B).
+    columns:
+      - name: fod1p
+        data_tests: [unique, not_null]
+      - name: field_title
+        data_tests: [not_null]
+      - name: is_mapped
+        data_tests: [not_null]
+      - name: lift
+        description: D20 lift (linked share / all-bachelor's base rate, bachelor's-only workers 22-34). A ratio.
+        meta: {additive: false}
+      - name: verdict
+        data_tests:
+          - accepted_values: {arguments: {values: [pathway, weak, convention, unreadable]}}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
+
+  - name: mart_dim_industry
+    description: Industry dimension (sectors, totals, CES aggregates, the OEWS government designation) with the 48-49 break note.
+    columns:
+      - name: industry_key
+        data_tests: [unique, not_null]
+      - name: industry_title
+        data_tests: [not_null]
+      - name: industry_short_title
+        description: Sentence-case short name for bar labels (seed ref_industry_short_title, design brief §7.5 item 1); the full title elsewhere.
+        data_tests: [not_null]
+      - name: is_sector
+        data_tests: [not_null]
+
+  - name: mart_dim_cluster
+    description: Career Clusters sub-clusters (71) with cluster and featured area; the umbrella slicer.
+    columns:
+      - name: subcluster_id
+        data_tests: [unique, not_null]
+      - name: cluster_name
+        data_tests: [not_null]
+      - name: featured_area_or_other
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [Tech, Healthcare, Business, Education, Other]}}
+
+  - name: mart_bridge_job_cluster
+    description: Hidden bridging table job x sub-cluster (D6). Rows limited to jobs in mart.dim_job; tests/mart_bridge_job_cluster_row_count.sql asserts no row is dropped.
+    columns:
+      - name: soc_code
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_job'), field: soc_code}}
+      - name: subcluster_id
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_cluster'), field: subcluster_id}}
+
+  - name: mart_bridge_major_cluster
+    description: Hidden bridging table major x sub-cluster (D6, derived from the major's D2 jobs).
+    columns:
+      - name: major_award_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_major'), field: major_award_key}}
+      - name: subcluster_id
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_cluster'), field: subcluster_id}}
+      - name: share_openings
+        meta: {additive: false}
+      - name: share_equal
+        meta: {additive: false}
+
+  - name: mart_bridge_industry_cluster
+    description: Hidden bridging table sector x sub-cluster (Advance CTE).
+    columns:
+      - name: industry_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_industry'), field: industry_key}}
+      - name: subcluster_id
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_cluster'), field: subcluster_id}}
+
+  - name: mart_dim_area
+    description: Areas (NYC, five boroughs, NY metro, NY State, rest of state, U.S.). NYC and the metro are never mixed.
+    columns:
+      - name: area_key
+        data_tests: [unique, not_null]
+      - name: area_name
+        data_tests: [not_null]
+
+  - name: mart_dim_college
+    description: NYC colleges (IPEDS directory); is_cuny / college_group drive the CUNY vs all NYC slicer.
+    columns:
+      - name: unitid
+        data_tests: [unique, not_null]
+      - name: college_group
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [CUNY, 'Other NYC colleges']}}
+
+  - name: mart_dim_date
+    description: Power BI date table at month grain, Jan 2015 - Dec 2026; year_start and quarter_start are the keys annual and quarterly facts carry.
+    columns:
+      - name: date_key
+        data_tests: [unique, not_null]
+      - name: year
+        data_tests: [not_null]
+      - name: year_start
+        data_tests: [not_null]
+      - name: is_latest_complete_year
+        description: True for 2025, the last year of the 2019-2025 history span; IPEDS, QWI, BEA and ACS end in 2024 and their views carry their own as_of.
+        data_tests: [not_null]
+
+  - name: mart_dim_source
+    description: Source labels (S13). Every mart fact's source_key relates here.
+    columns:
+      - name: source_key
+        data_tests: [unique, not_null]
+      - name: label
+        data_tests: [not_null]

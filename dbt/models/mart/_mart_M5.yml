@@ -1,0 +1,60 @@
+# M5: overview and integrity views (docs/mart-plan.md §4g).
+version: 2
+
+models:
+  - name: mart_footnote
+    description: >
+      One row per footnote x page (seed ref_footnote expanded over its comma-separated page_keys; 'all'
+      fans out to the nine pages). Power BI filters on page_key and lists footnote_text by sort_order.
+      Grain footnote_key x page_key is tested in tests/mart_footnote_grain.sql.
+    columns:
+      - name: footnote_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('ref_footnote'), field: footnote_key}}
+      - name: page_key
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [overview, jobs, industries, job, majors, major, entry, graduates, ai, findings, find_major]}}
+      - name: page_name
+        description: The page's name as the App shows it (Notes page).
+        data_tests: [not_null]
+      - name: page_order
+        description: The page's place in the App's story order (design brief §2, D26), 1-10 (10 = What we found, clarity C3).
+        data_tests: [not_null]
+      - name: note_order
+        description: page_order x 1000 + sort_order; the Notes table sorts by it.
+        data_tests: [not_null]
+      - name: footnote_text
+        data_tests: [not_null]
+
+  - name: mart_overview_kpi
+    description: >
+      The overview page's framed numbers, one row per KPI, each computed from the mart views with its
+      comparison value and label, display format, the page it links to and the source. Values are
+      non-additive (never summed). Tie-outs to the notebook headlines in tests/mart_overview_kpi_tieout.sql.
+    columns:
+      - name: kpi_key
+        data_tests: [unique, not_null]
+      - name: kpi_label
+        data_tests: [not_null]
+      - name: page_key
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [overview, jobs, industries, job, majors, major, entry, graduates, ai]}}
+      - name: value
+        meta: {additive: false}
+        data_tests: [not_null]
+      - name: value_format
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [count, percent, usd, ratio]}}
+      - name: comparison_value
+        meta: {additive: false}
+      - name: direction_good
+        data_tests:
+          - accepted_values: {arguments: {values: [higher, lower, none]}}
+      - name: source_key
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('mart_dim_source'), field: source_key}}
