@@ -1,0 +1,47 @@
+table dim_degree_level
+	lineageTag: 6196cb52-fd53-4a49-8add-4b4e772c401d
+
+	column degree_level_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 82dd6ce7-ab20-4cea-9113-185c6477d007
+		summarizeBy: none
+		sourceColumn: degree_level_key
+
+		annotation SummarizationSetBy = User
+
+	column degree_level
+		dataType: string
+		lineageTag: 6da0cb91-6f5d-4362-976f-8fdc7664c2a8
+		summarizeBy: none
+		sourceColumn: degree_level
+		sortByColumn: sort_order
+
+		annotation SummarizationSetBy = User
+
+	column degree_level_long
+		dataType: string
+		lineageTag: bd4d6e34-ce07-48b5-9a65-8b41f21d641c
+		summarizeBy: none
+		sourceColumn: degree_level_long
+
+		annotation SummarizationSetBy = User
+
+	column sort_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f5c2f30-d372-4a3b-923a-fcc36fe3d24b
+		summarizeBy: none
+		sourceColumn: sort_order
+
+		annotation SummarizationSetBy = User
+
+	partition dim_degree_level = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "dim_degree_level"]}[Data]
+				in
+				  #"Navigation 1"
+

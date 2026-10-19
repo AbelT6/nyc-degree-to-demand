@@ -1,0 +1,141 @@
+table job_skill_demand
+	lineageTag: 2936103d-4c2d-554b-9658-da2be13b4479
+
+	column soc_code
+		dataType: string
+		lineageTag: 883f42a9-c5cb-583f-8a27-d1d9db07ed21
+		summarizeBy: none
+		sourceColumn: soc_code
+
+		annotation SummarizationSetBy = User
+
+	column rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 965e3911-bb46-5b01-bfa3-c14beb030b6c
+		summarizeBy: none
+		sourceColumn: rank
+
+		annotation SummarizationSetBy = User
+
+	column onet_soc_code
+		dataType: string
+		lineageTag: ad126af3-01a1-5ea9-8b81-8762b5e2ef8c
+		summarizeBy: none
+		sourceColumn: onet_soc_code
+
+		annotation SummarizationSetBy = User
+
+	column product
+		dataType: string
+		lineageTag: 5094b715-c776-55c5-adc2-2ea240780e07
+		summarizeBy: none
+		sourceColumn: product
+
+		annotation SummarizationSetBy = User
+
+	column product_display
+		dataType: string
+		lineageTag: e3e03bfc-367d-5ddc-88eb-8405e202e580
+		summarizeBy: none
+		sourceColumn: product_display
+
+		annotation SummarizationSetBy = User
+
+	column share_of_job_ads
+		dataType: double
+		lineageTag: fc1decdf-2976-5b7a-99d7-64b01e6627fb
+		summarizeBy: none
+		sourceColumn: share_of_job_ads
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_of_job_ads
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ff5fdb5-2a85-5d6d-8451-f920118d392b
+		summarizeBy: none
+		sourceColumn: pct_of_job_ads
+
+		annotation SummarizationSetBy = User
+
+	column is_hot_technology
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: fc2ceea7-dc95-51dc-b18a-8270d2dc5997
+		summarizeBy: none
+		sourceColumn: is_hot_technology
+
+		annotation SummarizationSetBy = User
+
+	column csv_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 5b728332-179d-50bb-8abf-c2ea3d8c6cc4
+		summarizeBy: none
+		sourceColumn: csv_order
+
+		annotation SummarizationSetBy = User
+
+	column window_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ac859cc9-855b-5a05-8bb0-fa428134f93f
+		summarizeBy: none
+		sourceColumn: window_start
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column window_end
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b0a77d91-7e27-5d12-b0e7-a9ee13c6f995
+		summarizeBy: none
+		sourceColumn: window_end
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column retrieved_at
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1c4401ce-9278-5faa-81f5-855ee2e9a9b3
+		summarizeBy: none
+		sourceColumn: retrieved_at
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column source_key
+		dataType: string
+		lineageTag: 838174d5-458c-54ab-9e59-5d131d18214e
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: 0d350de6-3546-5997-b412-4934b2bcc340
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	partition job_skill_demand = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "job_skill_demand"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,404 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "src_list",
+  "position": {
+    "x": 664,
+    "y": 198,
+    "z": 28000,
+    "height": 196,
+    "width": 576,
+    "tabOrder": 28000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Which jobs, and AI exposure: ",
+                    "textStyle": {
+                      "fontFamily": "'Inter Medium', 'Inter SemiBold', 'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  },
+                  {
+                    "value": "U.S. Bureau of Labor Statistics, Employment Projections 2025–35 (August 2026)",
+                    "textStyle": {
+                      "fontFamily": "Inter, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Openings a year: ",
+                    "textStyle": {
+                      "fontFamily": "'Inter Medium', 'Inter SemiBold', 'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  },
+                  {
+                    "value": "NY State Dept. of Labor, NYC long-term projections 2022–2032",
+                    "textStyle": {
+                      "fontFamily": "Inter, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "People in each job: ",
+                    "textStyle": {
+                      "fontFamily": "'Inter Medium', 'Inter SemiBold', 'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  },
+                  {
+                    "value": "our estimate, NYS DOL payroll jobs 2019–2025 × BLS staffing patterns",
+                    "textStyle": {
+                      "fontFamily": "Inter, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Pay: ",
+                    "textStyle": {
+                      "fontFamily": "'Inter Medium', 'Inter SemiBold', 'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  },
+                  {
+                    "value": "NYS DOL entry wages, early 2026 (surveys to May 2025); BLS OEWS, NY metro, 2019–2025",
+                    "textStyle": {
+                      "fontFamily": "Inter, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Living wage: ",
+                    "textStyle": {
+                      "fontFamily": "'Inter Medium', 'Inter SemiBold', 'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  },
+                  {
+                    "value": "MIT Living Wage Calculator, 2026",
+                    "textStyle": {
+                      "fontFamily": "Inter, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontFamily": "Inter, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+                      "fontSize": "4pt",
+                      "color": "#5B6470"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Degrees: ",
+                    "textStyle": {
+                      "fontFamily": "'Inter Medium', 'Inter SemiBold', 'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  },
+                  {
+                    "value": "U.S. Dept. of Education, IPEDS completions 2019–2024 (2024 provisional)",
+                    "textStyle": {
+                      "fontFamily": "Inter, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Majors to jobs: ",
+                    "textStyle": {
+                      "fontFamily": "'Inter Medium', 'Inter SemiBold', 'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  },
+                  {
+                    "value": "NCES CIP 2020 to SOC 2018 crosswalk",
+                    "textStyle": {
+                      "fontFamily": "Inter, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "What graduates do: ",
+                    "textStyle": {
+                      "fontFamily": "'Inter Medium', 'Inter SemiBold', 'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  },
+                  {
+                    "value": "U.S. Census Bureau, American Community Survey 2020–2024",
+                    "textStyle": {
+                      "fontFamily": "Inter, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontFamily": "Inter, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+                      "fontSize": "4pt",
+                      "color": "#5B6470"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Skills and tasks: ",
+                    "textStyle": {
+                      "fontFamily": "'Inter Medium', 'Inter SemiBold', 'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  },
+                  {
+                    "value": "O*NET 31.0 (CC BY 4.0); software in job ads: Lightcast via O*NET OnLine",
+                    "textStyle": {
+                      "fontFamily": "Inter, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "AI use seen: ",
+                    "textStyle": {
+                      "fontFamily": "'Inter Medium', 'Inter SemiBold', 'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  },
+                  {
+                    "value": "Anthropic Economic Index, March 2026 (CC BY)",
+                    "textStyle": {
+                      "fontFamily": "Inter, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Job postings index: ",
+                    "textStyle": {
+                      "fontFamily": "'Inter Medium', 'Inter SemiBold', 'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  },
+                  {
+                    "value": "Indeed Hiring Lab (CC BY 4.0)",
+                    "textStyle": {
+                      "fontFamily": "Inter, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Career areas: ",
+                    "textStyle": {
+                      "fontFamily": "'Inter Medium', 'Inter SemiBold', 'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  },
+                  {
+                    "value": "Advance CTE, National Career Clusters Framework (a job counts in each area it belongs to)",
+                    "textStyle": {
+                      "fontFamily": "Inter, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+                      "fontSize": "8pt",
+                      "color": "#1F2328"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": false
+  }
+}

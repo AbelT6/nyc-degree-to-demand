@@ -1,0 +1,275 @@
+table dim_job
+	lineageTag: a041c74a-02d0-42d1-8a80-3e3efc7b2fc2
+
+	column soc_code
+		dataType: string
+		lineageTag: 0dee9fbe-420e-46ca-928e-06bb036b0590
+		summarizeBy: none
+		sourceColumn: soc_code
+
+		annotation SummarizationSetBy = User
+
+	column soc_title
+		dataType: string
+		lineageTag: ac28bd03-8d2e-4941-bab6-1af7e7326d8c
+		summarizeBy: none
+		sourceColumn: soc_title
+
+		annotation SummarizationSetBy = User
+
+	column soc_short_title
+		dataType: string
+		lineageTag: a9020c28-5baf-4caf-b51e-4138ac99a638
+		summarizeBy: none
+		sourceColumn: soc_short_title
+
+		annotation SummarizationSetBy = User
+
+	column soc_level
+		dataType: string
+		lineageTag: 258020ad-2da0-41fc-9919-4b376c7dc336
+		summarizeBy: none
+		sourceColumn: soc_level
+
+		annotation SummarizationSetBy = User
+
+	column job_kind
+		dataType: string
+		lineageTag: 7a0dd573-edde-439d-8d81-e88f68653580
+		summarizeBy: none
+		sourceColumn: job_kind
+
+		annotation SummarizationSetBy = User
+
+	column major_code
+		dataType: string
+		lineageTag: f60c6875-4d79-4326-a044-d6a8357b323a
+		summarizeBy: none
+		sourceColumn: major_code
+
+		annotation SummarizationSetBy = User
+
+	column major_group_title
+		dataType: string
+		lineageTag: fcbb0e2c-be6a-4147-b8f1-a14503838e81
+		summarizeBy: none
+		sourceColumn: major_group_title
+
+		annotation SummarizationSetBy = User
+
+	column is_degree_entry
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4fd54f29-1f72-4512-92a5-7b9a57b0f1aa
+		summarizeBy: none
+		sourceColumn: is_degree_entry
+
+		annotation SummarizationSetBy = User
+
+	column degree_level_key
+		dataType: int64
+		formatString: 0
+		lineageTag: ca15299b-a79d-4130-87fb-0681a928f3f4
+		summarizeBy: none
+		sourceColumn: degree_level_key
+
+		annotation SummarizationSetBy = User
+
+	column is_all_other
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2b4d729b-a61a-495e-bd0d-b2ef908a27ad
+		summarizeBy: none
+		sourceColumn: is_all_other
+
+		annotation SummarizationSetBy = User
+
+	column entry_education
+		dataType: string
+		lineageTag: 04d52fc2-5730-4861-abfb-2c56f508c6e5
+		summarizeBy: none
+		sourceColumn: entry_education
+
+		annotation SummarizationSetBy = User
+
+	column entry_education_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: eac6e3f8-f132-42bf-b3b2-5d755c15b851
+		summarizeBy: none
+		sourceColumn: entry_education_rank
+
+		annotation SummarizationSetBy = User
+
+	column entry_experience
+		dataType: string
+		lineageTag: 4b5e1580-19f1-4088-975b-5141c6a3da92
+		summarizeBy: none
+		sourceColumn: entry_experience
+
+		annotation SummarizationSetBy = User
+
+	column entry_experience_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: d4cd2289-d2a4-4df7-8e6f-79c960926860
+		summarizeBy: none
+		sourceColumn: entry_experience_rank
+
+		annotation SummarizationSetBy = User
+
+	column entry_training
+		dataType: string
+		lineageTag: c0c02b22-dc11-433d-b952-334c62fb5cb1
+		summarizeBy: none
+		sourceColumn: entry_training
+
+		annotation SummarizationSetBy = User
+
+	column entry_training_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 76ebd786-0dbf-4949-bc11-3d27fbd33984
+		summarizeBy: none
+		sourceColumn: entry_training_rank
+
+		annotation SummarizationSetBy = User
+
+	column job_zone
+		dataType: int64
+		formatString: 0
+		lineageTag: b6f53b06-b7c0-4ad7-b280-9c82798bfeb1
+		summarizeBy: none
+		sourceColumn: job_zone
+
+		annotation SummarizationSetBy = User
+
+	column ai_observed_exposure
+		dataType: double
+		lineageTag: 8df3bed4-1787-4923-8878-378ff87189c1
+		summarizeBy: none
+		sourceColumn: ai_observed_exposure
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ai_band
+		dataType: string
+		lineageTag: 726bffce-5a00-4f83-83ed-9b07fa24c4e3
+		summarizeBy: none
+		sourceColumn: ai_band
+
+		annotation SummarizationSetBy = User
+
+	column ai_beta_gpt4
+		dataType: double
+		lineageTag: 35e861ed-08a8-48f0-9788-2c8851068d70
+		summarizeBy: none
+		sourceColumn: ai_beta_gpt4
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column in_tech
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7a3b3ff9-72c7-4e6b-b9fe-5d88e188f936
+		summarizeBy: none
+		sourceColumn: in_tech
+
+		annotation SummarizationSetBy = User
+
+	column in_health
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 28707ea7-7439-47c2-97bb-462e71c728bf
+		summarizeBy: none
+		sourceColumn: in_health
+
+		annotation SummarizationSetBy = User
+
+	column in_business
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f12798d6-a33a-4321-bed6-764707306bf0
+		summarizeBy: none
+		sourceColumn: in_business
+
+		annotation SummarizationSetBy = User
+
+	column in_education
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2b916cc5-1414-45d8-80c1-50c30443a462
+		summarizeBy: none
+		sourceColumn: in_education
+
+		annotation SummarizationSetBy = User
+
+	column featured_area_first
+		dataType: string
+		lineageTag: fef25c3b-5037-4ecc-95e8-939a68e7a406
+		summarizeBy: none
+		sourceColumn: featured_area_first
+
+		annotation SummarizationSetBy = User
+
+	column source_key_ai
+		dataType: string
+		lineageTag: 4112b5b9-0e48-4ae0-baa7-00debc6f2450
+		summarizeBy: none
+		sourceColumn: source_key_ai
+
+		annotation SummarizationSetBy = User
+
+	column source_key_entry
+		dataType: string
+		lineageTag: 0fbb0589-3193-4dd5-b5e2-b4bed9a60da5
+		summarizeBy: none
+		sourceColumn: source_key_entry
+
+		annotation SummarizationSetBy = User
+
+	column job_label
+		dataType: string
+		lineageTag: a8d9dad1-0749-53b0-99e3-01efc8a667ad
+		summarizeBy: none
+		sourceColumn: job_label
+
+		annotation SummarizationSetBy = User
+
+	column job_description
+		dataType: string
+		lineageTag: c79d980a-9ce1-5c51-bdac-8ea49fa94c83
+		summarizeBy: none
+		sourceColumn: job_description
+
+		annotation SummarizationSetBy = User
+
+	column description_source
+		dataType: string
+		lineageTag: f33081d2-731a-5575-a15f-2c4e9a726499
+		summarizeBy: none
+		sourceColumn: description_source
+
+		annotation SummarizationSetBy = User
+
+	column description_basis
+		dataType: string
+		lineageTag: 05ca1671-0b17-5969-92f7-a5fe9ba7a624
+		summarizeBy: none
+		sourceColumn: description_basis
+
+		annotation SummarizationSetBy = User
+
+	partition dim_job = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "dim_job"]}[Data]
+				in
+				  #"Navigation 1"
+

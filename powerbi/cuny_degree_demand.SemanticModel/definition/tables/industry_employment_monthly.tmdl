@@ -1,0 +1,221 @@
+table industry_employment_monthly
+	lineageTag: b4adac79-319e-4011-9ba2-6e47952f23ee
+
+	column month_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f09c12fe-815d-4e0c-82bc-2e87e8874589
+		summarizeBy: none
+		sourceColumn: month_start
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 0303cfd3-c3f2-43cf-8971-85df76a8152a
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = User
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: ad7453e4-2d3d-4b0a-a2d8-83ae21d5af9d
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = User
+
+	column area_key
+		dataType: string
+		lineageTag: 8d4dd999-9161-4356-a037-e8dc077f8caf
+		summarizeBy: none
+		sourceColumn: area_key
+
+		annotation SummarizationSetBy = User
+
+	column series_code
+		dataType: string
+		lineageTag: f3c5db79-408a-46cf-bdb9-f756aaad3c09
+		summarizeBy: none
+		sourceColumn: series_code
+
+		annotation SummarizationSetBy = User
+
+	column series_title
+		dataType: string
+		lineageTag: b985586c-17c1-4d06-92e8-7289a655cf05
+		summarizeBy: none
+		sourceColumn: series_title
+
+		annotation SummarizationSetBy = User
+
+	column ces_level
+		dataType: string
+		lineageTag: d1c4c7da-f4d4-4b58-87be-b14f26d82e83
+		summarizeBy: none
+		sourceColumn: ces_level
+
+		annotation SummarizationSetBy = User
+
+	column supersector_code
+		dataType: string
+		lineageTag: 4754c9c5-1218-4054-a8a1-da67c467a7ff
+		summarizeBy: none
+		sourceColumn: supersector_code
+
+		annotation SummarizationSetBy = User
+
+	column industry_key
+		dataType: string
+		lineageTag: 9762658b-f979-4b18-80fc-7c194ce073ae
+		summarizeBy: none
+		sourceColumn: industry_key
+
+		annotation SummarizationSetBy = User
+
+	column is_total_row
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4339dcd5-1051-43db-b301-87bbd76e7c9b
+		summarizeBy: none
+		sourceColumn: is_total_row
+
+		annotation SummarizationSetBy = User
+
+	column is_leaf_row
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ef1439f6-1589-4be6-907b-0827d352551a
+		summarizeBy: none
+		sourceColumn: is_leaf_row
+
+		annotation SummarizationSetBy = User
+
+	column employment
+		dataType: double
+		lineageTag: 86f245a1-b280-4d64-b677-3ff4f5ade7b7
+		summarizeBy: none
+		sourceColumn: employment
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column employment_12m_ago
+		dataType: double
+		lineageTag: 3948f72b-0151-4224-b740-1d3a8c12dd42
+		summarizeBy: none
+		sourceColumn: employment_12m_ago
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column change_12m
+		dataType: double
+		lineageTag: 03b75824-8ddf-44ea-9ca1-7f8fbd2c5cfd
+		summarizeBy: none
+		sourceColumn: change_12m
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_change_12m
+		dataType: double
+		lineageTag: 2616afd9-4ac9-4a3d-9a00-3edc3a5acd3a
+		summarizeBy: none
+		sourceColumn: pct_change_12m
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column employment_same_month_2019
+		dataType: double
+		lineageTag: 9740b774-de43-4476-b929-4633a5d5c9c2
+		summarizeBy: none
+		sourceColumn: employment_same_month_2019
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column change_vs_2019
+		dataType: double
+		lineageTag: 28f7ae63-33c9-4c07-8caa-55bd746dadf1
+		summarizeBy: none
+		sourceColumn: change_vs_2019
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_change_vs_2019
+		dataType: double
+		lineageTag: 96e3ca23-3d93-4174-be92-c7718b5efc39
+		summarizeBy: none
+		sourceColumn: pct_change_vs_2019
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_latest_month
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 629c4815-40f3-4d49-8724-845c99391410
+		summarizeBy: none
+		sourceColumn: is_latest_month
+
+		annotation SummarizationSetBy = User
+
+	column latest_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c9466b9d-40d2-444d-a1be-a6d71df6d600
+		summarizeBy: none
+		sourceColumn: latest_month
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column vintage
+		dataType: string
+		lineageTag: d7ad1b25-dda2-47f5-9c74-ba1ffb350733
+		summarizeBy: none
+		sourceColumn: vintage
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: 0c90c397-0b9f-4b11-bb6f-e5cc88c48f4e
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: 5c0472f4-423b-416d-846a-c43b5adec2b7
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	partition industry_employment_monthly = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "industry_employment_monthly"]}[Data]
+				in
+				  #"Navigation 1"
+

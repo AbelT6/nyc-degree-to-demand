@@ -1,0 +1,255 @@
+table job_industry_mix
+	lineageTag: eabc2e24-4630-49e3-99dd-cdbebeda6b34
+
+	column soc_code
+		dataType: string
+		lineageTag: 54968690-bdde-4a90-a299-5773feebaa4f
+		summarizeBy: none
+		sourceColumn: soc_code
+
+		annotation SummarizationSetBy = User
+
+	column soc_level
+		dataType: string
+		lineageTag: a53cd3e3-d9a8-40f7-8ebf-bec2b970411c
+		summarizeBy: none
+		sourceColumn: soc_level
+
+		annotation SummarizationSetBy = User
+
+	column is_degree_entry
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 53afa1dd-38d3-41df-a844-9c9b9e625f90
+		summarizeBy: none
+		sourceColumn: is_degree_entry
+
+		annotation SummarizationSetBy = User
+
+	column industry_key
+		dataType: string
+		lineageTag: 30f836f7-7c89-4caf-b226-e2fc23e54fb6
+		summarizeBy: none
+		sourceColumn: industry_key
+
+		annotation SummarizationSetBy = User
+
+	column industry_title
+		dataType: string
+		lineageTag: a3b39455-efd8-4bcc-8dc6-5cfb5220420e
+		summarizeBy: none
+		sourceColumn: industry_title
+
+		annotation SummarizationSetBy = User
+
+	column naics_sector
+		dataType: string
+		lineageTag: 7742bc9e-239c-46c6-abff-124968287420
+		summarizeBy: none
+		sourceColumn: naics_sector
+
+		annotation SummarizationSetBy = User
+
+	column rank_in_job
+		dataType: int64
+		formatString: 0
+		lineageTag: 1690f72e-727e-4a47-90aa-af1062892b01
+		summarizeBy: none
+		sourceColumn: rank_in_job
+
+		annotation SummarizationSetBy = User
+
+	column share_of_job
+		dataType: double
+		lineageTag: 205efae4-2a1b-4f40-9dc6-14614f94fd18
+		summarizeBy: none
+		sourceColumn: share_of_job
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column share_of_industry
+		dataType: double
+		lineageTag: 0b0be9f7-36ba-44fb-9ad3-8fa23f8c3ffe
+		summarizeBy: none
+		sourceColumn: share_of_industry
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column emp_ny_2025
+		dataType: double
+		lineageTag: b513e2e6-45a3-4d29-84b2-7a96adf1ea1a
+		summarizeBy: none
+		sourceColumn: emp_ny_2025
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ny_emp_prse
+		dataType: double
+		lineageTag: 49d6470f-5cb3-4b5d-83ac-137afad0a75e
+		summarizeBy: none
+		sourceColumn: ny_emp_prse
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column nyc_pattern_share_2025
+		dataType: double
+		lineageTag: e65f9e05-0647-4240-9d4f-5ddf6d9d8a6d
+		summarizeBy: none
+		sourceColumn: nyc_pattern_share_2025
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column nyc_sector_jobs_2025
+		dataType: double
+		lineageTag: cc81739d-9a26-46a9-934b-c946c1df2e41
+		summarizeBy: none
+		sourceColumn: nyc_sector_jobs_2025
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column nyc_jobs_in_sector_2025_est
+		dataType: double
+		lineageTag: 5edee423-4caa-490a-abf8-637a185c3199
+		summarizeBy: none
+		sourceColumn: nyc_jobs_in_sector_2025_est
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pattern_quality_flag
+		dataType: string
+		lineageTag: 45b1881f-0277-40a1-87cc-571bdd93dc75
+		summarizeBy: none
+		sourceColumn: pattern_quality_flag
+
+		annotation SummarizationSetBy = User
+
+	column separation_rate_2024
+		dataType: double
+		lineageTag: bb971e87-37f2-4ed2-b84e-c3795dffcbbf
+		summarizeBy: none
+		sourceColumn: separation_rate_2024
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column new_hire_rate_2024
+		dataType: double
+		lineageTag: d6cb1ac8-022b-4c35-954f-bd734e26d1f7
+		summarizeBy: none
+		sourceColumn: new_hire_rate_2024
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column separation_rate_2019
+		dataType: double
+		lineageTag: 332778bf-5f5e-40b4-93c7-cae35c478333
+		summarizeBy: none
+		sourceColumn: separation_rate_2019
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column new_hire_rate_2019
+		dataType: double
+		lineageTag: 6587a173-2333-47bf-8abc-90a6da545692
+		summarizeBy: none
+		sourceColumn: new_hire_rate_2019
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column has_qwi_rate
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 14fc0830-eb93-4c29-8ced-025506c12eb6
+		summarizeBy: none
+		sourceColumn: has_qwi_rate
+
+		annotation SummarizationSetBy = User
+
+	column rate_note
+		dataType: string
+		lineageTag: 8cb159a5-8bdb-47fc-991b-c1116238f411
+		summarizeBy: none
+		sourceColumn: rate_note
+
+		annotation SummarizationSetBy = User
+
+	column break_note
+		dataType: string
+		lineageTag: 44ec0777-b7a0-462e-852b-d0069e86476a
+		summarizeBy: none
+		sourceColumn: break_note
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: e1de9702-b466-4ce0-802e-942bccbdedfa
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column source_key_churn
+		dataType: string
+		lineageTag: bebb0f09-72e3-4503-8da8-573898889dee
+		summarizeBy: none
+		sourceColumn: source_key_churn
+
+		annotation SummarizationSetBy = User
+
+	column source_key_nyc_jobs
+		dataType: string
+		lineageTag: c4e3e570-b6fc-4d83-a11e-70813b0d135c
+		summarizeBy: none
+		sourceColumn: source_key_nyc_jobs
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: ce071adf-e226-4014-ae14-a9a746e9e10e
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	column industry_short_title
+		dataType: string
+		lineageTag: a87af136-cf64-573d-a96a-9e791cf28964
+		summarizeBy: none
+		sourceColumn: industry_short_title
+
+		annotation SummarizationSetBy = User
+
+	partition job_industry_mix = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "job_industry_mix"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

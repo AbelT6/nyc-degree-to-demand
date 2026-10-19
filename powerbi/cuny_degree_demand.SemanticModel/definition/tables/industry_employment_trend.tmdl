@@ -1,0 +1,186 @@
+table industry_employment_trend
+	lineageTag: 37c52ac6-8c1d-45a5-ace9-44882e175f72
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 744177da-23d8-4f0e-95b7-e2a4a3ebf022
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = User
+
+	column year_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f9748f32-3b63-4232-9811-90768a8b1789
+		summarizeBy: none
+		sourceColumn: year_start
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column area_key
+		dataType: string
+		lineageTag: b6e4eb9a-1922-48a0-b38f-a41f29d72f36
+		summarizeBy: none
+		sourceColumn: area_key
+
+		annotation SummarizationSetBy = User
+
+	column ownership
+		dataType: string
+		lineageTag: 63aedcf5-6359-4fff-b6f0-f2634177462f
+		summarizeBy: none
+		sourceColumn: ownership
+
+		annotation SummarizationSetBy = User
+
+	column ownership_kind
+		dataType: string
+		lineageTag: d8a0e3ff-758e-4306-b6a3-1c3154351490
+		summarizeBy: none
+		sourceColumn: ownership_kind
+
+		annotation SummarizationSetBy = User
+
+	column industry_key
+		dataType: string
+		lineageTag: ece46a3e-227b-40f8-8546-5c50a9a8a71a
+		summarizeBy: none
+		sourceColumn: industry_key
+
+		annotation SummarizationSetBy = User
+
+	column establishments
+		dataType: double
+		lineageTag: cbb8de47-5d74-40dc-ab6f-7feabbab8a13
+		summarizeBy: none
+		sourceColumn: establishments
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column employment
+		dataType: double
+		lineageTag: e9871b1c-be57-4060-8597-66f606151a3b
+		summarizeBy: none
+		sourceColumn: employment
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_wages
+		dataType: double
+		lineageTag: eeb33875-d5b4-4a9e-965e-b1e1e1d2c6b4
+		summarizeBy: none
+		sourceColumn: total_wages
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_annual_pay
+		dataType: double
+		lineageTag: 16b2edfd-7ad5-43bf-b64a-5adca2f8c333
+		summarizeBy: none
+		sourceColumn: avg_annual_pay
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column disclosed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f8d9663c-66a3-4782-9578-7d8396e90871
+		summarizeBy: none
+		sourceColumn: disclosed
+
+		annotation SummarizationSetBy = User
+
+	column is_total_row
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ca542ac6-1f0a-4936-aaa8-37496c27cbed
+		summarizeBy: none
+		sourceColumn: is_total_row
+
+		annotation SummarizationSetBy = User
+
+	column is_leaf_row
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e6c8d5c3-f76c-45d4-ba73-7288f4955963
+		summarizeBy: none
+		sourceColumn: is_leaf_row
+
+		annotation SummarizationSetBy = User
+
+	column is_ownership_total
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ff78a548-4ebd-4e96-b936-3b97330c72a7
+		summarizeBy: none
+		sourceColumn: is_ownership_total
+
+		annotation SummarizationSetBy = User
+
+	column employment_2019
+		dataType: double
+		lineageTag: 43440f23-b7be-48e8-a853-62deea315d73
+		summarizeBy: none
+		sourceColumn: employment_2019
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column change_vs_2019
+		dataType: double
+		lineageTag: 7a3c2328-44fd-4d37-b7d3-a451c4094d4e
+		summarizeBy: none
+		sourceColumn: change_vs_2019
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_change_vs_2019
+		dataType: double
+		lineageTag: 67f9cfdb-353f-4793-b413-6c0da5b86e4b
+		summarizeBy: none
+		sourceColumn: pct_change_vs_2019
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column source_key
+		dataType: string
+		lineageTag: 8d7bd8c6-6cc2-442c-89b6-c8bd961f9131
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: 0d15e90d-0d36-4bc7-9d8d-0e51a1c19a56
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	partition industry_employment_trend = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "industry_employment_trend"]}[Data]
+				in
+				  #"Navigation 1"
+

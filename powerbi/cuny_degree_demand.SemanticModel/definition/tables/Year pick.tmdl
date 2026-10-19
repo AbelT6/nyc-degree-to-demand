@@ -1,0 +1,25 @@
+table 'Year pick'
+	lineageTag: e853ebce-a0de-5ec2-a1ef-a485fafdd11c
+
+	/// The year the job page's readouts show, from the slider; the last year of job_employment_trend (2025) when nothing is picked.
+	measure 'Year pick value' = SELECTEDVALUE ( 'Year pick'[Year pick], [Last year] )
+		formatString: 0
+		lineageTag: 482cc447-70e4-5cc6-b818-f8c3a735e6ba
+
+	column 'Year pick'
+		dataType: int64
+		formatString: 0
+		lineageTag: 11399368-9be8-58af-94b7-82b02d522b50
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Year pick' = calculated
+		mode: import
+		source = GENERATESERIES ( MIN ( job_employment_trend[year] ), MAX ( job_employment_trend[year] ), 1 )

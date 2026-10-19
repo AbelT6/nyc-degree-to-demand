@@ -1,0 +1,65 @@
+relationship 52a3e4e6-b9f7-49f3-9c12-b913ace2f277
+	fromColumn: job_profile.soc_code
+	toColumn: dim_job.soc_code
+
+relationship 067b5fca-fe5c-4c25-8676-68e2b1c75701
+	fromColumn: dim_job.degree_level_key
+	toColumn: dim_degree_level.degree_level_key
+
+relationship d102beb8-7934-4d86-9a3e-a820e22a3a95
+	crossFilteringBehavior: bothDirections
+	fromColumn: bridge_job_cluster.soc_code
+	toColumn: dim_job.soc_code
+
+relationship d33eae5e-cd06-4ae5-87e0-2906cfe06e56
+	fromColumn: bridge_job_cluster.subcluster_id
+	toColumn: dim_cluster.subcluster_id
+
+relationship e708e266-18ee-4faa-8a5f-8e81d9262988
+	fromColumn: industry_profile.industry_key
+	toColumn: dim_industry.industry_key
+
+relationship b608001e-3b26-5060-b97a-22ffd1d40de4
+	fromColumn: job_entry_signal.soc_code
+	toColumn: dim_job.soc_code
+
+relationship ce656835-f94b-5d32-8501-a7ebdf351a85
+	fromColumn: job_skill_top.soc_code
+	toColumn: dim_job.soc_code
+
+relationship 76318144-6804-534d-a8b5-044f0ed5436c
+	fromColumn: job_skill_demand.soc_code
+	toColumn: dim_job.soc_code
+
+relationship b9a9ccc7-ce40-53e7-bc8b-d50314669261
+	fromColumn: job_major_link.soc_code
+	toColumn: dim_job.soc_code
+
+relationship f216fac5-59da-5985-9fd8-d828022f03ad
+	fromColumn: job_industry_mix.soc_code
+	toColumn: dim_job.soc_code
+
+relationship f409ea89-23c6-5c86-a594-0fed9fb5bce7
+	fromColumn: job_employment_trend.soc_code
+	toColumn: dim_job.soc_code
+
+relationship 878809f4-836a-5ea0-a072-85cd3a183354
+	fromColumn: job_escape_route.origin_soc_code
+	toColumn: dim_job.soc_code
+
+relationship a65130d0-6b42-5e1f-af23-4a203ef7c827
+	fromColumn: job_major_link.major_award_key
+	toColumn: dim_major.major_award_key
+
+relationship 76a40df3-b20f-56ea-ba50-c86648edc3f8
+	fromColumn: major_supply_demand.major_award_key
+	toColumn: dim_major.major_award_key
+
+relationship 001c5c29-e516-5f01-8db5-af307c968450
+	fromColumn: major_awards_trend.major_award_key
+	toColumn: dim_major.major_award_key
+
+relationship c34ddc21-568b-589d-9933-d8d206b309e3
+	fromColumn: major_awards_trend.unitid
+	toColumn: dim_college.unitid
+

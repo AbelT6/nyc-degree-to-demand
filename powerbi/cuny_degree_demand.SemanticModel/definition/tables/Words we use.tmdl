@@ -1,0 +1,36 @@
+table 'Words we use'
+	lineageTag: 37a000b1-daff-5690-a7df-2ab7e95142af
+
+	column Term
+		dataType: string
+		lineageTag: 955db6bd-5efa-594a-9d14-08d03fb035e5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Term]
+		sortByColumn: sort_order
+
+		annotation SummarizationSetBy = User
+
+	column Meaning
+		dataType: string
+		lineageTag: 689f63d0-c40c-53a8-885e-683e84bf2ddc
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Meaning]
+
+		annotation SummarizationSetBy = User
+
+	column sort_order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 520af45f-54c0-5de2-b444-420efce42c41
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [sort_order]
+
+		annotation SummarizationSetBy = User
+
+	partition 'Words we use' = calculated
+		mode: import
+		source = DATATABLE ( "Term", STRING, "Meaning", STRING, "sort_order", INTEGER, { { "Degree-level job", "Usually needs an associate's or bachelor's degree to start (BLS), like registered nurse. Master's-level jobs appear only to compare.", 1 }, { "Less schooling", "Usually needs less than an associate's degree", 2 }, { "Openings a year", "Jobs to fill each year, 2022–2032 (projected): new jobs plus replacements", 3 }, { "No related experience", "BLS's typical rating for the occupation, not what each employer asks", 4 }, { "Entry wage", "NY State's term: average pay of a job's lowest-paid third; not an offer", 5 }, { "Median", "The middle value: half are higher, half are lower", 6 }, { "After inflation", "Adjusted for rising prices, so pay in different years compares fairly", 7 }, { "NY metro", "NYC and nearby counties in NY and NJ (and PA until 2023)", 8 }, { "CUNY", "The City University of New York, the city's public university system", 9 }, { "AI exposure", "How much AI could change a job's tasks, vs. other jobs (BLS). Not job loss", 10 }, { "Our estimate", "We made it by combining public numbers; the Notes page says how", 11 } } )

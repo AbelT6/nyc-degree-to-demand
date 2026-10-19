@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "grp_details",
+  "position": {
+    "x": 24,
+    "y": 274,
+    "z": 82000,
+    "height": 426,
+    "width": 1232
+  },
+  "visualGroup": {
+    "displayName": "Details view",
+    "groupMode": "ScaleMode"
+  },
+  "isHidden": true
+}

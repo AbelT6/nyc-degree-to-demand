@@ -1,0 +1,190 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "jobs",
+  "displayName": "Jobs",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "s1_list",
+      "target": "s2_list",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s1_list",
+      "target": "list1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s1_list",
+      "target": "list2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s1_list",
+      "target": "hdr_answer_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s1_list",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s1_list",
+      "target": "list1_below",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s1_list",
+      "target": "s1_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s1_list",
+      "target": "s2_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s1_list",
+      "target": "d1_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s2_list",
+      "target": "s1_list",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s2_list",
+      "target": "list1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s2_list",
+      "target": "list2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s2_list",
+      "target": "hdr_answer_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s2_list",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s2_list",
+      "target": "list1_below",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s2_list",
+      "target": "s1_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s2_list",
+      "target": "s2_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s2_list",
+      "target": "d1_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list1",
+      "target": "s1_list",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list1",
+      "target": "s2_list",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list1",
+      "target": "list2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list1",
+      "target": "hdr_answer_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list1",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list1",
+      "target": "list1_below",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list1",
+      "target": "s1_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list1",
+      "target": "s2_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list1",
+      "target": "d1_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list2",
+      "target": "s1_list",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list2",
+      "target": "s2_list",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list2",
+      "target": "list1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list2",
+      "target": "hdr_answer_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list2",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list2",
+      "target": "list1_below",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list2",
+      "target": "s1_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list2",
+      "target": "s2_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "list2",
+      "target": "d1_sub",
+      "type": "NoFilter"
+    }
+  ]
+}

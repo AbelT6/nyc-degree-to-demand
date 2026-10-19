@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "cuny_degree_demand"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7996b6e1-68d4-4ea0-9c81-fa546a431975"
+  }
+}

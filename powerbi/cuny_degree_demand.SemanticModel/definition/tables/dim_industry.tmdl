@@ -1,0 +1,95 @@
+table dim_industry
+	lineageTag: dcf86399-24da-4cf2-88a3-f0d013d715af
+
+	column industry_key
+		dataType: string
+		lineageTag: 95795fad-2caf-4f02-8d28-710d36d1935c
+		summarizeBy: none
+		sourceColumn: industry_key
+
+		annotation SummarizationSetBy = User
+
+	column level
+		dataType: string
+		lineageTag: 750b620e-e689-4d59-a636-0204a192e330
+		summarizeBy: none
+		sourceColumn: level
+
+		annotation SummarizationSetBy = User
+
+	column industry_title
+		dataType: string
+		lineageTag: 0c5b456f-9e27-4907-995c-2afd320897e2
+		summarizeBy: none
+		sourceColumn: industry_title
+
+		annotation SummarizationSetBy = User
+
+	column industry_short_title
+		dataType: string
+		lineageTag: 7488f4af-ee28-4f04-97b9-d6c4f42ce24d
+		summarizeBy: none
+		sourceColumn: industry_short_title
+
+		annotation SummarizationSetBy = User
+
+	column naics_sector
+		dataType: string
+		lineageTag: e77b7c1e-e5d1-4e96-94ff-cc1e3da9f90b
+		summarizeBy: none
+		sourceColumn: naics_sector
+
+		annotation SummarizationSetBy = User
+
+	column is_naics
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 27cccfe1-3319-42de-919e-b37c46a06118
+		summarizeBy: none
+		sourceColumn: is_naics
+
+		annotation SummarizationSetBy = User
+
+	column sort_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 6aae72c0-1efc-4a8d-92df-1e89e739ce0f
+		summarizeBy: none
+		sourceColumn: sort_order
+
+		annotation SummarizationSetBy = User
+
+	column ces_supersector_title
+		dataType: string
+		lineageTag: c9391a1e-2e69-44bc-b8f9-24afe5b3e9f8
+		summarizeBy: none
+		sourceColumn: ces_supersector_title
+
+		annotation SummarizationSetBy = User
+
+	column break_note
+		dataType: string
+		lineageTag: 621a0493-dd31-48e7-a70d-da626f6263a2
+		summarizeBy: none
+		sourceColumn: break_note
+
+		annotation SummarizationSetBy = User
+
+	column is_sector
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a86e2520-2b7c-4cf2-94fb-31feee3f935c
+		summarizeBy: none
+		sourceColumn: is_sector
+
+		annotation SummarizationSetBy = User
+
+	partition dim_industry = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "dim_industry"]}[Data]
+				in
+				  #"Navigation 1"
+

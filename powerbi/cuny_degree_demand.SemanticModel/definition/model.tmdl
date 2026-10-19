@@ -1,0 +1,58 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["bridge_industry_cluster","bridge_job_cluster","bridge_major_cluster","dim_area","dim_cluster","dim_college","dim_date","dim_degree_level","dim_field","dim_industry","dim_job","dim_major","dim_source","footnote","grad_outcome_destination","grad_outcome_field","hottest_jobs","industry_employment_monthly","industry_employment_trend","industry_hiring_trend","industry_profile","job_employment_trend","job_entry_signal","job_escape_route","job_industry_mix","job_major_link","job_profile","job_skill_top","job_skill_demand","labor_market_monthly","major_awards_trend","major_supply_demand","overview_kpi"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table bridge_industry_cluster
+ref table bridge_job_cluster
+ref table bridge_major_cluster
+ref table dim_area
+ref table dim_cluster
+ref table dim_college
+ref table dim_date
+ref table dim_degree_level
+ref table dim_field
+ref table dim_industry
+ref table dim_job
+ref table dim_major
+ref table dim_source
+ref table footnote
+ref table grad_outcome_destination
+ref table grad_outcome_field
+ref table hottest_jobs
+ref table industry_employment_monthly
+ref table industry_employment_trend
+ref table industry_hiring_trend
+ref table industry_profile
+ref table job_employment_trend
+ref table job_entry_signal
+ref table job_escape_route
+ref table job_industry_mix
+ref table job_major_link
+ref table job_profile
+ref table job_skill_top
+ref table labor_market_monthly
+ref table major_awards_trend
+ref table major_supply_demand
+ref table overview_kpi
+ref table _Measures
+ref table list2_ranking
+ref table job_skill_demand
+ref table 'Year pick'
+ref table 'Experience band'
+ref table 'Words we use'
+ref table 'Kinds of number'
+
+ref cultureInfo en-US
+

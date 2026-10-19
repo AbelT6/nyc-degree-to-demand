@@ -1,0 +1,45 @@
+table 'Kinds of number'
+	lineageTag: 6d591629-f9db-5c85-b645-ca3e255f3189
+
+	column 'Kind of number'
+		dataType: string
+		lineageTag: 7ab15e9d-b903-5bd7-9c91-37c36fea4438
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Kind of number]
+		sortByColumn: sort_order
+
+		annotation SummarizationSetBy = User
+
+	column 'What it means'
+		dataType: string
+		lineageTag: 29065250-c187-536e-b45b-97fca1a2c275
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [What it means]
+
+		annotation SummarizationSetBy = User
+
+	column 'How we show it'
+		dataType: string
+		lineageTag: 551e7c48-1a8b-5dcb-8050-41b0bd93ab9e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [How we show it]
+
+		annotation SummarizationSetBy = User
+
+	column sort_order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 397b295e-563e-57df-8748-2f405135f709
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [sort_order]
+
+		annotation SummarizationSetBy = User
+
+	partition 'Kinds of number' = calculated
+		mode: import
+		source = DATATABLE ( "Kind of number", STRING, "What it means", STRING, "How we show it", STRING, "sort_order", INTEGER, { { "Counted", "Someone counted real records, like degrees awarded or payroll jobs", "As counted; “provisional” means it may still change", 1 }, { "Agency estimate", "A government agency estimated it from a survey, like pay", "As published; “about the same” if two are too close to call", 2 }, { "Projection", "A forecast of the future, like openings a year", "Rounded, with “about”; ranks like “top 10” or “around 50th”", 3 }, { "Our estimate", "We combined public numbers, like NYC people in each job", "Says “our estimate”; the notes below say how", 4 }, { "Someone's scale", "A rating another group made, like AI exposure or experience asked (both U.S. Bureau of Labor Statistics)", "Says who made it and what it doesn't mean (“not job loss”)", 5 } } )

@@ -1,0 +1,88 @@
+table dim_source
+	lineageTag: c4db50d0-ddcf-4a9a-88f3-2bb2f140eae1
+
+	column source_key
+		dataType: string
+		lineageTag: da13d9e7-cdbb-46b2-bd3c-a67663dfd0be
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column publisher
+		dataType: string
+		lineageTag: 45654fb6-9eb7-4b05-b62d-69c2f3c7f253
+		summarizeBy: none
+		sourceColumn: publisher
+
+		annotation SummarizationSetBy = User
+
+	column dataset
+		dataType: string
+		lineageTag: 2b8ffb5a-e5aa-409b-9a1a-c0fae1900ef2
+		summarizeBy: none
+		sourceColumn: dataset
+
+		annotation SummarizationSetBy = User
+
+	column edition
+		dataType: string
+		lineageTag: 237c2a82-1962-4194-8e5b-c91731b0b07e
+		summarizeBy: none
+		sourceColumn: edition
+
+		annotation SummarizationSetBy = User
+
+	column retrieved_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9d347628-e2a2-4881-af15-67699728b688
+		summarizeBy: none
+		sourceColumn: retrieved_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column is_government
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0e86a1b4-1344-46d5-a869-d31e01210d2d
+		summarizeBy: none
+		sourceColumn: is_government
+
+		annotation SummarizationSetBy = User
+
+	column label
+		dataType: string
+		lineageTag: d3dd3654-d182-404c-9ab7-4dd49aa2f03b
+		summarizeBy: none
+		sourceColumn: label
+
+		annotation SummarizationSetBy = User
+
+	column label_long
+		dataType: string
+		lineageTag: fdf2416f-1178-4e4b-a0fb-b4e7b3c54774
+		summarizeBy: none
+		sourceColumn: label_long
+
+		annotation SummarizationSetBy = User
+
+	column landing_url
+		dataType: string
+		lineageTag: 2e341fbd-a3dc-4345-bd3e-946e46f2a9b2
+		summarizeBy: none
+		sourceColumn: landing_url
+
+		annotation SummarizationSetBy = User
+
+	partition dim_source = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "dim_source"]}[Data]
+				in
+				  #"Navigation 1"
+

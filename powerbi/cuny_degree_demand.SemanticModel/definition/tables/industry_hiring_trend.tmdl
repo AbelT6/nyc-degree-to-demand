@@ -1,0 +1,271 @@
+table industry_hiring_trend
+	lineageTag: cdec8b8b-75ab-42ec-8b4f-bb7aa8fee92d
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: ec74e66b-d5ee-4604-b6ee-5ca3898275a4
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = User
+
+	column year_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b1eb36d3-21ba-4d31-8027-4abf9e1e65aa
+		summarizeBy: none
+		sourceColumn: year_start
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column area_key
+		dataType: string
+		lineageTag: ce354bc3-e059-4fbb-9a86-3fa42399dba1
+		summarizeBy: none
+		sourceColumn: area_key
+
+		annotation SummarizationSetBy = User
+
+	column industry_key
+		dataType: string
+		lineageTag: aeacbf2b-f937-4426-84f2-46ae0ac27366
+		summarizeBy: none
+		sourceColumn: industry_key
+
+		annotation SummarizationSetBy = User
+
+	column is_total_row
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 01928566-9e94-44d5-b378-b0f276820cc6
+		summarizeBy: none
+		sourceColumn: is_total_row
+
+		annotation SummarizationSetBy = User
+
+	column is_leaf_row
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4ba5f107-8c46-485f-b44a-61d77f15466f
+		summarizeBy: none
+		sourceColumn: is_leaf_row
+
+		annotation SummarizationSetBy = User
+
+	column n_cells
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d02a018-7c09-4e13-bedb-c9b8e70745b9
+		summarizeBy: none
+		sourceColumn: n_cells
+
+		annotation SummarizationSetBy = User
+
+	column quarters_in_year
+		dataType: int64
+		formatString: 0
+		lineageTag: bf28da48-f768-4995-b0cd-38d2d7ef274a
+		summarizeBy: none
+		sourceColumn: quarters_in_year
+
+		annotation SummarizationSetBy = User
+
+	column is_complete_year
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5e93f395-4a2b-4c02-aba5-77770727235f
+		summarizeBy: none
+		sourceColumn: is_complete_year
+
+		annotation SummarizationSetBy = User
+
+	column quarters_released_separations
+		dataType: int64
+		formatString: 0
+		lineageTag: b4a5edf2-f30b-45f0-b3d3-8726d436800f
+		summarizeBy: none
+		sourceColumn: quarters_released_separations
+
+		annotation SummarizationSetBy = User
+
+	column quarters_released_hires
+		dataType: int64
+		formatString: 0
+		lineageTag: 0ddf93df-705d-4300-939b-057de4a62ca7
+		summarizeBy: none
+		sourceColumn: quarters_released_hires
+
+		annotation SummarizationSetBy = User
+
+	column n_cells_separations
+		dataType: int64
+		formatString: 0
+		lineageTag: 7cb0f19f-e1ca-4981-a943-f0adb32ae7ee
+		summarizeBy: none
+		sourceColumn: n_cells_separations
+
+		annotation SummarizationSetBy = User
+
+	column n_cells_hires
+		dataType: int64
+		formatString: 0
+		lineageTag: 712875cd-ff0f-4772-b5a0-b822b73e73be
+		summarizeBy: none
+		sourceColumn: n_cells_hires
+
+		annotation SummarizationSetBy = User
+
+	column emp_begin_sum
+		dataType: double
+		lineageTag: 576565a6-8d23-4164-8392-38fdd8c33769
+		summarizeBy: none
+		sourceColumn: emp_begin_sum
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column emp_begin_avg
+		dataType: double
+		lineageTag: c669f17c-b07b-428e-bbce-7409098686db
+		summarizeBy: none
+		sourceColumn: emp_begin_avg
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hires_new
+		dataType: double
+		lineageTag: 756a9aee-9da6-463a-befe-fa8167458517
+		summarizeBy: none
+		sourceColumn: hires_new
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hires_all
+		dataType: double
+		lineageTag: d99a31ee-529e-4037-a214-42ced4389c51
+		summarizeBy: none
+		sourceColumn: hires_all
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column separations
+		dataType: double
+		lineageTag: be522767-ff12-40a3-95f7-e9d3cce1bfd0
+		summarizeBy: none
+		sourceColumn: separations
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column separation_rate
+		dataType: double
+		lineageTag: 23adae23-2042-44c3-8dd8-51f0fc38a8cd
+		summarizeBy: none
+		sourceColumn: separation_rate
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column new_hire_rate
+		dataType: double
+		lineageTag: d3d29cc6-de3a-4a0d-8b91-d51485304d3f
+		summarizeBy: none
+		sourceColumn: new_hire_rate
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hires_new_bachelor_plus_25plus
+		dataType: double
+		lineageTag: c17a64f1-57a8-4479-8d1a-1ae85f2bbcb0
+		summarizeBy: none
+		sourceColumn: hires_new_bachelor_plus_25plus
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hires_new_25plus
+		dataType: double
+		lineageTag: 494014a5-372a-4120-bd1d-794be53caee0
+		summarizeBy: none
+		sourceColumn: hires_new_25plus
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column bachelor_share_hires_25plus
+		dataType: double
+		lineageTag: bfb68109-38f7-4a1d-85e0-4c99edcc2696
+		summarizeBy: none
+		sourceColumn: bachelor_share_hires_25plus
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column n_cells_education
+		dataType: int64
+		formatString: 0
+		lineageTag: 508bb91a-a4f7-4ef8-b5d1-961711c829cb
+		summarizeBy: none
+		sourceColumn: n_cells_education
+
+		annotation SummarizationSetBy = User
+
+	column is_series_break
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f175914a-dcc8-4a7e-9dac-cb60a3d4a66a
+		summarizeBy: none
+		sourceColumn: is_series_break
+
+		annotation SummarizationSetBy = User
+
+	column rate_note
+		dataType: string
+		lineageTag: f85b9a27-75ca-45c9-947a-a47f72c875e3
+		summarizeBy: none
+		sourceColumn: rate_note
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: c9df70c8-5e37-4fda-98d3-be209b03427f
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: e5010f2f-236b-476d-8ad1-ae35377dc8f1
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	partition industry_hiring_trend = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "industry_hiring_trend"]}[Data]
+				in
+				  #"Navigation 1"
+

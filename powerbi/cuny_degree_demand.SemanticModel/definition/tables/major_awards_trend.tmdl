@@ -1,0 +1,147 @@
+table major_awards_trend
+	lineageTag: c8b1bc4e-c0a7-4dcc-84e7-a1057b9b4001
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e05d052-2fa2-49af-b5ac-1b99a6a917fe
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = User
+
+	column year_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7d0f5a35-2d61-4ae0-a0c6-ba0314862c57
+		summarizeBy: none
+		sourceColumn: year_start
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column major_award_key
+		dataType: string
+		lineageTag: 8d705eec-7869-4d3c-b63c-3bda998a8bf6
+		summarizeBy: none
+		sourceColumn: major_award_key
+
+		annotation SummarizationSetBy = User
+
+	column cip_code
+		dataType: string
+		lineageTag: 5842e45c-8ea8-443e-89a9-7dd986dedaf0
+		summarizeBy: none
+		sourceColumn: cip_code
+
+		annotation SummarizationSetBy = User
+
+	column award_level
+		dataType: int64
+		formatString: 0
+		lineageTag: fe3eba72-fb66-4682-964c-97e43e95cecc
+		summarizeBy: none
+		sourceColumn: award_level
+
+		annotation SummarizationSetBy = User
+
+	column unitid
+		dataType: string
+		lineageTag: d8fc7f97-a56b-45a3-b5d5-30069c85eae5
+		summarizeBy: none
+		sourceColumn: unitid
+
+		annotation SummarizationSetBy = User
+
+	column is_cuny
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b586bde6-5cc6-4bce-a558-21a531011151
+		summarizeBy: none
+		sourceColumn: is_cuny
+
+		annotation SummarizationSetBy = User
+
+	column college_group
+		dataType: string
+		lineageTag: f535aba7-aa7b-4187-9dc9-e1f441733f97
+		summarizeBy: none
+		sourceColumn: college_group
+
+		annotation SummarizationSetBy = User
+
+	column awards
+		dataType: double
+		lineageTag: b753b9d5-8d7e-49d5-9177-2b088e901e7b
+		summarizeBy: none
+		sourceColumn: awards
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column awards_men
+		dataType: double
+		lineageTag: c564e64d-7929-4edf-ab48-8b95dff61bc7
+		summarizeBy: none
+		sourceColumn: awards_men
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column awards_women
+		dataType: double
+		lineageTag: 71ba881e-e74d-4908-b47e-02f8fd3971fb
+		summarizeBy: none
+		sourceColumn: awards_women
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column release
+		dataType: string
+		lineageTag: a45d69bb-18a3-4962-b17f-b3c935e505f5
+		summarizeBy: none
+		sourceColumn: release
+
+		annotation SummarizationSetBy = User
+
+	column is_provisional
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4bd65aed-6c9d-492a-b529-92311fa4df1a
+		summarizeBy: none
+		sourceColumn: is_provisional
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: 31e0be0f-317d-4f5b-8682-4fb7ddbfed36
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: e59e0e07-85c3-44df-b982-caff4fb871b7
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	partition major_awards_trend = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "major_awards_trend"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

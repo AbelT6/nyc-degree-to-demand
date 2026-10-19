@@ -1,0 +1,152 @@
+table labor_market_monthly
+	lineageTag: d92a3b21-f4a4-4f13-9ddc-3ba550fa7b15
+
+	column month_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 03ce4037-7b53-484e-ab93-75e103d93fae
+		summarizeBy: none
+		sourceColumn: month_start
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 97ef9b4f-8f2f-4dc6-9f2c-f87d6eb130ce
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = User
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: abcb22ba-5fb7-4b15-8552-ca09b2f7e324
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = User
+
+	column measure_key
+		dataType: string
+		lineageTag: 97d0d291-7df4-466d-af29-6da122c06e29
+		summarizeBy: none
+		sourceColumn: measure_key
+
+		annotation SummarizationSetBy = User
+
+	column measure_label
+		dataType: string
+		lineageTag: cf34ce2c-46d9-4715-92f2-de1a2ae8ac72
+		summarizeBy: none
+		sourceColumn: measure_label
+
+		annotation SummarizationSetBy = User
+
+	column unit
+		dataType: string
+		lineageTag: 8788c7e9-94e8-46c4-a30e-1323222edef9
+		summarizeBy: none
+		sourceColumn: unit
+
+		annotation SummarizationSetBy = User
+
+	column area_key
+		dataType: string
+		lineageTag: 4e91f7bf-9e32-4779-acde-bd044ba8425b
+		summarizeBy: none
+		sourceColumn: area_key
+
+		annotation SummarizationSetBy = User
+
+	column measure_code
+		dataType: string
+		lineageTag: 7404ec71-b05e-4d82-b785-390207d2403e
+		summarizeBy: none
+		sourceColumn: measure_code
+
+		annotation SummarizationSetBy = User
+
+	column seasonal
+		dataType: string
+		lineageTag: a6a6a6a4-668a-41c9-ba12-0bc309a3838a
+		summarizeBy: none
+		sourceColumn: seasonal
+
+		annotation SummarizationSetBy = User
+
+	column is_seasonally_adjusted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 36fc9059-a97b-48b5-907c-1246f7649482
+		summarizeBy: none
+		sourceColumn: is_seasonally_adjusted
+
+		annotation SummarizationSetBy = User
+
+	column is_preferred_series
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5a9d2e30-77b6-485e-9aa6-e2ba624f1762
+		summarizeBy: none
+		sourceColumn: is_preferred_series
+
+		annotation SummarizationSetBy = User
+
+	column value
+		dataType: double
+		lineageTag: 25eb97f4-a02c-4b0d-b503-d064686d5e2a
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_latest_month
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 89869124-c1a4-46b9-94dc-be2b7ca90c9e
+		summarizeBy: none
+		sourceColumn: is_latest_month
+
+		annotation SummarizationSetBy = User
+
+	column note
+		dataType: string
+		lineageTag: 7f0a4c8f-0348-460c-bae4-9bdbd6a91aaa
+		summarizeBy: none
+		sourceColumn: note
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: 0026c309-9b9a-4020-a9b6-6262c8e7da00
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: e71f763b-a57d-42fb-a876-dfad95addeaa
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	partition labor_market_monthly = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "labor_market_monthly"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

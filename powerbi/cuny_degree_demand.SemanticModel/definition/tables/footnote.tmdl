@@ -1,0 +1,95 @@
+table footnote
+	lineageTag: b3434ce3-21cf-46b5-aa1d-2d61a88cd3ed
+
+	column footnote_key
+		dataType: string
+		lineageTag: f123c2cb-a3a4-47cf-a044-a5858e71cf87
+		summarizeBy: none
+		sourceColumn: footnote_key
+
+		annotation SummarizationSetBy = User
+
+	column page_key
+		dataType: string
+		lineageTag: 7d341980-159a-431e-9f35-9a9bf43f514a
+		summarizeBy: none
+		sourceColumn: page_key
+
+		annotation SummarizationSetBy = User
+
+	column subject
+		dataType: string
+		lineageTag: 0367ce56-2631-44af-bdf8-eedf0d453830
+		summarizeBy: none
+		sourceColumn: subject
+
+		annotation SummarizationSetBy = User
+
+	column footnote_text
+		dataType: string
+		lineageTag: 0e8ccfd3-b774-4d85-80a5-ff08c9cd6b1d
+		summarizeBy: none
+		sourceColumn: footnote_text
+
+		annotation SummarizationSetBy = User
+
+	column short_text
+		dataType: string
+		lineageTag: eef4cd7a-cf0c-4668-94ba-591b468211f2
+		summarizeBy: none
+		sourceColumn: short_text
+
+		annotation SummarizationSetBy = User
+
+	column decision_ref
+		dataType: string
+		lineageTag: 449ababe-c469-4da8-9eaa-f2040532079e
+		summarizeBy: none
+		sourceColumn: decision_ref
+
+		annotation SummarizationSetBy = User
+
+	column sort_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 207e1fa7-c9c9-4dec-af0b-bee85f3ebf64
+		summarizeBy: none
+		sourceColumn: sort_order
+
+		annotation SummarizationSetBy = User
+
+	column page_name
+		dataType: string
+		lineageTag: db33afbc-a43c-568e-bbc1-0cf5b2b54d66
+		summarizeBy: none
+		sourceColumn: page_name
+
+		annotation SummarizationSetBy = User
+
+	column page_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ff147f6-598c-55f5-b9c7-45131fbc45c5
+		summarizeBy: none
+		sourceColumn: page_order
+
+		annotation SummarizationSetBy = User
+
+	column note_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 3c992564-a722-5664-af72-bacddf724eb0
+		summarizeBy: none
+		sourceColumn: note_order
+
+		annotation SummarizationSetBy = User
+
+	partition footnote = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "footnote"]}[Data]
+				in
+				  #"Navigation 1"
+

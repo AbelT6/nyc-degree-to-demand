@@ -1,0 +1,420 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "getting_in",
+  "displayName": "Getting in",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "v3_buttons",
+      "target": "hdr_answer_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "hdr_data",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "ctl_area",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "ctl_level",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "open_job_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "v1_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "v1_note",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "v1_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "v2_table",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "v2_all_value",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "foot_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "foot_2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "foot_3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "foot_4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "foot_5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_buttons",
+      "target": "foot_6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "hdr_answer_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "hdr_data",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "ctl_area",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "ctl_level",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "open_job_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "v1_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "v1_note",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "v2_table",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "v2_all_value",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "v3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "v3_buttons",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "v3_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "v3_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "v3_table",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "v3_onet",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "foot_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "foot_2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "foot_3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "foot_4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "foot_5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v1_chart",
+      "target": "foot_6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "hdr_answer_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "hdr_data",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "ctl_area",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "ctl_level",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "open_job_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "v1_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "v1_note",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "v1_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "v2_all_value",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "v3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "v3_buttons",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "v3_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "v3_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "v3_table",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "v3_onet",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "foot_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "foot_2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "foot_3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "foot_4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "foot_5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v2_table",
+      "target": "foot_6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "hdr_answer_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "hdr_data",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "ctl_area",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "ctl_level",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "v1_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "v1_note",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "v1_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "v2_table",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "v2_all_value",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "v3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "v3_buttons",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "v3_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "v3_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "v3_onet",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "foot_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "foot_2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "foot_3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "foot_4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "foot_5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "v3_table",
+      "target": "foot_6",
+      "type": "NoFilter"
+    }
+  ]
+}

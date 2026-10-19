@@ -1,0 +1,37 @@
+table 'Experience band'
+	lineageTag: 1b0173a0-9b2b-595a-9f4c-448b4956586f
+
+	column band_key
+		dataType: string
+		isHidden
+		lineageTag: 905cdce0-2601-5c7d-901d-efc47cfd68ec
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [band_key]
+
+		annotation SummarizationSetBy = User
+
+	column Experience
+		dataType: string
+		lineageTag: 9a1155fc-c60d-53fc-b64a-da178d4fd969
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Experience]
+		sortByColumn: sort_order
+
+		annotation SummarizationSetBy = User
+
+	column sort_order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8256a4f6-efe7-5857-aaf4-b6247557af24
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [sort_order]
+
+		annotation SummarizationSetBy = User
+
+	partition 'Experience band' = calculated
+		mode: import
+		source = UNION ( DISTINCT ( SELECTCOLUMNS ( job_profile, "band_key", job_profile[bls_experience_band], "Experience", job_profile[entry_experience], "sort_order", job_profile[entry_experience_rank] ) ), ROW ( "band_key", "all", "Experience", "All of these jobs", "sort_order", 4 ) )

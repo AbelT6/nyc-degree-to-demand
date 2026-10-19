@@ -1,0 +1,30 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Details",
+  "name": "bm_details",
+  "options": {
+    "targetVisualNames": [
+      "grp_summary",
+      "grp_details"
+    ],
+    "applyOnlyToTargetVisuals": true,
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "job",
+    "sections": {
+      "job": {
+        "visualContainers": {},
+        "visualContainerGroups": {
+          "grp_summary": {
+            "isHidden": true
+          },
+          "grp_details": {
+            "isHidden": false
+          }
+        }
+      }
+    }
+  }
+}

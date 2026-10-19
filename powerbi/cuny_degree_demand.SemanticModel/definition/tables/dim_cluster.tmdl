@@ -1,0 +1,70 @@
+table dim_cluster
+	lineageTag: b853340b-d59d-4f0f-a084-13b8d3758d93
+
+	column subcluster_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 06177b18-2f5f-420d-983c-37edf8dfb2e8
+		summarizeBy: none
+		sourceColumn: subcluster_id
+
+		annotation SummarizationSetBy = User
+
+	column cluster_id
+		dataType: int64
+		formatString: 0
+		lineageTag: fd3f2427-af6f-40af-ba53-4c47fab64798
+		summarizeBy: none
+		sourceColumn: cluster_id
+
+		annotation SummarizationSetBy = User
+
+	column cluster_name
+		dataType: string
+		lineageTag: dd0ff76f-6305-433d-8489-c628a28e0db4
+		summarizeBy: none
+		sourceColumn: cluster_name
+
+		annotation SummarizationSetBy = User
+
+	column subcluster_name
+		dataType: string
+		lineageTag: a8140026-eab1-4b65-b980-1de1d5368e11
+		summarizeBy: none
+		sourceColumn: subcluster_name
+
+		annotation SummarizationSetBy = User
+
+	column featured_area
+		dataType: string
+		lineageTag: 4015be02-46ff-47c7-b385-79262f12af8a
+		summarizeBy: none
+		sourceColumn: featured_area
+
+		annotation SummarizationSetBy = User
+
+	column featured_area_or_other
+		dataType: string
+		lineageTag: d12b8aa8-1481-4489-8919-53d0792e9818
+		summarizeBy: none
+		sourceColumn: featured_area_or_other
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: f69acc4c-d2b1-4f92-a141-df052093753b
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	partition dim_cluster = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "dim_cluster"]}[Data]
+				in
+				  #"Navigation 1"
+

@@ -1,0 +1,179 @@
+table job_skill_top
+	lineageTag: c98025b6-d8ef-4e2b-a7ea-9866c3066cda
+
+	column soc_code
+		dataType: string
+		lineageTag: 034a2213-5ffb-4992-9cfe-e9cfbcaecfb9
+		summarizeBy: none
+		sourceColumn: soc_code
+
+		annotation SummarizationSetBy = User
+
+	column domain
+		dataType: string
+		lineageTag: 0573e488-e7ba-4e6c-a0c0-dfde2805bcdf
+		summarizeBy: none
+		sourceColumn: domain
+
+		annotation SummarizationSetBy = User
+
+	column domain_label
+		dataType: string
+		lineageTag: c176661f-a713-42ea-b873-aa89a14b3135
+		summarizeBy: none
+		sourceColumn: domain_label
+
+		annotation SummarizationSetBy = User
+
+	column domain_sort
+		dataType: int64
+		formatString: 0
+		lineageTag: 8399bc1d-8217-47e8-9c31-4cb94d7cbba5
+		summarizeBy: none
+		sourceColumn: domain_sort
+
+		annotation SummarizationSetBy = User
+
+	column rank
+		dataType: int64
+		formatString: 0
+		lineageTag: ebcdfedd-ab5a-4567-9391-67ba20e6c864
+		summarizeBy: none
+		sourceColumn: rank
+
+		annotation SummarizationSetBy = User
+
+	column element_id
+		dataType: string
+		lineageTag: 30a1ea2b-dc2e-4b51-867c-e025a59b2048
+		summarizeBy: none
+		sourceColumn: element_id
+
+		annotation SummarizationSetBy = User
+
+	column element_name
+		dataType: string
+		lineageTag: 3daa4bab-06bc-409d-8292-5c97eea4b655
+		summarizeBy: none
+		sourceColumn: element_name
+
+		annotation SummarizationSetBy = User
+
+	column importance
+		dataType: double
+		lineageTag: ce9e7e66-2fd9-4c58-a9c8-bd3db47f0a64
+		summarizeBy: none
+		sourceColumn: importance
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column importance_n
+		dataType: double
+		lineageTag: 759cdec5-4cb2-4e24-9a36-c39fc3859925
+		summarizeBy: none
+		sourceColumn: importance_n
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column importance_se
+		dataType: double
+		lineageTag: 7236a85a-b6dc-4302-b398-943561e7149c
+		summarizeBy: none
+		sourceColumn: importance_se
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column level_value
+		dataType: double
+		lineageTag: 41c6186a-6b2d-42bd-b8de-35dced927b35
+		summarizeBy: none
+		sourceColumn: level_value
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_hot_technology
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f6e1c1b6-c6a0-4c83-9379-a98845b9639b
+		summarizeBy: none
+		sourceColumn: is_hot_technology
+
+		annotation SummarizationSetBy = User
+
+	column is_in_demand
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3ce278ba-4d10-4196-a7a2-e130c33a928a
+		summarizeBy: none
+		sourceColumn: is_in_demand
+
+		annotation SummarizationSetBy = User
+
+	column commodity_title
+		dataType: string
+		lineageTag: 1f02fdf3-5a13-4485-9e77-76b03384bc1f
+		summarizeBy: none
+		sourceColumn: commodity_title
+
+		annotation SummarizationSetBy = User
+
+	column n_specialties_listing
+		dataType: int64
+		formatString: 0
+		lineageTag: b6a271d3-34dc-497e-95fd-bcc9f57ce927
+		summarizeBy: none
+		sourceColumn: n_specialties_listing
+
+		annotation SummarizationSetBy = User
+
+	column rollup_rule
+		dataType: string
+		lineageTag: 0daf1e59-ad78-4307-a743-8cbd091f6981
+		summarizeBy: none
+		sourceColumn: rollup_rule
+
+		annotation SummarizationSetBy = User
+
+	column onet_release
+		dataType: string
+		lineageTag: 7a331150-4d3a-4d4f-aa85-ab3709460db1
+		summarizeBy: none
+		sourceColumn: onet_release
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: 0b5708e4-6276-41fc-b92e-d32ddd1a8688
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: 8327dc07-73b0-452a-9d85-5d3479b57b00
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	partition job_skill_top = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "job_skill_top"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

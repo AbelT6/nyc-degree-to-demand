@@ -1,0 +1,29 @@
+table bridge_industry_cluster
+	lineageTag: 892c6525-3dda-41bc-a807-cef872b1148c
+
+	column industry_key
+		dataType: string
+		lineageTag: 83aaa5ca-5621-4fa0-be5d-482e80dc4d6f
+		summarizeBy: none
+		sourceColumn: industry_key
+
+		annotation SummarizationSetBy = User
+
+	column subcluster_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 430ffba8-3a38-498d-9868-728b628aabd9
+		summarizeBy: none
+		sourceColumn: subcluster_id
+
+		annotation SummarizationSetBy = User
+
+	partition bridge_industry_cluster = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "bridge_industry_cluster"]}[Data]
+				in
+				  #"Navigation 1"
+

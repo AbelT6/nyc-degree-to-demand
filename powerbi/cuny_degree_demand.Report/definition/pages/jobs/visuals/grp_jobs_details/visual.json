@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "grp_jobs_details",
+  "position": {
+    "x": 24,
+    "y": 226,
+    "z": 35000,
+    "height": 418,
+    "width": 1232
+  },
+  "visualGroup": {
+    "displayName": "Details view",
+    "groupMode": "ScaleMode"
+  },
+  "isHidden": true
+}

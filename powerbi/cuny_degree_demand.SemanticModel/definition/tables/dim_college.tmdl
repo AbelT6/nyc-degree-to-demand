@@ -1,0 +1,86 @@
+table dim_college
+	lineageTag: d0ebbf58-bf7c-4031-801f-baf895aa8722
+
+	column unitid
+		dataType: string
+		lineageTag: d1da470d-5da3-457d-8ce0-c0a2e53ac8a6
+		summarizeBy: none
+		sourceColumn: unitid
+
+		annotation SummarizationSetBy = User
+
+	column college_name
+		dataType: string
+		lineageTag: c626eb64-33c1-44c9-a22c-a1ea4f0dc0c7
+		summarizeBy: none
+		sourceColumn: college_name
+
+		annotation SummarizationSetBy = User
+
+	column borough
+		dataType: string
+		lineageTag: 528125cd-2aa6-467b-aa38-ba7f9f14f296
+		summarizeBy: none
+		sourceColumn: borough
+
+		annotation SummarizationSetBy = User
+
+	column sector
+		dataType: string
+		lineageTag: cdcbb95f-c35e-406d-8881-ea34f5e2a049
+		summarizeBy: none
+		sourceColumn: sector
+
+		annotation SummarizationSetBy = User
+
+	column control
+		dataType: string
+		lineageTag: 5cc5a59c-4754-494f-a940-204b95ca2118
+		summarizeBy: none
+		sourceColumn: control
+
+		annotation SummarizationSetBy = User
+
+	column is_cuny
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e844a3ff-6dab-44cf-adfb-ead3912c4e04
+		summarizeBy: none
+		sourceColumn: is_cuny
+
+		annotation SummarizationSetBy = User
+
+	column college_group
+		dataType: string
+		lineageTag: be4bb105-4fe0-4917-aa3c-44f6965d84c7
+		summarizeBy: none
+		sourceColumn: college_group
+
+		annotation SummarizationSetBy = User
+
+	column is_closed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0d4f801d-8426-44ad-91f0-10de7228b490
+		summarizeBy: none
+		sourceColumn: is_closed
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: ca047570-d7ec-45d9-9d12-9094c46243fa
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	partition dim_college = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "dim_college"]}[Data]
+				in
+				  #"Navigation 1"
+

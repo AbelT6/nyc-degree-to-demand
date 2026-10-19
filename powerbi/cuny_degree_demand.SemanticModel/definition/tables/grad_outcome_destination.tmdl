@@ -1,0 +1,340 @@
+table grad_outcome_destination
+	lineageTag: ae7d8ffe-aa57-4a65-aa8d-5e61ba51379a
+
+	column fod1p
+		dataType: string
+		lineageTag: bde514d9-d5bb-4603-a53f-7cf8d7417b65
+		summarizeBy: none
+		sourceColumn: fod1p
+
+		annotation SummarizationSetBy = User
+
+	column fod_title
+		dataType: string
+		lineageTag: 5e76b23e-094f-4d27-9289-5202443bc19a
+		summarizeBy: none
+		sourceColumn: fod_title
+
+		annotation SummarizationSetBy = User
+
+	column is_mapped_field
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2f6a183b-fa7c-495d-ae2f-f7e546aba5a9
+		summarizeBy: none
+		sourceColumn: is_mapped_field
+
+		annotation SummarizationSetBy = User
+
+	column soc_code
+		dataType: string
+		lineageTag: 24559755-83e7-41d0-8412-49892b2d520c
+		summarizeBy: none
+		sourceColumn: soc_code
+
+		annotation SummarizationSetBy = User
+
+	column soc_group_code
+		dataType: string
+		lineageTag: a6237b4e-a304-4f65-a333-534f62fa18f7
+		summarizeBy: none
+		sourceColumn: soc_group_code
+
+		annotation SummarizationSetBy = User
+
+	column group_title
+		dataType: string
+		lineageTag: f4d8492d-9b06-4ca7-9055-e14978928c78
+		summarizeBy: none
+		sourceColumn: group_title
+
+		annotation SummarizationSetBy = User
+
+	column age_band
+		dataType: string
+		lineageTag: 821024b9-80c4-4800-8ee3-dd9500c06350
+		summarizeBy: none
+		sourceColumn: age_band
+
+		annotation SummarizationSetBy = User
+
+	column degree_level
+		dataType: string
+		lineageTag: ba2afc3f-f5b3-4e32-8498-aa3d7f8e530f
+		summarizeBy: none
+		sourceColumn: degree_level
+
+		annotation SummarizationSetBy = User
+
+	column n_unweighted
+		dataType: int64
+		formatString: 0
+		lineageTag: 5562f3fe-0276-40b3-951b-6630e2ff3abb
+		summarizeBy: none
+		sourceColumn: n_unweighted
+
+		annotation SummarizationSetBy = User
+
+	column n_ftyr
+		dataType: int64
+		formatString: 0
+		lineageTag: 530fd45c-dc49-4c95-9d86-0e91d6f66881
+		summarizeBy: none
+		sourceColumn: n_ftyr
+
+		annotation SummarizationSetBy = User
+
+	column suppressed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 08b4f410-f2c6-487b-bb63-0114f395f35f
+		summarizeBy: none
+		sourceColumn: suppressed
+
+		annotation SummarizationSetBy = User
+
+	column suppression_note
+		dataType: string
+		lineageTag: 35a5cf64-3c11-4cd8-9320-d53556a5e44b
+		summarizeBy: none
+		sourceColumn: suppression_note
+
+		annotation SummarizationSetBy = User
+
+	column workers
+		dataType: double
+		lineageTag: 73214750-0d5b-473e-8030-cc5a9c861c74
+		summarizeBy: none
+		sourceColumn: workers
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column moe_workers
+		dataType: double
+		lineageTag: 65ce3207-0891-4877-a7ea-0c84524ef0d0
+		summarizeBy: none
+		sourceColumn: moe_workers
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column share_of_field
+		dataType: double
+		lineageTag: f43a82b0-d76b-460b-becb-125f428a394b
+		summarizeBy: none
+		sourceColumn: share_of_field
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column moe_share_of_field
+		dataType: double
+		lineageTag: dd917f32-c5af-4132-9b87-04dd98b8f215
+		summarizeBy: none
+		sourceColumn: moe_share_of_field
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column share_renormalized
+		dataType: double
+		lineageTag: 0d45f8b8-12d9-46d2-93eb-1ca79c52a39a
+		summarizeBy: none
+		sourceColumn: share_renormalized
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column field_readable_share
+		dataType: double
+		lineageTag: c33443f7-c487-4400-a560-c5c2378f001a
+		summarizeBy: none
+		sourceColumn: field_readable_share
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column field_n_readable_groups
+		dataType: int64
+		formatString: 0
+		lineageTag: 5aefa97c-1184-4dfd-8c36-56029b741c0f
+		summarizeBy: none
+		sourceColumn: field_n_readable_groups
+
+		annotation SummarizationSetBy = User
+
+	column field_n_groups
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e1db62a-051f-45bd-b01f-956cd3085e88
+		summarizeBy: none
+		sourceColumn: field_n_groups
+
+		annotation SummarizationSetBy = User
+
+	column rank_in_field
+		dataType: int64
+		formatString: 0
+		lineageTag: 1170010b-e7c5-4102-bdd8-cfbd4a8a0591
+		summarizeBy: none
+		sourceColumn: rank_in_field
+
+		annotation SummarizationSetBy = User
+
+	column field_workers
+		dataType: double
+		lineageTag: 5d869371-90cc-4ee0-bc70-dedc4fbb1d08
+		summarizeBy: none
+		sourceColumn: field_workers
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column earnings_suppressed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bbfadd83-40cf-4fa4-b237-c7aee78be47b
+		summarizeBy: none
+		sourceColumn: earnings_suppressed
+
+		annotation SummarizationSetBy = User
+
+	column median_earnings_2024usd
+		dataType: double
+		lineageTag: b623f922-accf-4ece-ac02-e6800421eddc
+		summarizeBy: none
+		sourceColumn: median_earnings_2024usd
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column moe_median_earnings
+		dataType: double
+		lineageTag: 9e2ffd27-4f37-4c7a-8c07-d23101ad4898
+		summarizeBy: none
+		sourceColumn: moe_median_earnings
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mean_earnings_2024usd
+		dataType: double
+		lineageTag: dcb8d50e-7908-449b-b9a6-824df75132ca
+		summarizeBy: none
+		sourceColumn: mean_earnings_2024usd
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column moe_mean_earnings
+		dataType: double
+		lineageTag: a45f1c60-9dca-4ef3-b692-6742ee7fa7f8
+		summarizeBy: none
+		sourceColumn: moe_mean_earnings
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column all_level_share
+		dataType: double
+		lineageTag: 10dba589-6902-4ecd-944a-28f84c40fc5c
+		summarizeBy: none
+		sourceColumn: all_level_share
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column all_level_n_jobs_suppressed
+		dataType: int64
+		formatString: 0
+		lineageTag: 7bd323e3-b27b-4400-ac41-5b71b7b60f3e
+		summarizeBy: none
+		sourceColumn: all_level_n_jobs_suppressed
+
+		annotation SummarizationSetBy = User
+
+	column group_exposure
+		dataType: double
+		lineageTag: b3e787ee-32b1-48b2-8f9a-562a6e1ae48f
+		summarizeBy: none
+		sourceColumn: group_exposure
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column group_high_share
+		dataType: double
+		lineageTag: 19726af0-1219-4714-b1fc-63f79b85f750
+		summarizeBy: none
+		sourceColumn: group_high_share
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column group_exposure_coverage
+		dataType: double
+		lineageTag: 8ebb8a67-ee11-4777-9464-18be282d05d5
+		summarizeBy: none
+		sourceColumn: group_exposure_coverage
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column group_exposure_low_coverage
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 74f503aa-a54c-4d75-b266-cdda3e7cf143
+		summarizeBy: none
+		sourceColumn: group_exposure_low_coverage
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: 4fd1810d-82c6-488b-9586-b9d0bf9ad8ad
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column source_key_exposure
+		dataType: string
+		lineageTag: f7337772-9a6d-48a1-a41c-1053ec29560c
+		summarizeBy: none
+		sourceColumn: source_key_exposure
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: 3e4a2ccb-1aaf-45a8-9f30-53d909735918
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	partition grad_outcome_destination = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "grad_outcome_destination"]}[Data]
+				in
+				  #"Navigation 1"
+

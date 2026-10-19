@@ -1,0 +1,63 @@
+table dim_field
+	lineageTag: b5cb867a-38ee-43c0-8a17-612331deb2a6
+
+	column fod1p
+		dataType: string
+		lineageTag: 1d0e24ed-3ec7-4a05-97f0-c093ebabeb0d
+		summarizeBy: none
+		sourceColumn: fod1p
+
+		annotation SummarizationSetBy = User
+
+	column field_title
+		dataType: string
+		lineageTag: 203df58e-0bf5-415d-b45f-d271196d5bfb
+		summarizeBy: none
+		sourceColumn: field_title
+
+		annotation SummarizationSetBy = User
+
+	column is_mapped
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2829cb9c-5602-49f6-a75d-3aae7a5c2a3b
+		summarizeBy: none
+		sourceColumn: is_mapped
+
+		annotation SummarizationSetBy = User
+
+	column lift
+		dataType: double
+		lineageTag: 30fd1256-327b-4448-b4dc-2acafd936214
+		summarizeBy: none
+		sourceColumn: lift
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column verdict
+		dataType: string
+		lineageTag: b8ef3bb5-d1c9-4d12-a51e-631a9eec1094
+		summarizeBy: none
+		sourceColumn: verdict
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: b2d04d78-a89c-4ffd-9082-1c104017b458
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	partition dim_field = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "dim_field"]}[Data]
+				in
+				  #"Navigation 1"
+

@@ -1,0 +1,738 @@
+table major_supply_demand
+	lineageTag: b0c43216-ed84-482d-9f8c-22017cd17cc9
+
+	column major_award_key
+		dataType: string
+		lineageTag: 7906620e-51f3-4458-8608-4bf9a156ec95
+		summarizeBy: none
+		sourceColumn: major_award_key
+
+		annotation SummarizationSetBy = User
+
+	column cip_code
+		dataType: string
+		lineageTag: e9b297c0-47e3-465a-9acc-8c6a6a344724
+		summarizeBy: none
+		sourceColumn: cip_code
+
+		annotation SummarizationSetBy = User
+
+	column major_title
+		dataType: string
+		lineageTag: c430dd60-e99c-470f-bc27-2bbbdd8f58cd
+		summarizeBy: none
+		sourceColumn: major_title
+
+		annotation SummarizationSetBy = User
+
+	column cip_family
+		dataType: string
+		lineageTag: 6b139f92-2f57-4679-b969-f8718e73d79b
+		summarizeBy: none
+		sourceColumn: cip_family
+
+		annotation SummarizationSetBy = User
+
+	column family_title
+		dataType: string
+		lineageTag: 7141cc49-f8bd-44c5-a2f7-41027a43b700
+		summarizeBy: none
+		sourceColumn: family_title
+
+		annotation SummarizationSetBy = User
+
+	column award_level
+		dataType: int64
+		formatString: 0
+		lineageTag: 6aaef682-260d-4cc4-a63c-defde464b95e
+		summarizeBy: none
+		sourceColumn: award_level
+
+		annotation SummarizationSetBy = User
+
+	column award_label
+		dataType: string
+		lineageTag: 8e7c7149-745b-4592-97e7-01e0a909ba92
+		summarizeBy: none
+		sourceColumn: award_label
+
+		annotation SummarizationSetBy = User
+
+	column link_status
+		dataType: string
+		lineageTag: 57958e1a-8031-449b-b238-356f2f997254
+		summarizeBy: none
+		sourceColumn: link_status
+
+		annotation SummarizationSetBy = User
+
+	column link_status_label
+		dataType: string
+		lineageTag: ecfb24b9-0961-4573-9866-528aebd7b224
+		summarizeBy: none
+		sourceColumn: link_status_label
+
+		annotation SummarizationSetBy = User
+
+	column n_links
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a8dadec-99f9-46cc-ba2b-d3011c364652
+		summarizeBy: none
+		sourceColumn: n_links
+
+		annotation SummarizationSetBy = User
+
+	column n_linked_jobs
+		dataType: int64
+		formatString: 0
+		lineageTag: def6f570-7a03-4563-bb3b-1d0e2c3327cc
+		summarizeBy: none
+		sourceColumn: n_linked_jobs
+
+		annotation SummarizationSetBy = User
+
+	column openings_nyc_total
+		dataType: double
+		lineageTag: 4f6ffaad-ee58-4c75-aa72-cb545aa720a2
+		summarizeBy: none
+		sourceColumn: openings_nyc_total
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column field_fod1p
+		dataType: string
+		lineageTag: d11d8b61-2c26-462c-b0b0-3b85c1e6325e
+		summarizeBy: none
+		sourceColumn: field_fod1p
+
+		annotation SummarizationSetBy = User
+
+	column field_lift
+		dataType: double
+		lineageTag: 775bcdae-4751-4177-8e19-5fbc47ae5913
+		summarizeBy: none
+		sourceColumn: field_lift
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column field_verdict
+		dataType: string
+		lineageTag: 0f13c71e-d489-4f35-8bbc-230d4e2ce54f
+		summarizeBy: none
+		sourceColumn: field_verdict
+
+		annotation SummarizationSetBy = User
+
+	column offered_at_cuny
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 795b5c96-4fa4-4dd7-b8dd-d2adc5c6a934
+		summarizeBy: none
+		sourceColumn: offered_at_cuny
+
+		annotation SummarizationSetBy = User
+
+	column n_cuny_colleges
+		dataType: int64
+		formatString: 0
+		lineageTag: 027e0256-07d3-4f5b-8498-95f6e7dcba4a
+		summarizeBy: none
+		sourceColumn: n_cuny_colleges
+
+		annotation SummarizationSetBy = User
+
+	column n_all_other_jobs
+		dataType: int64
+		formatString: 0
+		lineageTag: 893f9c82-a14d-4063-a6dc-18dde6318b0a
+		summarizeBy: none
+		sourceColumn: n_all_other_jobs
+
+		annotation SummarizationSetBy = User
+
+	column has_openings_weight
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ce34d62a-f2d0-498e-a83f-829276459693
+		summarizeBy: none
+		sourceColumn: has_openings_weight
+
+		annotation SummarizationSetBy = User
+
+	column awards_2024_nyc
+		dataType: double
+		lineageTag: 97089cab-718a-4d8c-8fbb-039f966e7fa1
+		summarizeBy: none
+		sourceColumn: awards_2024_nyc
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column awards_2024_cuny
+		dataType: double
+		lineageTag: eca01887-4e0c-46c9-b1fa-779cddf53b50
+		summarizeBy: none
+		sourceColumn: awards_2024_cuny
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column awards_2019_nyc
+		dataType: double
+		lineageTag: 9256f91e-5948-44ae-9701-a9662986ca5c
+		summarizeBy: none
+		sourceColumn: awards_2019_nyc
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column awards_2019_cuny
+		dataType: double
+		lineageTag: 300fdf96-e831-4cc2-981b-799bb94b74e8
+		summarizeBy: none
+		sourceColumn: awards_2019_cuny
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column awards_change_2019_2024_nyc
+		dataType: double
+		lineageTag: d855dde1-5c37-465a-83c5-0b6c8a781985
+		summarizeBy: none
+		sourceColumn: awards_change_2019_2024_nyc
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column awards_change_2019_2024_cuny
+		dataType: double
+		lineageTag: aed96bc7-8c16-4b81-bf66-514b43d14c09
+		summarizeBy: none
+		sourceColumn: awards_change_2019_2024_cuny
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column counts_as_supply
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6affe5ce-6bdd-4514-a0a3-33bb4162ac40
+		summarizeBy: none
+		sourceColumn: counts_as_supply
+
+		annotation SummarizationSetBy = User
+
+	column n_jobs_bridge
+		dataType: int64
+		formatString: 0
+		lineageTag: 77000503-411c-45c6-ba30-4ccc0fa1ec91
+		summarizeBy: none
+		sourceColumn: n_jobs_bridge
+
+		annotation SummarizationSetBy = User
+
+	column n_jobs_with_ratio
+		dataType: int64
+		formatString: 0
+		lineageTag: 51bf7c0b-67dd-4ed3-a449-8836c179b3f7
+		summarizeBy: none
+		sourceColumn: n_jobs_with_ratio
+
+		annotation SummarizationSetBy = User
+
+	column n_jobs_shrinking
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c52a007-16ea-4e68-b08d-4c9a5d08bfb2
+		summarizeBy: none
+		sourceColumn: n_jobs_shrinking
+
+		annotation SummarizationSetBy = User
+
+	column graduates_per_opening
+		dataType: double
+		lineageTag: ed571b27-c36d-458b-969c-7f75bb177638
+		summarizeBy: none
+		sourceColumn: graduates_per_opening
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column graduates_per_opening_equal
+		dataType: double
+		lineageTag: c84bc45a-74d6-4f13-97a3-ccc1448e2818
+		summarizeBy: none
+		sourceColumn: graduates_per_opening_equal
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column graduates_per_opening_d20_off
+		dataType: double
+		lineageTag: ae8757e9-19db-4eb4-9a6b-d1c2054cd46a
+		summarizeBy: none
+		sourceColumn: graduates_per_opening_d20_off
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ratio_weight_coverage
+		dataType: double
+		lineageTag: 04acce85-2c80-4f51-a107-70f382cd0b5e
+		summarizeBy: none
+		sourceColumn: ratio_weight_coverage
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column projected_change_2022_2032_pct
+		dataType: double
+		lineageTag: cf7e23d0-e7a1-452a-bbd2-8045cb0d65a9
+		summarizeBy: none
+		sourceColumn: projected_change_2022_2032_pct
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column projected_change_2022_2032_pct_equal
+		dataType: double
+		lineageTag: 5ad7f83f-ccd7-4b33-b9bb-3c0e0d35b46b
+		summarizeBy: none
+		sourceColumn: projected_change_2022_2032_pct_equal
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_change_2019_2025_pct
+		dataType: double
+		lineageTag: ef361131-7d84-404b-a9d8-b72728457edd
+		summarizeBy: none
+		sourceColumn: actual_change_2019_2025_pct
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_weight_coverage
+		dataType: double
+		lineageTag: 6c2ea3d6-7890-4375-8d2b-552ce232f1fc
+		summarizeBy: none
+		sourceColumn: actual_weight_coverage
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column projected_change_d20_off_pct
+		dataType: double
+		lineageTag: 6758c19b-a3c6-408a-8345-b921943a4535
+		summarizeBy: none
+		sourceColumn: projected_change_d20_off_pct
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column nyc_all_jobs_change_2022_2032_pct
+		dataType: double
+		lineageTag: 7dc48365-504b-4cb2-824f-56a6a67a98a1
+		summarizeBy: none
+		sourceColumn: nyc_all_jobs_change_2022_2032_pct
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column top_job_soc_code
+		dataType: string
+		lineageTag: f7eb0ef2-0668-4cd4-a3c9-ec629071631a
+		summarizeBy: none
+		sourceColumn: top_job_soc_code
+
+		annotation SummarizationSetBy = User
+
+	column top_job_title
+		dataType: string
+		lineageTag: 30468fcc-41b1-4e9d-b423-03571f31bc5e
+		summarizeBy: none
+		sourceColumn: top_job_title
+
+		annotation SummarizationSetBy = User
+
+	column top_job_weight
+		dataType: double
+		lineageTag: 7b22dfc2-a6a3-4ae7-9a64-141be671c883
+		summarizeBy: none
+		sourceColumn: top_job_weight
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ai_exposure
+		dataType: double
+		lineageTag: cd68bae7-4f14-46cd-8145-5e42750dd5d6
+		summarizeBy: none
+		sourceColumn: ai_exposure
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ai_exposure_basis
+		dataType: string
+		lineageTag: 064ba0c7-d88f-4c1e-896c-4428b218e9ab
+		summarizeBy: none
+		sourceColumn: ai_exposure_basis
+
+		annotation SummarizationSetBy = User
+
+	column ai_exposure_coverage
+		dataType: double
+		lineageTag: 4dda0f0e-a83e-4aba-bbdb-d406f0b0ed28
+		summarizeBy: none
+		sourceColumn: ai_exposure_coverage
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ai_high_share
+		dataType: double
+		lineageTag: 175f5adc-8ce5-4b6b-b62c-5e219e8b92ae
+		summarizeBy: none
+		sourceColumn: ai_high_share
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ai_exposure_equal
+		dataType: double
+		lineageTag: b32e8b2f-af4f-4dfe-bef6-2267bb3395ab
+		summarizeBy: none
+		sourceColumn: ai_exposure_equal
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column n_jobs_scored
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ff12f97-b02e-404a-b62d-57dedb4d937d
+		summarizeBy: none
+		sourceColumn: n_jobs_scored
+
+		annotation SummarizationSetBy = User
+
+	column top_exposed_jobs
+		dataType: string
+		lineageTag: 00067de5-c4d6-49b7-9ba7-9cd963ee520a
+		summarizeBy: none
+		sourceColumn: top_exposed_jobs
+
+		annotation SummarizationSetBy = User
+
+	column ai_exposure_bridge_all
+		dataType: double
+		lineageTag: 6fde4227-7c97-4b5e-be72-3ef4d21cc129
+		summarizeBy: none
+		sourceColumn: ai_exposure_bridge_all
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ai_exposure_acs_all
+		dataType: double
+		lineageTag: 92079b68-54b5-437d-a493-b0dbcf294962
+		summarizeBy: none
+		sourceColumn: ai_exposure_acs_all
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column acs_n_groups_readable
+		dataType: int64
+		formatString: 0
+		lineageTag: 99dc4f7f-3b92-40cb-bfa4-e8f12332dccd
+		summarizeBy: none
+		sourceColumn: acs_n_groups_readable
+
+		annotation SummarizationSetBy = User
+
+	column field_title
+		dataType: string
+		lineageTag: fa80974e-0c3a-46b2-9e63-a49318e5a3fc
+		summarizeBy: none
+		sourceColumn: field_title
+
+		annotation SummarizationSetBy = User
+
+	column acs_median_22_34_bachelor
+		dataType: double
+		lineageTag: 1b4b63e9-9263-4f3c-bdc1-7ab771d79a85
+		summarizeBy: none
+		sourceColumn: acs_median_22_34_bachelor
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column acs_moe_median_22_34_bachelor
+		dataType: double
+		lineageTag: 208f2f96-1169-47c4-a04a-25cc5919d481
+		summarizeBy: none
+		sourceColumn: acs_moe_median_22_34_bachelor
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column acs_median_35_64_bachelor
+		dataType: double
+		lineageTag: fbacb12f-62c0-4c92-aa66-09f533b66373
+		summarizeBy: none
+		sourceColumn: acs_median_35_64_bachelor
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column acs_moe_median_35_64_bachelor
+		dataType: double
+		lineageTag: fe553bca-491b-4b34-9827-e9e3fabd3909
+		summarizeBy: none
+		sourceColumn: acs_moe_median_35_64_bachelor
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column acs_premium_median_35_64
+		dataType: double
+		lineageTag: 48afedd8-f39c-4b13-b51a-346b16af5069
+		summarizeBy: none
+		sourceColumn: acs_premium_median_35_64
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column acs_premium_verdict_35_64
+		dataType: string
+		lineageTag: ddde23d1-4118-451b-962c-b9c987de853d
+		summarizeBy: none
+		sourceColumn: acs_premium_verdict_35_64
+
+		annotation SummarizationSetBy = User
+
+	column many_graduates
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2b3aa36a-9b77-474c-a68e-fa134893eef8
+		summarizeBy: none
+		sourceColumn: many_graduates
+
+		annotation SummarizationSetBy = User
+
+	column is_shrinking
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5fe8ebd1-47a8-4918-a0e6-21eb13c1c735
+		summarizeBy: none
+		sourceColumn: is_shrinking
+
+		annotation SummarizationSetBy = User
+
+	column box
+		dataType: string
+		lineageTag: 5f1040a7-2031-4329-92b3-2bb06a2f9066
+		summarizeBy: none
+		sourceColumn: box
+
+		annotation SummarizationSetBy = User
+
+	column box_ratio_0_5
+		dataType: string
+		lineageTag: 379be187-4336-4e1f-ab55-5c249a0c8194
+		summarizeBy: none
+		sourceColumn: box_ratio_0_5
+
+		annotation SummarizationSetBy = User
+
+	column box_ratio_1_5
+		dataType: string
+		lineageTag: 45ba205d-4aed-4820-a942-3247f273ef40
+		summarizeBy: none
+		sourceColumn: box_ratio_1_5
+
+		annotation SummarizationSetBy = User
+
+	column box_ratio_2_0
+		dataType: string
+		lineageTag: ed06479e-5eb9-4356-a1eb-fc520a789862
+		summarizeBy: none
+		sourceColumn: box_ratio_2_0
+
+		annotation SummarizationSetBy = User
+
+	column box_nyc_avg_growth
+		dataType: string
+		lineageTag: c62727c0-b635-4f8b-ae87-ac8ed220bb86
+		summarizeBy: none
+		sourceColumn: box_nyc_avg_growth
+
+		annotation SummarizationSetBy = User
+
+	column box_actual_growth
+		dataType: string
+		lineageTag: ccb5179d-19ad-4e6f-b27e-b9d0c8d86f40
+		summarizeBy: none
+		sourceColumn: box_actual_growth
+
+		annotation SummarizationSetBy = User
+
+	column box_equal_weights
+		dataType: string
+		lineageTag: 5ebab305-eca6-403b-abdb-fe2832da5f5e
+		summarizeBy: none
+		sourceColumn: box_equal_weights
+
+		annotation SummarizationSetBy = User
+
+	column box_d20_off
+		dataType: string
+		lineageTag: a6b422c2-973e-4df3-8c11-4f9f5f364842
+		summarizeBy: none
+		sourceColumn: box_d20_off
+
+		annotation SummarizationSetBy = User
+
+	column ai_band
+		dataType: string
+		lineageTag: 3429258a-2d5a-4c8d-ad97-a98c26ed40f2
+		summarizeBy: none
+		sourceColumn: ai_band
+
+		annotation SummarizationSetBy = User
+
+	column ai_exposure_low_coverage
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b7843b17-21d3-424e-bd08-2452cc6acfff
+		summarizeBy: none
+		sourceColumn: ai_exposure_low_coverage
+
+		annotation SummarizationSetBy = User
+
+	column box_label
+		dataType: string
+		lineageTag: ad63ea7b-c96c-4e59-800d-f34a455e9499
+		summarizeBy: none
+		sourceColumn: box_label
+
+		annotation SummarizationSetBy = User
+
+	column box_sentence
+		dataType: string
+		lineageTag: 1d08f9cd-ed1a-446d-8f71-4569a842dc85
+		summarizeBy: none
+		sourceColumn: box_sentence
+
+		annotation SummarizationSetBy = User
+
+	column wording_key
+		dataType: string
+		lineageTag: afaf6d77-95f2-469a-bca9-676f4c687f3e
+		summarizeBy: none
+		sourceColumn: wording_key
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: ee79f4d5-2ceb-4fe4-8aba-53fa615d7ef8
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column source_key_openings
+		dataType: string
+		lineageTag: 26b93e77-e922-4bbb-8974-c073762ba935
+		summarizeBy: none
+		sourceColumn: source_key_openings
+
+		annotation SummarizationSetBy = User
+
+	column source_key_bridge
+		dataType: string
+		lineageTag: 364edcaa-0156-45cc-af11-02633361b171
+		summarizeBy: none
+		sourceColumn: source_key_bridge
+
+		annotation SummarizationSetBy = User
+
+	column source_key_nyc_estimate
+		dataType: string
+		lineageTag: c9787799-2f8f-4a93-9986-6fcaf9dbf10a
+		summarizeBy: none
+		sourceColumn: source_key_nyc_estimate
+
+		annotation SummarizationSetBy = User
+
+	column source_key_exposure
+		dataType: string
+		lineageTag: f8707815-951c-4fd1-92a4-bc4c1f6d1e79
+		summarizeBy: none
+		sourceColumn: source_key_exposure
+
+		annotation SummarizationSetBy = User
+
+	column source_key_acs
+		dataType: string
+		lineageTag: 6496957d-e3d2-44c0-a0fb-e7a899dff70a
+		summarizeBy: none
+		sourceColumn: source_key_acs
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: 9e486c3a-ef96-4fa8-9c03-91cb171317d9
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	partition major_supply_demand = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "major_supply_demand"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

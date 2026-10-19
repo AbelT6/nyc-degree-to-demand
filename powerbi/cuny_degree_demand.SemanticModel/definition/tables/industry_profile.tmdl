@@ -1,0 +1,507 @@
+table industry_profile
+	lineageTag: 72ec6d9f-43e2-4612-bda4-441e42055513
+
+	column industry_key
+		dataType: string
+		lineageTag: 8b737194-2384-427d-b70a-a9c654aa6e2a
+		summarizeBy: none
+		sourceColumn: industry_key
+
+		annotation SummarizationSetBy = User
+
+	column industry_title
+		dataType: string
+		lineageTag: 1315f75a-b9a0-4305-ac9f-92d45bd59420
+		summarizeBy: none
+		sourceColumn: industry_title
+
+		annotation SummarizationSetBy = User
+
+	column naics_sector
+		dataType: string
+		lineageTag: 7d2cb44a-3479-4cbc-8978-07e46acfefca
+		summarizeBy: none
+		sourceColumn: naics_sector
+
+		annotation SummarizationSetBy = User
+
+	column sort_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 4bec0f62-2649-4ebd-8f97-caff2bce656e
+		summarizeBy: none
+		sourceColumn: sort_order
+
+		annotation SummarizationSetBy = User
+
+	column private_jobs_2019
+		dataType: double
+		lineageTag: 99cc0da0-5e22-4a92-b43a-fdd4c219a6e0
+		summarizeBy: none
+		sourceColumn: private_jobs_2019
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column private_jobs_2025
+		dataType: double
+		lineageTag: 08d750ae-4a38-4ddc-a659-e216a7450d0b
+		summarizeBy: none
+		sourceColumn: private_jobs_2025
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column change_2019_2025
+		dataType: double
+		lineageTag: 84201ef4-ef86-4dbd-9560-1c4bbf588b2c
+		summarizeBy: none
+		sourceColumn: change_2019_2025
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_change_2019_2025
+		dataType: double
+		lineageTag: 76fa42e9-217b-454f-b352-8a5ea3cb479e
+		summarizeBy: none
+		sourceColumn: pct_change_2019_2025
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column share_of_nyc_private_2025
+		dataType: double
+		lineageTag: 6c94704a-71bb-4cd5-9ced-1e520dcef748
+		summarizeBy: none
+		sourceColumn: share_of_nyc_private_2025
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column jobs_2025_manhattan
+		dataType: double
+		lineageTag: 604ebc3f-c651-43c5-abf4-c70416b05fd2
+		summarizeBy: none
+		sourceColumn: jobs_2025_manhattan
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column jobs_2025_brooklyn
+		dataType: double
+		lineageTag: 2a818204-7a81-4c5b-87d5-ea0581af2718
+		summarizeBy: none
+		sourceColumn: jobs_2025_brooklyn
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column jobs_2025_queens
+		dataType: double
+		lineageTag: 28347d1d-634e-4056-874a-44c20dac9a89
+		summarizeBy: none
+		sourceColumn: jobs_2025_queens
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column jobs_2025_bronx
+		dataType: double
+		lineageTag: 1842dfbd-5d43-4c6e-b0ca-f0c0f93cc87e
+		summarizeBy: none
+		sourceColumn: jobs_2025_bronx
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column jobs_2025_staten_island
+		dataType: double
+		lineageTag: 3becc889-3a33-49f8-9a2b-c245515dae3f
+		summarizeBy: none
+		sourceColumn: jobs_2025_staten_island
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column change_manhattan
+		dataType: double
+		lineageTag: 8943a2c7-29f4-4624-8b90-9b12add19229
+		summarizeBy: none
+		sourceColumn: change_manhattan
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column change_brooklyn
+		dataType: double
+		lineageTag: 654ed7ad-f88a-44bb-9f23-76e1c2775af4
+		summarizeBy: none
+		sourceColumn: change_brooklyn
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column change_queens
+		dataType: double
+		lineageTag: f634ba5c-287a-4930-a389-3b683777c9be
+		summarizeBy: none
+		sourceColumn: change_queens
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column change_bronx
+		dataType: double
+		lineageTag: 313bf63d-fb53-4246-bb2b-3ccd0161ba2e
+		summarizeBy: none
+		sourceColumn: change_bronx
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column change_staten_island
+		dataType: double
+		lineageTag: f074f7e7-2807-43de-8c9f-b51e3e7672a3
+		summarizeBy: none
+		sourceColumn: change_staten_island
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gdp_year
+		dataType: int64
+		formatString: 0
+		lineageTag: a1f01df3-6bd4-4897-8740-33f3364a61fc
+		summarizeBy: none
+		sourceColumn: gdp_year
+
+		annotation SummarizationSetBy = User
+
+	column gdp_current_thousands
+		dataType: double
+		lineageTag: f714eb61-3e4c-4aea-b68e-347414da21d2
+		summarizeBy: none
+		sourceColumn: gdp_current_thousands
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gdp_share
+		dataType: double
+		lineageTag: c11fd5de-bb79-4901-9ecf-f95f1ac4e385
+		summarizeBy: none
+		sourceColumn: gdp_share
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gdp_boroughs_withheld
+		dataType: int64
+		formatString: 0
+		lineageTag: 39d3b386-f6be-4c74-8344-25ae1c5200cc
+		summarizeBy: none
+		sourceColumn: gdp_boroughs_withheld
+
+		annotation SummarizationSetBy = User
+
+	column pattern_share_readable
+		dataType: double
+		lineageTag: 1e7372e0-fc27-4606-918c-1aa2be2c7612
+		summarizeBy: none
+		sourceColumn: pattern_share_readable
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column degree_reachable_share
+		dataType: double
+		lineageTag: adf8fc80-09f8-40d9-97f3-19befed1478e
+		summarizeBy: none
+		sourceColumn: degree_reachable_share
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column degree_reachable_jobs_est
+		dataType: double
+		lineageTag: c85cad66-49e1-45b2-a29a-18109381215c
+		summarizeBy: none
+		sourceColumn: degree_reachable_jobs_est
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column n_jobs_readable
+		dataType: int64
+		formatString: 0
+		lineageTag: 1dd55a6d-e3a6-4a8b-9b21-9c7ff7d42f79
+		summarizeBy: none
+		sourceColumn: n_jobs_readable
+
+		annotation SummarizationSetBy = User
+
+	column n_degree_jobs_readable
+		dataType: int64
+		formatString: 0
+		lineageTag: cd97fd3c-d07b-400b-9103-fb48fe8ed187
+		summarizeBy: none
+		sourceColumn: n_degree_jobs_readable
+
+		annotation SummarizationSetBy = User
+
+	column pattern_coverage_low
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7749d2ca-87fc-4ecc-bc9f-fa88e8798a80
+		summarizeBy: none
+		sourceColumn: pattern_coverage_low
+
+		annotation SummarizationSetBy = User
+
+	column separation_rate_2024
+		dataType: double
+		lineageTag: 14a64c8b-f4f1-40c0-aa9b-6dfe7b2ee7f9
+		summarizeBy: none
+		sourceColumn: separation_rate_2024
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column separation_rate_2019
+		dataType: double
+		lineageTag: a38cf04e-8f28-4351-84cd-246f40aac0d6
+		summarizeBy: none
+		sourceColumn: separation_rate_2019
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column new_hire_rate_2024
+		dataType: double
+		lineageTag: f1f77b3b-369a-4e82-b15c-a0dabe16639f
+		summarizeBy: none
+		sourceColumn: new_hire_rate_2024
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column new_hire_rate_2019
+		dataType: double
+		lineageTag: c9ce16ca-e679-41d7-b8e4-7ec896f9f2c2
+		summarizeBy: none
+		sourceColumn: new_hire_rate_2019
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column bachelor_share_hires_25plus_2024
+		dataType: double
+		lineageTag: aef9d21e-deba-42ba-84fb-a6b302d81afd
+		summarizeBy: none
+		sourceColumn: bachelor_share_hires_25plus_2024
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hires_new_2024
+		dataType: double
+		lineageTag: e0af4f58-9875-4bf0-b4ca-fae58e6d2624
+		summarizeBy: none
+		sourceColumn: hires_new_2024
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column separations_2024
+		dataType: double
+		lineageTag: 64f59afd-2f67-4c6a-adf8-a9e7fff77fbe
+		summarizeBy: none
+		sourceColumn: separations_2024
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ces_series_code
+		dataType: string
+		lineageTag: fae43971-fb5a-476a-bb34-469bf5ffd3c5
+		summarizeBy: none
+		sourceColumn: ces_series_code
+
+		annotation SummarizationSetBy = User
+
+	column ces_series_title
+		dataType: string
+		lineageTag: ea7876c7-41f4-4b35-9331-45c879bbf77d
+		summarizeBy: none
+		sourceColumn: ces_series_title
+
+		annotation SummarizationSetBy = User
+
+	column ces_industry_key
+		dataType: string
+		lineageTag: 3e176564-1fbe-4ead-b640-2be12d31ca41
+		summarizeBy: none
+		sourceColumn: ces_industry_key
+
+		annotation SummarizationSetBy = User
+
+	column ces_latest_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7d2fc349-ad44-4c07-b641-d8a2723dfd66
+		summarizeBy: none
+		sourceColumn: ces_latest_month
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ces_employment_latest
+		dataType: double
+		lineageTag: 19878252-ff10-46c6-83d0-881df84f601b
+		summarizeBy: none
+		sourceColumn: ces_employment_latest
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ces_change_12m
+		dataType: double
+		lineageTag: 8330404e-6932-4763-9648-6a0f5b00c4b7
+		summarizeBy: none
+		sourceColumn: ces_change_12m
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ces_pct_change_12m
+		dataType: double
+		lineageTag: 6ec67f3c-e3a1-4f63-8284-01c5af0c5631
+		summarizeBy: none
+		sourceColumn: ces_pct_change_12m
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ces_pct_change_vs_2019
+		dataType: double
+		lineageTag: 255e5c6e-b505-42c8-b1d1-7b3d2f035b3e
+		summarizeBy: none
+		sourceColumn: ces_pct_change_vs_2019
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ces_match_note
+		dataType: string
+		lineageTag: a182a19f-0897-45a1-ac11-8c28bd779089
+		summarizeBy: none
+		sourceColumn: ces_match_note
+
+		annotation SummarizationSetBy = User
+
+	column break_note
+		dataType: string
+		lineageTag: 3bf5d022-4a35-4aa5-b19d-cba2cf1f5497
+		summarizeBy: none
+		sourceColumn: break_note
+
+		annotation SummarizationSetBy = User
+
+	column source_key_jobs
+		dataType: string
+		lineageTag: d725f316-7c52-4a9c-a8f2-83b7cbbe39fd
+		summarizeBy: none
+		sourceColumn: source_key_jobs
+
+		annotation SummarizationSetBy = User
+
+	column source_key_gdp
+		dataType: string
+		lineageTag: 4a1a910b-f0b2-481c-ac1e-e1c121574879
+		summarizeBy: none
+		sourceColumn: source_key_gdp
+
+		annotation SummarizationSetBy = User
+
+	column source_key_pattern
+		dataType: string
+		lineageTag: ab2f9c1a-9474-422d-a616-092871d60b51
+		summarizeBy: none
+		sourceColumn: source_key_pattern
+
+		annotation SummarizationSetBy = User
+
+	column source_key_hiring
+		dataType: string
+		lineageTag: 49d7447a-184d-40fe-8397-5f54cfa1ce9e
+		summarizeBy: none
+		sourceColumn: source_key_hiring
+
+		annotation SummarizationSetBy = User
+
+	column source_key_ces
+		dataType: string
+		lineageTag: 35a4b941-cf0b-4511-9a98-93af752ca82e
+		summarizeBy: none
+		sourceColumn: source_key_ces
+
+		annotation SummarizationSetBy = User
+
+	column source_keys
+		dataType: string
+		lineageTag: 5ed6600a-48fd-49be-90b2-7c4fd7862b66
+		summarizeBy: none
+		sourceColumn: source_keys
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: bae16ac5-6094-4570-ad44-7f882ac1e735
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	partition industry_profile = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "industry_profile"]}[Data]
+				in
+				  #"Navigation 1"
+

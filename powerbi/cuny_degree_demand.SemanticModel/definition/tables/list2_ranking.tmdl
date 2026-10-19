@@ -1,0 +1,27 @@
+table list2_ranking
+	lineageTag: c93aedbe-e78a-58d4-b10f-64d0930f0bef
+
+	column ranking
+		dataType: string
+		lineageTag: 469bd536-f7b4-5534-a8e5-96aa5e10c6c0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ranking]
+		sortByColumn: sort_order
+
+		annotation SummarizationSetBy = User
+
+	column sort_order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a2b8ba08-aee9-5ed1-87e7-fe2d70c058cb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [sort_order]
+
+		annotation SummarizationSetBy = User
+
+	partition list2_ranking = calculated
+		mode: import
+		source = DATATABLE ( "ranking", STRING, "sort_order", INTEGER, { { "Jobs added", 1 }, { "% change", 2 }, { "Fewer jobs", 3 } } )

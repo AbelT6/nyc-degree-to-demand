@@ -1,0 +1,271 @@
+table job_escape_route
+	lineageTag: 823f8a1a-1716-4828-9e8d-2191659b3a60
+
+	column origin_soc_code
+		dataType: string
+		lineageTag: 58fde7e6-de9a-4e7a-8bd1-19bb034d442f
+		summarizeBy: none
+		sourceColumn: origin_soc_code
+
+		annotation SummarizationSetBy = User
+
+	column route_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 8cc24e2c-1709-44e7-a53a-799f3cff0cdc
+		summarizeBy: none
+		sourceColumn: route_rank
+
+		annotation SummarizationSetBy = User
+
+	column destination_soc_code
+		dataType: string
+		lineageTag: ced2e92d-2fe4-414d-addc-615184ed8e6d
+		summarizeBy: none
+		sourceColumn: destination_soc_code
+
+		annotation SummarizationSetBy = User
+
+	column r
+		dataType: double
+		lineageTag: 95edbd70-cf62-4c27-b48f-b871abf81d39
+		summarizeBy: none
+		sourceColumn: r
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column r_knowledge
+		dataType: double
+		lineageTag: dde06da4-d2dc-4061-9f85-5162e08e1a72
+		summarizeBy: none
+		sourceColumn: r_knowledge
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column r_skills
+		dataType: double
+		lineageTag: 1eaf5247-3347-4bb3-a44a-4640507a3b7c
+		summarizeBy: none
+		sourceColumn: r_skills
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column closeness
+		dataType: string
+		lineageTag: a69ac061-0822-4ace-870f-890a735becd5
+		summarizeBy: none
+		sourceColumn: closeness
+
+		annotation SummarizationSetBy = User
+
+	column wording_key
+		dataType: string
+		lineageTag: 5aacd533-9cfc-4d36-9b85-a30d80803545
+		summarizeBy: none
+		sourceColumn: wording_key
+
+		annotation SummarizationSetBy = User
+
+	column n_elements
+		dataType: int64
+		formatString: 0
+		lineageTag: 8091af5c-fef8-487b-9f0f-a96a0a991197
+		summarizeBy: none
+		sourceColumn: n_elements
+
+		annotation SummarizationSetBy = User
+
+	column n_routes_listed
+		dataType: int64
+		formatString: 0
+		lineageTag: 982f4688-e20d-4fdc-8e04-0b51b4bf5f7b
+		summarizeBy: none
+		sourceColumn: n_routes_listed
+
+		annotation SummarizationSetBy = User
+
+	column origin_exposure
+		dataType: double
+		lineageTag: 41f93f81-b73b-4596-b00f-f618015e0fd7
+		summarizeBy: none
+		sourceColumn: origin_exposure
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column origin_median_wage
+		dataType: double
+		lineageTag: 037346d6-d13e-42a9-9b12-cb01a021b1f7
+		summarizeBy: none
+		sourceColumn: origin_median_wage
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column origin_openings
+		dataType: double
+		lineageTag: f731af3e-2f4d-468d-a762-87cd9a38f19e
+		summarizeBy: none
+		sourceColumn: origin_openings
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column destination_exposure
+		dataType: double
+		lineageTag: f33cd7b9-4040-4085-8cff-e04cc9bbd6fe
+		summarizeBy: none
+		sourceColumn: destination_exposure
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column destination_band
+		dataType: string
+		lineageTag: 57c3f896-6d0a-4cdc-a93d-1b378b6c11bb
+		summarizeBy: none
+		sourceColumn: destination_band
+
+		annotation SummarizationSetBy = User
+
+	column destination_median_wage
+		dataType: double
+		lineageTag: cd1a2425-3a3b-402a-ac1e-e237445beee1
+		summarizeBy: none
+		sourceColumn: destination_median_wage
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wage_ratio
+		dataType: double
+		lineageTag: 53455576-7f1a-41c0-967b-a160703fbd8f
+		summarizeBy: none
+		sourceColumn: wage_ratio
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column destination_openings
+		dataType: double
+		lineageTag: 3ac96736-226d-417a-95ab-ce07dee94dae
+		summarizeBy: none
+		sourceColumn: destination_openings
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column source_key
+		dataType: string
+		lineageTag: 8b56cb5e-9b26-4edc-ab2f-59d7d08f845b
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column source_key_exposure
+		dataType: string
+		lineageTag: a63098df-0108-456c-8832-599101352e17
+		summarizeBy: none
+		sourceColumn: source_key_exposure
+
+		annotation SummarizationSetBy = User
+
+	column source_key_wage
+		dataType: string
+		lineageTag: 41917409-a7de-4554-b943-e4b4f86b80f4
+		summarizeBy: none
+		sourceColumn: source_key_wage
+
+		annotation SummarizationSetBy = User
+
+	column source_key_openings
+		dataType: string
+		lineageTag: 6bc6d601-5832-4972-b554-ab64a7c73cfe
+		summarizeBy: none
+		sourceColumn: source_key_openings
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: 5c8d55e9-ae44-4e23-ba21-d7643313830a
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	column destination_title
+		dataType: string
+		lineageTag: 207150be-a269-589e-b306-78172fe89779
+		summarizeBy: none
+		sourceColumn: destination_title
+
+		annotation SummarizationSetBy = User
+
+	column destination_label
+		dataType: string
+		lineageTag: 45c4a4af-d1f3-5c2a-bec1-f2271dfbd1c1
+		summarizeBy: none
+		sourceColumn: destination_label
+
+		annotation SummarizationSetBy = User
+
+	column destination_description
+		dataType: string
+		lineageTag: 9ea9cc08-8904-5dc8-9ae8-cf1bb87fe4d8
+		summarizeBy: none
+		sourceColumn: destination_description
+
+		annotation SummarizationSetBy = User
+
+	column destination_description_source
+		dataType: string
+		lineageTag: 3d2ea016-f099-5dcd-9fa0-c3119f964cb1
+		summarizeBy: none
+		sourceColumn: destination_description_source
+
+		annotation SummarizationSetBy = User
+
+	column pay_words
+		dataType: string
+		lineageTag: eff22523-873e-5ae4-89f6-aecaf7c030e6
+		summarizeBy: none
+		sourceColumn: pay_words
+
+		annotation SummarizationSetBy = User
+
+	column destination_entry_wage
+		dataType: double
+		lineageTag: 58bee334-7304-5162-8503-ad94136e199f
+		summarizeBy: none
+		sourceColumn: destination_entry_wage
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition job_escape_route = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "job_escape_route"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

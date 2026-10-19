@@ -1,0 +1,249 @@
+table job_employment_trend
+	lineageTag: 667f4d8a-ed09-4cc1-88c0-0c9074d497ea
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 64491ba6-6668-4d6e-b664-ed2e095dd3c9
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = User
+
+	column year_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 41e72124-7199-492b-9e64-afbf676f75f7
+		summarizeBy: none
+		sourceColumn: year_start
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column area_key
+		dataType: string
+		lineageTag: eef37216-b0ae-49ad-b214-59c18c44ce93
+		summarizeBy: none
+		sourceColumn: area_key
+
+		annotation SummarizationSetBy = User
+
+	column soc_code
+		dataType: string
+		lineageTag: b0af1566-e778-49de-88cc-5879aceeac2b
+		summarizeBy: none
+		sourceColumn: soc_code
+
+		annotation SummarizationSetBy = User
+
+	column soc_level
+		dataType: string
+		lineageTag: 550b0215-5d95-47e0-9d0f-68d5c72baaef
+		summarizeBy: none
+		sourceColumn: soc_level
+
+		annotation SummarizationSetBy = User
+
+	column is_degree_entry
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e39efd00-2ba3-4649-869a-27f0adfb1de5
+		summarizeBy: none
+		sourceColumn: is_degree_entry
+
+		annotation SummarizationSetBy = User
+
+	column is_all_other
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 984e6be0-576a-43f3-8957-2f8558a40dd7
+		summarizeBy: none
+		sourceColumn: is_all_other
+
+		annotation SummarizationSetBy = User
+
+	column nyc_employment_est
+		dataType: double
+		lineageTag: 674a6402-6a75-4f50-8a10-172677b580fb
+		summarizeBy: none
+		sourceColumn: nyc_employment_est
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column metro_employment
+		dataType: double
+		lineageTag: b1c436b9-d6c6-450c-b066-591ad130d8bf
+		summarizeBy: none
+		sourceColumn: metro_employment
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_group_total
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: fc98be09-5763-47f3-9d4e-2a22f62614f1
+		summarizeBy: none
+		sourceColumn: is_group_total
+
+		annotation SummarizationSetBy = User
+
+	column employment_kind
+		dataType: string
+		lineageTag: 7d3f113c-29c5-4251-98ae-c7d74e9b7e74
+		summarizeBy: none
+		sourceColumn: employment_kind
+
+		annotation SummarizationSetBy = User
+
+	column method
+		dataType: string
+		lineageTag: ffae7e21-2743-445e-9daf-ac8fc47fd8f1
+		summarizeBy: none
+		sourceColumn: method
+
+		annotation SummarizationSetBy = User
+
+	column employment_2019
+		dataType: double
+		lineageTag: 9b803242-d5db-43f8-aba7-829c7a3cb375
+		summarizeBy: none
+		sourceColumn: employment_2019
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_change_vs_2019
+		dataType: double
+		lineageTag: c6e946a9-c059-4375-af91-1ffc76f9aa57
+		summarizeBy: none
+		sourceColumn: pct_change_vs_2019
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column n_sectors_contributing
+		dataType: int64
+		formatString: 0
+		lineageTag: 297dee00-f81a-425a-b757-65c0a8c72948
+		summarizeBy: none
+		sourceColumn: n_sectors_contributing
+
+		annotation SummarizationSetBy = User
+
+	column pattern_coverage_min
+		dataType: double
+		lineageTag: 94c3a72c-6d7b-4713-8ba9-7cb04858b76e
+		summarizeBy: none
+		sourceColumn: pattern_coverage_min
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column share_from_government_pattern
+		dataType: double
+		lineageTag: 31ae34f5-6744-48dc-8453-df9394be0c7f
+		summarizeBy: none
+		sourceColumn: share_from_government_pattern
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column annual_p25
+		dataType: double
+		lineageTag: 1047ffa0-02fa-46b1-a80d-497a9703908d
+		summarizeBy: none
+		sourceColumn: annual_p25
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column annual_p50
+		dataType: double
+		lineageTag: 6dd3978d-1a67-43e4-a70f-b9d0a3579b97
+		summarizeBy: none
+		sourceColumn: annual_p50
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column annual_p25_2025usd
+		dataType: double
+		lineageTag: 134c989e-6d33-408a-a204-adae51bceb97
+		summarizeBy: none
+		sourceColumn: annual_p25_2025usd
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column annual_p50_2025usd
+		dataType: double
+		lineageTag: 39f3c33f-ce17-4388-9ca6-f7534a68b437
+		summarizeBy: none
+		sourceColumn: annual_p50_2025usd
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column quality_flag
+		dataType: string
+		lineageTag: 8f3e7ce7-4a1f-4d0c-9fc1-9dfe4f0032b9
+		summarizeBy: none
+		sourceColumn: quality_flag
+
+		annotation SummarizationSetBy = User
+
+	column series_note
+		dataType: string
+		lineageTag: 978207cb-e40e-4374-9d2d-09939dd6ffdf
+		summarizeBy: none
+		sourceColumn: series_note
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: 5407e66d-8638-48e9-9a0a-bf5f1c7e26ef
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: 16aa1173-e6bc-4471-839b-2531e90500b1
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	column in_both_end_years
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ae2ff28f-0d51-5b12-a19a-aaf4f7dd3018
+		summarizeBy: none
+		sourceColumn: in_both_end_years
+
+		annotation SummarizationSetBy = User
+
+	partition job_employment_trend = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "job_employment_trend"]}[Data]
+				in
+				  #"Navigation 1"
+

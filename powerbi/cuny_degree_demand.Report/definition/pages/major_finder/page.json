@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "major_finder",
+  "displayName": "Find your major",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "majors_table",
+      "target": "hdr_answer_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "majors_table",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "search",
+      "target": "open_major_tick",
+      "type": "NoFilter"
+    }
+  ]
+}

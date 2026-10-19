@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "grp_ov_words",
+  "position": {
+    "x": 648,
+    "y": 298,
+    "z": 21000,
+    "height": 346,
+    "width": 608
+  },
+  "visualGroup": {
+    "displayName": "Words view",
+    "groupMode": "ScaleMode"
+  },
+  "isHidden": true
+}

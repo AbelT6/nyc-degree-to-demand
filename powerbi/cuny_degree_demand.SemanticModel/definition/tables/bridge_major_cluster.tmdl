@@ -1,0 +1,58 @@
+table bridge_major_cluster
+	lineageTag: ebe3fe32-64bb-46a3-9b76-6f442b12be81
+
+	column major_award_key
+		dataType: string
+		lineageTag: a140e656-72b3-46f2-8bce-37437c513462
+		summarizeBy: none
+		sourceColumn: major_award_key
+
+		annotation SummarizationSetBy = User
+
+	column subcluster_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f439e2c5-f5cc-4bd9-956c-6c1e0121be95
+		summarizeBy: none
+		sourceColumn: subcluster_id
+
+		annotation SummarizationSetBy = User
+
+	column share_openings
+		dataType: double
+		lineageTag: 54d572a4-6dd4-4364-88ea-1241732b7e11
+		summarizeBy: none
+		sourceColumn: share_openings
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column share_equal
+		dataType: double
+		lineageTag: fa7e4d7d-c087-4ca4-b331-f9c40e4c6e51
+		summarizeBy: none
+		sourceColumn: share_equal
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column n_jobs
+		dataType: int64
+		formatString: 0
+		lineageTag: 56feb058-3c09-42f1-837a-417e466ba5e0
+		summarizeBy: none
+		sourceColumn: n_jobs
+
+		annotation SummarizationSetBy = User
+
+	partition bridge_major_cluster = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "bridge_major_cluster"]}[Data]
+				in
+				  #"Navigation 1"
+

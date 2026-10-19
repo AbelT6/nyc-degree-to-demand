@@ -1,0 +1,4708 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "job",
+  "displayName": "Job page",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f_job_label",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_job"
+              }
+            },
+            "Property": "job_label"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "b_job",
+    "type": "Drillthrough",
+    "referenceScope": "Default",
+    "acceptsFilterContext": "None",
+    "parameters": [
+      {
+        "name": "p_job_label",
+        "boundFilter": "f_job_label",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_job"
+              }
+            },
+            "Property": "job_label"
+          }
+        }
+      }
+    ]
+  },
+  "type": "Drillthrough",
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "s_skills",
+      "target": "hdr_bar",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "back",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "hdr_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "hdr_data",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "hdr_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "hdr_desc_top",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "hdr_desc_low",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "job_card_openings",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "job_card_starting_pay",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "job_card_graduates",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "job_card_ai_exposure",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "c1_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "c2_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "c3_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "c1_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "c1_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "c2_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "c3_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "year_label",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "year_slider",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_wayin_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_wayin",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_wayin2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_skills_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_skills_head",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_skills_read",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_skills_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_beg_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_sig1_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_sig1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_sig2_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_sig2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_sig2_band",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_sig2_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_sig3_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_sig3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_sig3_band",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_sig3_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_people_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_people_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_readout",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_readout_nyc_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_readout_nyc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_readout_met1_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_readout_met1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_readout_met_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_readout_met",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_readout_nyc_note",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_break",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_pay_line",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_pay_line_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_outlook",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_outlook_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_change",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_change_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_c2_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_c3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_majors_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_majors_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_majors_k1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_majors_k2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_majors_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_majors",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_majors_more",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_split",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_routes_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_routes_line",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_routes",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_f1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_f2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_f3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_f5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "s_f6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_beg_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_sig1_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_sig1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_sig1_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_sig2_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_sig2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_sig2_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_sig2_r2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_sig3_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_sig3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_sig3_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_draws_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_know_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_know",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_skill_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_skills",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_draws_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_pay_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_pay_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_readout",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_readout_med_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_readout_med",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_readout_lq_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_readout_lq",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_break",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_proj",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_proj_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_outlook",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_outlook_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_c2_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_c3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_emp_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_emp_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_emp",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_emp_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_turnover",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_majors_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_majors_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_majors_k1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_majors_k2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_majors_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_majors",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_majors_dispersed",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_majors_zero",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_f1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_f2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_f3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "d_f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "tabs_track",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "tabs",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "foot_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_skills",
+      "target": "all_notes",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "hdr_bar",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "back",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "hdr_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "hdr_data",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "hdr_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "hdr_desc_top",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "hdr_desc_low",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "job_card_openings",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "job_card_starting_pay",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "job_card_graduates",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "job_card_ai_exposure",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "c1_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "c2_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "c3_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "c1_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "c1_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "c2_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "c3_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "year_label",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "year_slider",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_wayin_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_wayin",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_wayin2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_skills_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_skills_head",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_skills",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_skills_read",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_skills_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_beg_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_sig1_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_sig1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_sig2_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_sig2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_sig2_band",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_sig2_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_sig3_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_sig3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_sig3_band",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_sig3_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_people_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_people_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_readout",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_readout_nyc_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_readout_nyc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_readout_met1_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_readout_met1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_readout_met_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_readout_met",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_readout_nyc_note",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_break",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_pay_line",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_pay_line_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_outlook",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_outlook_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_change",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_change_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_c2_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_c3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_majors_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_majors_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_majors_k1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_majors_k2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_majors_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_majors_more",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_split",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_routes_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_routes_line",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_routes",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_f1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_f2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_f3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_f5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "s_f6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_beg_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_sig1_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_sig1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_sig1_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_sig2_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_sig2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_sig2_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_sig2_r2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_sig3_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_sig3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_sig3_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_draws_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_know_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_know",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_skill_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_skills",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_draws_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_pay_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_pay_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_readout",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_readout_med_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_readout_med",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_readout_lq_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_readout_lq",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_break",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_proj",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_proj_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_outlook",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_outlook_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_c2_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_c3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_emp_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_emp_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_emp",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_emp_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_turnover",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_majors_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_majors_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_majors_k1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_majors_k2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_majors_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_majors",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_majors_dispersed",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_majors_zero",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_f1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_f2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_f3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "d_f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "tabs_track",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "tabs",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "foot_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_majors",
+      "target": "all_notes",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "hdr_bar",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "back",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "hdr_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "hdr_data",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "hdr_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "hdr_desc_top",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "hdr_desc_low",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "job_card_openings",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "job_card_starting_pay",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "job_card_graduates",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "job_card_ai_exposure",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "c1_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "c2_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "c3_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "c1_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "c1_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "c2_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "c3_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "year_label",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "year_slider",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_wayin_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_wayin",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_wayin2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_skills_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_skills_head",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_skills",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_skills_read",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_skills_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_beg_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_sig1_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_sig1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_sig2_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_sig2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_sig2_band",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_sig2_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_sig3_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_sig3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_sig3_band",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_sig3_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_people_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_people_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_readout",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_readout_nyc_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_readout_nyc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_readout_met1_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_readout_met1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_readout_met_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_readout_met",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_readout_nyc_note",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_break",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_pay_line",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_pay_line_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_outlook",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_outlook_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_change",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_change_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_c2_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_c3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_majors_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_majors_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_majors_k1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_majors_k2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_majors_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_majors",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_majors_more",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_split",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_routes_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_routes_line",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_f1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_f2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_f3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_f5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "s_f6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_beg_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_sig1_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_sig1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_sig1_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_sig2_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_sig2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_sig2_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_sig2_r2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_sig3_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_sig3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_sig3_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_draws_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_know_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_know",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_skill_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_skills",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_draws_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_pay_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_pay_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_readout",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_readout_med_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_readout_med",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_readout_lq_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_readout_lq",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_break",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_proj",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_proj_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_outlook",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_outlook_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_c2_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_c3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_emp_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_emp_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_emp",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_emp_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_turnover",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_majors_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_majors_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_majors_k1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_majors_k2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_majors_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_majors",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_majors_dispersed",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_majors_zero",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_f1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_f2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_f3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "d_f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "tabs_track",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "tabs",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "foot_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_routes",
+      "target": "all_notes",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "hdr_bar",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "back",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "hdr_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "hdr_data",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "hdr_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "hdr_desc_top",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "hdr_desc_low",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "job_card_openings",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "job_card_starting_pay",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "job_card_graduates",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "job_card_ai_exposure",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "c1_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "c2_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "c3_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "c1_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "c1_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "c2_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "c3_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "year_label",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "year_slider",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_wayin_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_wayin",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_wayin2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_skills_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_skills_head",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_skills",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_skills_read",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_skills_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_beg_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_sig1_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_sig1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_sig2_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_sig2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_sig2_band",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_sig2_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_sig3_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_sig3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_sig3_band",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_sig3_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_people_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_people_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_readout",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_readout_nyc_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_readout_nyc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_readout_met1_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_readout_met1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_readout_met_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_readout_met",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_readout_nyc_note",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_break",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_pay_line",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_pay_line_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_outlook",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_outlook_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_change",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_change_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_c2_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_c3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_majors_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_majors_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_majors_k1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_majors_k2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_majors_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_majors",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_majors_more",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_split",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_routes_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_routes_line",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_routes",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_f1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_f2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_f3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_f5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "s_f6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_beg_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_sig1_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_sig1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_sig1_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_sig2_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_sig2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_sig2_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_sig2_r2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_sig3_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_sig3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_sig3_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_draws_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_know_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_know",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_skill_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_skills",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_draws_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_pay_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_pay_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_readout",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_readout_med_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_readout_med",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_readout_lq_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_readout_lq",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_break",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_proj",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_proj_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_outlook",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_outlook_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_c2_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_c3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_emp_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_emp_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_emp_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_turnover",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_majors_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_majors_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_majors_k1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_majors_k2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_majors_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_majors",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_majors_dispersed",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_majors_zero",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_f1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_f2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_f3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "d_f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "tabs_track",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "tabs",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "foot_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_emp",
+      "target": "all_notes",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "hdr_bar",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "back",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "hdr_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "hdr_data",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "hdr_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "hdr_desc_top",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "hdr_desc_low",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "job_card_openings",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "job_card_starting_pay",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "job_card_graduates",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "job_card_ai_exposure",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "c1_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "c2_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "c3_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "c1_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "c1_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "c2_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "c3_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "year_label",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "year_slider",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_wayin_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_wayin",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_wayin2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_skills_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_skills_head",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_skills",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_skills_read",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_skills_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_beg_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_sig1_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_sig1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_sig2_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_sig2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_sig2_band",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_sig2_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_sig3_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_sig3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_sig3_band",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_sig3_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_people_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_people_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_readout",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_readout_nyc_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_readout_nyc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_readout_met1_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_readout_met1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_readout_met_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_readout_met",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_readout_nyc_note",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_break",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_pay_line",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_pay_line_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_outlook",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_outlook_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_change",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_change_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_c2_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_c3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_majors_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_majors_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_majors_k1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_majors_k2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_majors_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_majors",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_majors_more",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_split",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_routes_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_routes_line",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_routes",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_f1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_f2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_f3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_f5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "s_f6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_beg_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_sig1_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_sig1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_sig1_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_sig2_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_sig2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_sig2_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_sig2_r2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_sig3_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_sig3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_sig3_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_draws_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_know_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_know",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_skill_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_skills",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_draws_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_pay_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_pay_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_readout",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_readout_med_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_readout_med",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_readout_lq_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_readout_lq",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_break",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_proj",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_proj_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_outlook",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_outlook_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_c2_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_c3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_emp_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_emp_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_emp",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_emp_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_turnover",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_majors_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_majors_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_majors_k1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_majors_k2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_majors_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_majors_dispersed",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_majors_zero",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_f1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_f2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_f3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "d_f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "tabs_track",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "tabs",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "foot_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_majors",
+      "target": "all_notes",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "hdr_bar",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "back",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "hdr_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "hdr_data",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "hdr_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "hdr_desc_top",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "hdr_desc_low",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "job_card_openings",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "job_card_starting_pay",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "job_card_graduates",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "job_card_ai_exposure",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "c1_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "c2_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "c3_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "c1_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "c1_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "c2_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "c3_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "year_label",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "year_slider",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_wayin_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_wayin",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_wayin2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_skills_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_skills_head",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_skills",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_skills_read",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_skills_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_beg_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_sig1_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_sig1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_sig2_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_sig2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_sig2_band",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_sig2_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_sig3_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_sig3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_sig3_band",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_sig3_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_people_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_people_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_readout",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_readout_nyc_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_readout_nyc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_readout_met1_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_readout_met1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_readout_met_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_readout_met",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_readout_nyc_note",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_break",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_pay_line",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_pay_line_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_outlook",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_outlook_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_change",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_change_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_c2_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_c3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_majors_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_majors_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_majors_k1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_majors_k2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_majors_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_majors",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_majors_more",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_split",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_routes_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_routes_line",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_routes",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_f1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_f2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_f3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_f5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "s_f6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_beg_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_sig1_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_sig1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_sig1_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_sig2_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_sig2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_sig2_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_sig2_r2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_sig3_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_sig3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_sig3_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_draws_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_know_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_know",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_skill_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_skills",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_draws_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_pay_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_pay_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_readout",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_readout_med_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_readout_med",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_readout_lq_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_readout_lq",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_break",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_proj",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_proj_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_outlook",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_outlook_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_c2_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_c3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_emp_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_emp_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_emp",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_emp_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_turnover",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_majors_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_majors_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_majors_k1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_majors_k2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_majors_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_majors",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_majors_dispersed",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_majors_zero",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_f1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_f2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_f3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "d_f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "tabs_track",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "tabs",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "foot_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "s_chart",
+      "target": "all_notes",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "hdr_bar",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "back",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "hdr_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "hdr_data",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "hdr_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "hdr_desc_top",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "hdr_desc_low",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "job_card_openings",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "job_card_starting_pay",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "job_card_graduates",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "job_card_ai_exposure",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "c1_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "c2_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "c3_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "c1_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "c1_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "c2_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "c3_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "year_label",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "year_slider",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_wayin_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_wayin",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_wayin2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_skills_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_skills_head",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_skills",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_skills_read",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_skills_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_beg_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_sig1_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_sig1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_sig2_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_sig2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_sig2_band",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_sig2_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_sig3_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_sig3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_sig3_band",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_sig3_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_people_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_people_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_readout",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_readout_nyc_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_readout_nyc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_readout_met1_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_readout_met1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_readout_met_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_readout_met",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_readout_nyc_note",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_break",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_pay_line",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_pay_line_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_outlook",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_outlook_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_change",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_change_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_c2_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_c3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_majors_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_majors_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_majors_k1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_majors_k2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_majors_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_majors",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_majors_more",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_split",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_routes_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_routes_line",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_routes",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_f1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_f2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_f3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_f5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "s_f6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_beg_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_sig1_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_sig1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_sig1_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_sig2_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_sig2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_sig2_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_sig2_r2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_sig3_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_sig3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_sig3_l2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_draws_lbl",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_know_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_know",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_skill_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_skills",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_draws_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_pay_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_pay_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_readout",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_readout_med_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_readout_med",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_readout_lq_k",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_readout_lq",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_break",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_proj",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_proj_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_outlook",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_outlook_v",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_c2_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_c3_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_emp_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_emp_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_emp",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_emp_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_turnover",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_majors_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_majors_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_majors_k1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_majors_k2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_majors_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_majors",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_majors_dispersed",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_majors_zero",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_f1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_f2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_f3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "d_f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "tabs_track",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "tabs",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "foot_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d_chart",
+      "target": "all_notes",
+      "type": "NoFilter"
+    }
+  ]
+}

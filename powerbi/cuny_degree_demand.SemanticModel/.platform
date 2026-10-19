@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "cuny_degree_demand"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f95ad015-8903-4f4f-805a-1bd7907455f1"
+  }
+}

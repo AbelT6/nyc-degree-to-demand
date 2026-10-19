@@ -1,0 +1,673 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "major",
+  "displayName": "Major page",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f_major_label",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_major"
+              }
+            },
+            "Property": "major_label"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "b_major",
+    "type": "Drillthrough",
+    "referenceScope": "Default",
+    "acceptsFilterContext": "None",
+    "parameters": [
+      {
+        "name": "p_major_label",
+        "boundFilter": "f_major_label",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_major"
+              }
+            },
+            "Property": "major_label"
+          }
+        }
+      }
+    ]
+  },
+  "type": "Drillthrough",
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "jobs_table",
+      "target": "hdr_bar",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "back",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "hdr_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "hdr_answer_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "hdr_data",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "hdr_context",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "hdr_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "hdr_answer_top",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "mj_card_degrees",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "mj_card_colleges",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "mj_card_jobs",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "jobs_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "jobs_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "jobs_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "jobs_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "jobs_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "jobs_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "jobs_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "outside",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "colleges_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "c_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "c_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "c_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "c_table",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "c_more_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "c_more",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "t_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "t_key",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "t_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "wage_text",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "wage",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "foot_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "foot_2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "foot_3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "foot_4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "foot_5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "foot_6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "foot_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jobs_table",
+      "target": "all_notes",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "hdr_bar",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "back",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "hdr_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "hdr_answer_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "hdr_data",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "hdr_context",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "hdr_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "hdr_answer_top",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "mj_card_degrees",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "mj_card_colleges",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "mj_card_jobs",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "jobs_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "jobs_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "open_job",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "open_job_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "jobs_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "jobs_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "jobs_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "jobs_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "jobs_table",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "jobs_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "outside",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "colleges_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "c_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "c_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "c_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "c_more_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "c_more",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "t_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "t_key",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "t_chart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "wage_text",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "wage",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "foot_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "foot_2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "foot_3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "foot_4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "foot_5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "foot_6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "foot_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c_table",
+      "target": "all_notes",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "hdr_bar",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "back",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "hdr_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "hdr_answer_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "hdr_showing",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "hdr_data",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "hdr_context",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "hdr_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "hdr_answer_top",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "mj_card_degrees",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "mj_card_colleges",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "mj_card_jobs",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "jobs_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "jobs_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "open_job",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "open_job_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "jobs_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "jobs_hint_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "jobs_hint",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "jobs_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "jobs_table",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "jobs_empty",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "outside",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "colleges_card",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "c_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "c_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "c_sub",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "c_table",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "c_more_tick",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "c_more",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "t_title",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "t_key",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "wage_text",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "wage",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "foot_1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "foot_2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "foot_3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "foot_4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "foot_5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "foot_6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "foot_rule",
+      "type": "NoFilter"
+    },
+    {
+      "source": "t_chart",
+      "target": "all_notes",
+      "type": "NoFilter"
+    }
+  ]
+}

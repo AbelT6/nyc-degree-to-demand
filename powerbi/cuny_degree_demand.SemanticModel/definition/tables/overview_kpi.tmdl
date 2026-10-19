@@ -1,0 +1,115 @@
+table overview_kpi
+	lineageTag: 266043b5-d5bd-4748-98c0-145c63d8be6e
+
+	column kpi_key
+		dataType: string
+		lineageTag: 37f3aa74-84d9-40ad-900f-11a60d83d920
+		summarizeBy: none
+		sourceColumn: kpi_key
+
+		annotation SummarizationSetBy = User
+
+	column kpi_label
+		dataType: string
+		lineageTag: 7b02e878-377b-49b2-a409-926d8863309c
+		summarizeBy: none
+		sourceColumn: kpi_label
+
+		annotation SummarizationSetBy = User
+
+	column page_key
+		dataType: string
+		lineageTag: 96d375f4-bca3-4321-ba53-50f9eac5c5d6
+		summarizeBy: none
+		sourceColumn: page_key
+
+		annotation SummarizationSetBy = User
+
+	column value
+		dataType: double
+		lineageTag: d70fca19-8d93-440a-98e8-728c972c3e22
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column value_format
+		dataType: string
+		lineageTag: e3f73e10-2fa0-4338-942e-eeb05af2695e
+		summarizeBy: none
+		sourceColumn: value_format
+
+		annotation SummarizationSetBy = User
+
+	column comparison_value
+		dataType: double
+		lineageTag: 11bdb80d-34b4-4153-9765-e23b280a6994
+		summarizeBy: none
+		sourceColumn: comparison_value
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column comparison_label
+		dataType: string
+		lineageTag: 31cc0cb5-32d7-4f90-8ca0-79c9b5480e48
+		summarizeBy: none
+		sourceColumn: comparison_label
+
+		annotation SummarizationSetBy = User
+
+	column direction_good
+		dataType: string
+		lineageTag: 58c07d80-be66-49ac-9943-dfe0413de7f9
+		summarizeBy: none
+		sourceColumn: direction_good
+
+		annotation SummarizationSetBy = User
+
+	column note
+		dataType: string
+		lineageTag: aa4a987b-599a-4458-ba5b-a443be7c1752
+		summarizeBy: none
+		sourceColumn: note
+
+		annotation SummarizationSetBy = User
+
+	column sort_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 6accf412-db73-4391-bdcf-4f6337442556
+		summarizeBy: none
+		sourceColumn: sort_order
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: 64e282fb-4eed-4355-b235-2d5d5c6ca17c
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: 2c2c620a-c209-4294-933a-4bac3f9e4602
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	partition overview_kpi = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "overview_kpi"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

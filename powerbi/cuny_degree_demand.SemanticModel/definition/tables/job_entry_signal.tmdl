@@ -1,0 +1,158 @@
+table job_entry_signal
+	lineageTag: 6a363998-82ae-4fd5-b455-2624cb6dbe2c
+
+	column soc_code
+		dataType: string
+		lineageTag: 32ee3061-037a-49dc-8fe6-a0d283dd1287
+		summarizeBy: none
+		sourceColumn: soc_code
+
+		annotation SummarizationSetBy = User
+
+	column measure
+		dataType: string
+		lineageTag: 339cbc11-20cb-402c-83c2-891da9395e68
+		summarizeBy: none
+		sourceColumn: measure
+
+		annotation SummarizationSetBy = User
+
+	column measure_sort
+		dataType: int64
+		formatString: 0
+		lineageTag: 871b8958-1a38-416a-84dc-09b09439e492
+		summarizeBy: none
+		sourceColumn: measure_sort
+
+		annotation SummarizationSetBy = User
+
+	column measure_label
+		dataType: string
+		lineageTag: 9e7e3e2a-8f1c-4638-838a-88965ba20be5
+		summarizeBy: none
+		sourceColumn: measure_label
+
+		annotation SummarizationSetBy = User
+
+	column wording_key
+		dataType: string
+		lineageTag: 1e158a65-d18e-48c6-80ad-4e51fa3c5a8e
+		summarizeBy: none
+		sourceColumn: wording_key
+
+		annotation SummarizationSetBy = User
+
+	column signal_status
+		dataType: string
+		lineageTag: c9226c1e-bd14-4922-933c-7a323ff22835
+		summarizeBy: none
+		sourceColumn: signal_status
+
+		annotation SummarizationSetBy = User
+
+	column value
+		dataType: double
+		lineageTag: 4695dada-b99a-4637-824d-c7851817d0ae
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column band
+		dataType: string
+		lineageTag: 8f37d36d-6167-4d27-bbb6-75f987d6b568
+		summarizeBy: none
+		sourceColumn: band
+
+		annotation SummarizationSetBy = User
+
+	column band_label
+		dataType: string
+		lineageTag: c6947669-a3ed-435c-8e00-7d73c43e3604
+		summarizeBy: none
+		sourceColumn: band_label
+
+		annotation SummarizationSetBy = User
+
+	column moe_90
+		dataType: double
+		lineageTag: 36b14766-74c4-4396-921c-83b545e1c9e6
+		summarizeBy: none
+		sourceColumn: moe_90
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column n
+		dataType: double
+		lineageTag: db03833e-5eac-43b6-9288-3ee16dd719be
+		summarizeBy: none
+		sourceColumn: n
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column n_young
+		dataType: double
+		lineageTag: 107fc571-3d9a-4fc3-a072-74fc8dd69db0
+		summarizeBy: none
+		sourceColumn: n_young
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column suppressed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2fffaaf1-5881-42ff-a7cc-fabb78c80e7f
+		summarizeBy: none
+		sourceColumn: suppressed
+
+		annotation SummarizationSetBy = User
+
+	column quality_flag
+		dataType: string
+		lineageTag: 353b36f8-42ef-4f50-a105-d8febe3e89e1
+		summarizeBy: none
+		sourceColumn: quality_flag
+
+		annotation SummarizationSetBy = User
+
+	column note
+		dataType: string
+		lineageTag: a63616f7-f417-4266-9374-a40b602ea0c7
+		summarizeBy: none
+		sourceColumn: note
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: 61dd06b2-56bf-48ee-9367-2c3c61da50e7
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: 39382ee4-ef1e-45be-a4af-d325840252da
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	partition job_entry_signal = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "job_entry_signal"]}[Data]
+				in
+				  #"Navigation 1"
+

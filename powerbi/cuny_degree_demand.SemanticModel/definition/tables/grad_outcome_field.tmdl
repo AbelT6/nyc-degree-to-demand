@@ -1,0 +1,402 @@
+table grad_outcome_field
+	lineageTag: 59aef4f4-2d8a-4b17-b747-347edd44e01f
+
+	column fod1p
+		dataType: string
+		lineageTag: b85769bc-949a-4fba-85fe-311e477d8317
+		summarizeBy: none
+		sourceColumn: fod1p
+
+		annotation SummarizationSetBy = User
+
+	column fod_title
+		dataType: string
+		lineageTag: b20d41e1-c453-433a-90a7-15013c30b005
+		summarizeBy: none
+		sourceColumn: fod_title
+
+		annotation SummarizationSetBy = User
+
+	column is_mapped_field
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1d1cc8f8-753b-4728-893d-d8b1a8edd958
+		summarizeBy: none
+		sourceColumn: is_mapped_field
+
+		annotation SummarizationSetBy = User
+
+	column age_band
+		dataType: string
+		lineageTag: 17cd05ac-da5e-42ae-9b2b-70a6acb30389
+		summarizeBy: none
+		sourceColumn: age_band
+
+		annotation SummarizationSetBy = User
+
+	column degree_level
+		dataType: string
+		lineageTag: fa597e5f-b110-4569-9ca9-2d4e43e46108
+		summarizeBy: none
+		sourceColumn: degree_level
+
+		annotation SummarizationSetBy = User
+
+	column n_unweighted
+		dataType: int64
+		formatString: 0
+		lineageTag: 37e182cc-2753-40c6-833d-1718a965162c
+		summarizeBy: none
+		sourceColumn: n_unweighted
+
+		annotation SummarizationSetBy = User
+
+	column n_ftyr
+		dataType: int64
+		formatString: 0
+		lineageTag: 1593e0d0-f8fb-44a8-a3b9-fe04523d2e93
+		summarizeBy: none
+		sourceColumn: n_ftyr
+
+		annotation SummarizationSetBy = User
+
+	column suppressed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f2a5bab0-1a5d-4c52-9f8d-f6ec506ce154
+		summarizeBy: none
+		sourceColumn: suppressed
+
+		annotation SummarizationSetBy = User
+
+	column workers
+		dataType: double
+		lineageTag: 79612859-44de-49d5-b0de-ab20d267f3e2
+		summarizeBy: none
+		sourceColumn: workers
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column moe_workers
+		dataType: double
+		lineageTag: 0acbca0f-4e5f-46b3-a295-930783d0980d
+		summarizeBy: none
+		sourceColumn: moe_workers
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column share_of_level_workers
+		dataType: double
+		lineageTag: fa9f845f-5051-40cb-86de-c87878bb8e0c
+		summarizeBy: none
+		sourceColumn: share_of_level_workers
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column moe_share_of_level_workers
+		dataType: double
+		lineageTag: 9a231bdc-f1c1-429c-9dea-83a963b3e8a6
+		summarizeBy: none
+		sourceColumn: moe_share_of_level_workers
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column level_workers
+		dataType: double
+		lineageTag: 01dbeb28-aba7-484b-bfa5-c52c7f150a8c
+		summarizeBy: none
+		sourceColumn: level_workers
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column earnings_suppressed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6b27280c-b600-468f-9e20-531748e071cf
+		summarizeBy: none
+		sourceColumn: earnings_suppressed
+
+		annotation SummarizationSetBy = User
+
+	column median_earnings_2024usd
+		dataType: double
+		lineageTag: b0cbe797-1cbb-46a5-a54b-e9773cff27be
+		summarizeBy: none
+		sourceColumn: median_earnings_2024usd
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column moe_median_earnings
+		dataType: double
+		lineageTag: a6cef607-a999-498d-9cd9-e33242b41307
+		summarizeBy: none
+		sourceColumn: moe_median_earnings
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mean_earnings_2024usd
+		dataType: double
+		lineageTag: bb6a2af1-994f-420a-84c1-558e6306a15b
+		summarizeBy: none
+		sourceColumn: mean_earnings_2024usd
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column moe_mean_earnings
+		dataType: double
+		lineageTag: c74e4e24-a8cc-46a4-977a-14884630a4eb
+		summarizeBy: none
+		sourceColumn: moe_mean_earnings
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column includes_allocated_codes
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 367a069b-7185-4099-84a1-167ddd25a2c5
+		summarizeBy: none
+		sourceColumn: includes_allocated_codes
+
+		annotation SummarizationSetBy = User
+
+	column premium_band
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b4f1b7d8-d08a-4fca-a968-6eaa2d190889
+		summarizeBy: none
+		sourceColumn: premium_band
+
+		annotation SummarizationSetBy = User
+
+	column bachelor_median_earnings
+		dataType: double
+		lineageTag: 9a14d86d-6262-4639-b28e-abcdee2b808d
+		summarizeBy: none
+		sourceColumn: bachelor_median_earnings
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column graduate_median_earnings
+		dataType: double
+		lineageTag: 36088c9f-a790-425e-ac4c-74a04e6a80b5
+		summarizeBy: none
+		sourceColumn: graduate_median_earnings
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column premium_median
+		dataType: double
+		lineageTag: 5ec0b28e-7a99-4647-9867-71af45a3db1e
+		summarizeBy: none
+		sourceColumn: premium_median
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column premium_mean
+		dataType: double
+		lineageTag: 71f36568-82d5-41b4-9fa8-bafd4dae1d9c
+		summarizeBy: none
+		sourceColumn: premium_mean
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column premium_z
+		dataType: double
+		lineageTag: 935df118-de71-4571-82d8-95562612f040
+		summarizeBy: none
+		sourceColumn: premium_z
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column premium_verdict
+		dataType: string
+		lineageTag: 8869fa44-faad-4eb2-9c0b-490e42b0910b
+		summarizeBy: none
+		sourceColumn: premium_verdict
+
+		annotation SummarizationSetBy = User
+
+	column premium_sign_agrees
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 061e48b7-d92b-4b79-8bf7-5cfce3dbb09d
+		summarizeBy: none
+		sourceColumn: premium_sign_agrees
+
+		annotation SummarizationSetBy = User
+
+	column wording_key
+		dataType: string
+		lineageTag: ab6a04cb-1644-40a1-b94b-e39896bc6b50
+		summarizeBy: none
+		sourceColumn: wording_key
+
+		annotation SummarizationSetBy = User
+
+	column all_fields_weighted_median
+		dataType: double
+		lineageTag: 93e83a5e-3451-4d3c-a76d-4a1ac24f1ffe
+		summarizeBy: none
+		sourceColumn: all_fields_weighted_median
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column all_fields_n_readable
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c2951d3-1994-4e73-86bb-b99c750f78b3
+		summarizeBy: none
+		sourceColumn: all_fields_n_readable
+
+		annotation SummarizationSetBy = User
+
+	column all_fields_premium_median
+		dataType: double
+		lineageTag: 13f36288-de46-4117-ade9-9cd94177fa10
+		summarizeBy: none
+		sourceColumn: all_fields_premium_median
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column graduate_share_of_degree_holders
+		dataType: double
+		lineageTag: 4640b81a-61e8-43d6-952a-251a2a063f39
+		summarizeBy: none
+		sourceColumn: graduate_share_of_degree_holders
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column linked_share
+		dataType: double
+		lineageTag: 45d308fb-6ea1-48f8-b0ad-f029c4895ab7
+		summarizeBy: none
+		sourceColumn: linked_share
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column moe_linked_share
+		dataType: double
+		lineageTag: fa83c7bf-9a8f-454b-919e-363dabcde6c2
+		summarizeBy: none
+		sourceColumn: moe_linked_share
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column base_rate
+		dataType: double
+		lineageTag: dd6d56de-82d7-4048-8498-34dd2004d0d8
+		summarizeBy: none
+		sourceColumn: base_rate
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lift
+		dataType: double
+		lineageTag: dd5fd5cb-3a11-495c-a0e8-aae3c36d9d42
+		summarizeBy: none
+		sourceColumn: lift
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column field_verdict
+		dataType: string
+		lineageTag: 5c16d611-8c6a-4620-8bb5-fc09cca6a1c9
+		summarizeBy: none
+		sourceColumn: field_verdict
+
+		annotation SummarizationSetBy = User
+
+	column n_linked_jobs
+		dataType: int64
+		formatString: 0
+		lineageTag: c6e26760-9eef-4e79-ac13-7bc4d7e7f180
+		summarizeBy: none
+		sourceColumn: n_linked_jobs
+
+		annotation SummarizationSetBy = User
+
+	column n_all_other_jobs
+		dataType: int64
+		formatString: 0
+		lineageTag: 27211b14-5e47-4e07-b002-db51367d4cc7
+		summarizeBy: none
+		sourceColumn: n_all_other_jobs
+
+		annotation SummarizationSetBy = User
+
+	column n_base_jobs_suppressed
+		dataType: int64
+		formatString: 0
+		lineageTag: 33aa15cd-1c59-479d-9dde-f8320e8ba836
+		summarizeBy: none
+		sourceColumn: n_base_jobs_suppressed
+
+		annotation SummarizationSetBy = User
+
+	column source_key
+		dataType: string
+		lineageTag: b1414fff-e726-4daa-8cd3-1241bdace957
+		summarizeBy: none
+		sourceColumn: source_key
+
+		annotation SummarizationSetBy = User
+
+	column as_of
+		dataType: string
+		lineageTag: 771f751f-90e9-406c-9345-34f7180a8a17
+		summarizeBy: none
+		sourceColumn: as_of
+
+		annotation SummarizationSetBy = User
+
+	partition grad_outcome_field = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("localhost:5432", "cuny_gap"),
+				  #"Navigation 1" = Source{[Schema = "mart", Item = "grad_outcome_field"]}[Data]
+				in
+				  #"Navigation 1"
+
