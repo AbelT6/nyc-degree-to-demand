@@ -1,0 +1,31 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Data: raw files are re-downloadable (notebooks/00-download-data.ipynb; provenance in data/raw/manifest.csv)
+data/raw/*
+data/interim/*
+!data/raw/.gitkeep
+!data/raw/manifest.csv
+!data/interim/.gitkeep
+
+# Secrets (database passwords)
+.env
+
+# dbt build output
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+
+# Power BI Desktop's local data cache and settings (the .pbix is the shared data file)
+**/.pbi/cache.abf
+**/.pbi/localSettings.json
+
+# OS / Office temp files
+.DS_Store
+Thumbs.db
+~$*
+*.log

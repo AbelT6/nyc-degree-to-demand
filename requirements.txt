@@ -1,0 +1,11 @@
+pandas==3.0.6
+openpyxl==3.1.5
+duckdb==1.5.6
+jupyter==1.1.1
+ipykernel==7.4.0
+requests==2.34.2
+python-dotenv==1.2.4
+pyarrow==26.0.0
+psycopg[binary]==3.3.6
+dbt-core==1.12.5
+dbt-postgres==1.11.0
